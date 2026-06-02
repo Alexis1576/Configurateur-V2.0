@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurateur Vasques LYNKA</title>
+  <meta name="description" content="Configurateur de cuves et plans vasques LYNKA" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="header-logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="2" y="10" width="24" height="14" rx="3" fill="url(#g1)" opacity="0.9"/>
+          <rect x="6" y="6" width="16" height="6" rx="2" fill="url(#g1)" opacity="0.6"/>
+          <rect x="11" y="2" width="6" height="6" rx="1.5" fill="url(#g1)" opacity="0.4"/>
+          <defs>
+            <linearGradient id="g1" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#a78bfa"/>
+              <stop offset="1" stop-color="#60a5fa"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <span class="logo-text">LYNKA Studio</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-ghost" id="btn-reset" title="Réinitialiser">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Réinitialiser
+      </button>
+    </div>
+  </header>
+
+  <!-- ── MAIN LAYOUT ── -->
+  <main class="layout">
+
+    <!-- ════ LEFT PANEL ════ -->
+    <aside class="panel-left" id="panel-left">
+
+      <!-- Progress Steps -->
+      <div class="steps-bar">
+        <div class="step active" data-step="1">
+          <div class="step-dot">1</div>
+          <span>Dimensions</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <div class="step-dot">2</div>
+          <span>Finition</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <div class="step-dot">3</div>
+          <span>Options</span>
+        </div>
+      </div>
+
+      <!-- ── SECTION 1 : Dimensions & Cuve ── -->
+      <section class="config-section active" id="section-1">
+        <div class="section-header">
+          <h2 class="section-title">Modèle & Dimensions</h2>
+          <p class="section-desc">Choisissez votre modèle et ajustez les proportions.</p>
+        </div>
+
+        <div class="accessory-group" style="margin-bottom: 24px;">
+          <div class="accessory-header" style="background:var(--bg-2); border:1px solid rgba(124,110,245,0.2); flex-direction: column; align-items: stretch;">
+            
+            <!-- Modèle -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <div style="display:flex; gap:12px; align-items:center;">
+                <div class="accessory-icon" style="color:var(--accent);">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4"/></svg>
+                </div>
+                <div>
+                  <p class="accessory-name">Modèle de cuve</p>
+                  <p class="accessory-sub">Sélectionnez le type</p>
+                </div>
+              </div>
+              <select id="select-model" style="background:var(--bg-3); border:1px solid var(--border-color); color:var(--text-1); padding:8px 16px; border-radius:var(--r-md); font-family:'Inter',sans-serif; outline:none; font-size:14px; font-weight:600; cursor:pointer; width: 160px; max-width: 50%;">
+                <option value="">Chargement...</option>
+              </select>
+            </div>
+
+            <!-- Nombre de cuves (dynamique) -->
+            <div id="group-nb-cuves" style="display:none; justify-content:space-between; align-items:center; border-top: 1px solid var(--border-color); padding-top: 16px;">
+              <div style="display:flex; gap:12px; align-items:center;">
+                <div class="accessory-icon" style="color:var(--text-2);">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/></svg>
+                </div>
+                <div>
+                  <p class="accessory-name" style="font-size:13px;">Nombre de cuves</p>
+                </div>
+              </div>
+              <select id="select-nb-cuves" style="background:var(--bg-3); border:1px solid var(--border-color); color:var(--text-1); padding:6px 12px; border-radius:var(--r-md); font-family:'Inter',sans-serif; outline:none; font-size:13px; font-weight:500; cursor:pointer;">
+                <option value="1">1 Cuve</option>
+                <!-- Generated dynamically if allowed -->
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sliders-group">
+          <div class="slider-item">
+            <div class="slider-label-row">
+              <label class="slider-label" for="slider-length">Longueur</label>
+              <div class="slider-value-box">
+                <span id="val-length">80</span>
+                <span class="slider-unit">cm</span>
+              </div>
+            </div>
+            <div class="slider-track-wrap">
+              <input type="range" class="slider" id="slider-length" min="40" max="160" value="80" step="1" />
+              <div class="slider-fill" id="fill-length"></div>
+            </div>
+          </div>
+
+          <div class="slider-item">
+            <div class="slider-label-row">
+              <label class="slider-label" for="slider-depth">Profondeur</label>
+              <div class="slider-value-box">
+                <span id="val-depth">45</span>
+                <span class="slider-unit">cm</span>
+              </div>
+            </div>
+            <div class="slider-track-wrap">
+              <input type="range" class="slider" id="slider-depth" min="30" max="65" value="45" step="1" />
+              <div class="slider-fill" id="fill-depth"></div>
+            </div>
+          </div>
+          
+          <div class="slider-item">
+            <div class="slider-label-row">
+              <label class="slider-label" for="slider-height">Hauteur cuve</label>
+              <div class="slider-value-box">
+                <span id="val-height">14</span>
+                <span class="slider-unit">cm</span>
+              </div>
+            </div>
+            <div class="slider-track-wrap">
+              <input type="range" class="slider" id="slider-height" min="8" max="22" value="14" step="1" />
+              <div class="slider-fill" id="fill-height"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-next" id="btn-next-1" style="margin-left:auto;">Suivant — Finition <span>→</span></button>
+        </div>
+      </section>
+
+      <!-- ── SECTION 2 : Finition ── -->
+      <section class="config-section" id="section-2">
+        <div class="section-header">
+          <h2 class="section-title">Finition</h2>
+          <p class="section-desc">Couleur du Vkorr.</p>
+        </div>
+
+        <div class="finish-group">
+          <div class="finish-grid">
+            <label class="finish-card selected" for="fin-blanc-mat">
+              <input type="radio" name="finition" id="fin-blanc-mat" value="blanc-mat" checked />
+              <div class="finish-swatch" style="background: #f0ede8;"></div>
+              <span class="finish-name">Blanc Mat</span>
+              <div class="finish-check">✓</div>
+            </label>
+            <label class="finish-card" for="fin-beton">
+              <input type="radio" name="finition" id="fin-beton" value="beton" />
+              <div class="finish-swatch" style="background: #8b9099;"></div>
+              <span class="finish-name">Béton</span>
+              <div class="finish-check">✓</div>
+            </label>
+            <label class="finish-card" for="fin-noir">
+              <input type="radio" name="finition" id="fin-noir" value="noir" />
+              <div class="finish-swatch" style="background: #1a1a1f;"></div>
+              <span class="finish-name">Noir</span>
+              <div class="finish-check">✓</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" id="btn-back-2">← Retour</button>
+          <button class="btn-next" id="btn-next-2">Suivant — Options <span>→</span></button>
+        </div>
+      </section>
+
+      <!-- ── SECTION 3 : Options & Accessoires ── -->
+      <section class="config-section" id="section-3">
+        <div class="section-header">
+          <h2 class="section-title">Options</h2>
+          <p class="section-desc">Murs, Trop-plein et Crédence.</p>
+        </div>
+
+        <!-- Murs -->
+        <div class="accessory-group">
+          <div class="accessory-header" style="flex-direction:column; align-items:flex-start;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="accessory-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 22V2M20 22V2M4 12h16"/></svg>
+              </div>
+              <div>
+                <p class="accessory-name">Configuration des murs</p>
+                <p class="accessory-sub">Environnement du plan vasque</p>
+              </div>
+            </div>
+
+            <div class="model-grid" style="margin-top:16px; width:100%; grid-template-columns: 1fr 1fr;">
+              <label class="model-card selected" for="mur-aucun">
+                <input type="radio" name="mur" id="mur-aucun" value="aucun" checked />
+                <div class="model-img" style="height:40px;">
+                  <svg viewBox="0 0 40 40"><rect x="10" y="24" width="20" height="4" rx="1" fill="url(#g1)" opacity="0.9"/></svg>
+                </div>
+                <span class="model-name">Sans mur</span>
+                <div class="model-check">✓</div>
+              </label>
+              
+              <label class="model-card" for="mur-entre">
+                <input type="radio" name="mur" id="mur-entre" value="entre" />
+                <div class="model-img" style="height:40px;">
+                  <svg viewBox="0 0 40 40"><rect x="10" y="24" width="20" height="4" rx="1" fill="url(#g1)" opacity="0.9"/><rect x="6" y="8" width="4" height="24" rx="1" fill="var(--text-3)" opacity="0.7"/><rect x="30" y="8" width="4" height="24" rx="1" fill="var(--text-3)" opacity="0.7"/></svg>
+                </div>
+                <span class="model-name">Entre murs</span>
+                <div class="model-check">✓</div>
+              </label>
+
+              <label class="model-card" for="mur-gauche">
+                <input type="radio" name="mur" id="mur-gauche" value="gauche" />
+                <div class="model-img" style="height:40px;">
+                  <svg viewBox="0 0 40 40"><rect x="10" y="24" width="20" height="4" rx="1" fill="url(#g1)" opacity="0.9"/><rect x="6" y="8" width="4" height="24" rx="1" fill="var(--text-3)" opacity="0.7"/></svg>
+                </div>
+                <span class="model-name">Mur à gauche</span>
+                <div class="model-check">✓</div>
+              </label>
+
+              <label class="model-card" for="mur-droite">
+                <input type="radio" name="mur" id="mur-droite" value="droite" />
+                <div class="model-img" style="height:40px;">
+                  <svg viewBox="0 0 40 40"><rect x="10" y="24" width="20" height="4" rx="1" fill="url(#g1)" opacity="0.9"/><rect x="30" y="8" width="4" height="24" rx="1" fill="var(--text-3)" opacity="0.7"/></svg>
+                </div>
+                <span class="model-name">Mur à droite</span>
+                <div class="model-check">✓</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trop-plein -->
+        <div class="accessory-group">
+          <div class="accessory-header">
+            <div class="accessory-icon">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"/>
+                <circle cx="12" cy="6" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <p class="accessory-name">Avec trop-plein</p>
+              <p class="accessory-sub">Sécurité débordement</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-tropplein" checked />
+              <span class="toggle-track"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Crédence -->
+        <div class="accessory-group">
+          <div class="accessory-header" style="flex-direction:column; align-items:flex-start;">
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="accessory-icon">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              </div>
+              <div>
+                <p class="accessory-name">Crédence</p>
+                <p class="accessory-sub">Finition murale</p>
+              </div>
+            </div>
+
+            <div class="finish-grid" style="margin-top:16px; width:100%;">
+              <label class="finish-card selected" for="credence-none">
+                <input type="radio" name="credence" id="credence-none" value="" checked />
+                <div class="finish-swatch" style="background: var(--bg-3); display:flex; align-items:center; justify-content:center; color:var(--text-3); font-size:10px;">Sans</div>
+                <span class="finish-name">Aucune</span>
+                <div class="finish-check">✓</div>
+              </label>
+              <label class="finish-card" for="credence-c">
+                <input type="radio" name="credence" id="credence-c" value="C" />
+                <div class="finish-swatch" style="background: rgba(124,110,245,0.2); border-color: var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; font-weight:700;">C</div>
+                <span class="finish-name">Type C</span>
+                <div class="finish-check">✓</div>
+              </label>
+              <label class="finish-card" for="credence-p">
+                <input type="radio" name="credence" id="credence-p" value="P" />
+                <div class="finish-swatch" style="background: rgba(124,110,245,0.2); border-color: var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; font-weight:700;">P</div>
+                <span class="finish-name">Type P</span>
+                <div class="finish-check">✓</div>
+              </label>
+              <label class="finish-card" for="credence-m">
+                <input type="radio" name="credence" id="credence-m" value="M" />
+                <div class="finish-swatch" style="background: rgba(124,110,245,0.2); border-color: var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; font-weight:700;">M</div>
+                <span class="finish-name">Type M</span>
+                <div class="finish-check">✓</div>
+              </label>
+              <label class="finish-card" for="credence-t">
+                <input type="radio" name="credence" id="credence-t" value="T" />
+                <div class="finish-swatch" style="background: rgba(124,110,245,0.2); border-color: var(--accent); display:flex; align-items:center; justify-content:center; color:var(--accent); font-size:16px; font-weight:700;">T</div>
+                <span class="finish-name">Type T</span>
+                <div class="finish-check">✓</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" id="btn-back-3">← Retour</button>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ════ CENTER 3D VIEWER ════ -->
+    <div class="viewer-area" id="viewer-area">
+      <div class="viewer-top-bar">
+        <div class="viewer-model-tag" id="viewer-model-tag">
+          <span class="tag-dot"></span>
+          Chargement...
+        </div>
+        <div class="viewer-controls">
+          <button id="btn-3d-reset" title="Réinitialiser la vue" style="display:none;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64M3.51 15A9 9 0 0 0 18.36 18.36"/></svg>
+          </button>
+          <button id="btn-3d-screenshot" title="Télécharger l'image" style="display:none;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Zone - Three.js Viewer -->
+      <div id="viewer-canvas" style="width: 100%; height: 100%;"></div>
+
+      <div class="badge-3d-ready" id="badge-3d-ready" style="display:none;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        Aperçu 3D Interactif (Three.js - Connecté Google Sheets)
+      </div>
+      
+      <div class="viewer-loading show" id="viewer-loading">
+        <div class="loading-ring"></div>
+        <p>Chargement du catalogue...</p>
+      </div>
+    </div>
+
+    <!-- ════ RIGHT PANEL : Récapitulatif ════ -->
+    <aside class="panel-right" id="panel-right">
+      <div class="summary-header">
+        <h3>Référence LYNKA</h3>
+      </div>
+      
+      <div class="lynka-ref-box">
+        <div class="ref-code" id="lynka-ref">...</div>
+        <div class="ref-sub" id="lynka-subref">...</div>
+      </div>
+
+      <div class="summary-list">
+        <div class="summary-item">
+          <div class="si-content">
+            <span class="si-label">Modèle Base</span>
+            <span class="si-value" id="sum-model">...</span>
+          </div>
+        </div>
+        <div class="summary-item">
+          <div class="si-content">
+            <span class="si-label">Trop-plein</span>
+            <span class="si-value" id="sum-stp">Avec</span>
+          </div>
+        </div>
+        <div class="summary-item" id="sum-item-cuves" style="display:none;">
+          <div class="si-content">
+            <span class="si-label">Nb Cuves</span>
+            <span class="si-value" id="sum-nb-cuves">1 Cuve</span>
+          </div>
+        </div>
+        <div class="summary-item">
+          <div class="si-content">
+            <span class="si-label">Murs</span>
+            <span class="si-value" id="sum-mur">Sans mur</span>
+          </div>
+        </div>
+        <div class="summary-item">
+          <div class="si-content">
+            <span class="si-label">Crédence</span>
+            <span class="si-value" id="sum-credence">Aucune</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Morph Targets Debug Panel -->
+      <div class="morph-debug" id="morph-debug" style="margin-top:auto;">
+        <div class="morph-debug-header">
+          <span>🎯 Morph Targets (futur GLB)</span>
+        </div>
+        <div class="morph-row">
+          <span>Longueur</span>
+          <span class="morph-val" id="mt-length">0.33</span>
+        </div>
+        <div class="morph-row">
+          <span>Profondeur</span>
+          <span class="morph-val" id="mt-depth">0.43</span>
+        </div>
+        <div class="morph-row">
+          <span>Hauteur</span>
+          <span class="morph-val" id="mt-height">0.50</span>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+  
+  <div class="toast" id="toast">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="toast-msg">Mise à jour</span>
+  </div>
+
+  <!-- Import map for Three.js bare module resolution -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <!-- Application principale -->
+  <script src="app.js"></script>
+</body>
+</html>
