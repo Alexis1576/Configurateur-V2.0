@@ -23,7 +23,6 @@ const state = {
   model:       '',
   length:      80,
   position:    40,
-  depth:       45,
   height:      14,
   finition:    'blanc-mat',
   tropPlein:   true,  // true = Avec, false = Sans (-STP)
@@ -41,17 +40,14 @@ const $ = id => document.getElementById(id);
 const sliderItemPosition = $('slider-item-position');
 const sliderLength = $('slider-length');
 const sliderPosition = $('slider-position');
-const sliderDepth  = $('slider-depth');
 const sliderHeight = $('slider-height');
 const valLength    = $('val-length');
 const valPosition  = $('val-position');
-const valDepth     = $('val-depth');
 const valHeight    = $('val-height');
 const fillLength   = $('fill-length');
 const fillPosition = $('fill-position');
-const fillDepth    = $('fill-depth');
+const fillHeight   = $('fill-height');
 const mtLength     = $('mt-length');
-const mtDepth      = $('mt-depth');
 const mtHeight     = $('mt-height');
 
 // Viewer
@@ -88,6 +84,7 @@ let plateauBones = {
   rightMesh: null,
   frontMesh: null
 };
+let baseFrontLength = 800; // Valeur par défaut en mm
 let initialCameraState = {
   position: new THREE.Vector3(0, 1.15, 2.3),
   target: new THREE.Vector3(0, 0.4, 0)
@@ -154,6 +151,39 @@ function init3DViewer() {
   centerDot.position.set(0, 0.001, 0);
   scene.add(centerDot);
 
+  // Axe XYZ pour repère visuel (Rouge=X, Vert=Y, Bleu=Z)
+  const axesHelper = new THREE.AxesHelper(1);
+  scene.add(axesHelper);
+
+  // Fonction pour créer un label texte 3D
+  function makeTextSprite(message, color) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const context = canvas.getContext('2d');
+    context.font = 'Bold 40px Arial';
+    context.fillStyle = color;
+    context.textAlign = 'center';
+    context.fillText(message, 32, 48);
+    const texture = new THREE.CanvasTexture(canvas);
+    const spriteMaterial = new THREE.SpriteMaterial({ map: texture, depthTest: false });
+    const sprite = new THREE.Sprite(spriteMaterial);
+    sprite.scale.set(0.15, 0.15, 0.15);
+    return sprite;
+  }
+
+  const spriteX = makeTextSprite('X', '#ff0000');
+  spriteX.position.set(1.1, 0, 0);
+  scene.add(spriteX);
+
+  const spriteY = makeTextSprite('Y', '#00ff00');
+  spriteY.position.set(0, 1.1, 0);
+  scene.add(spriteY);
+
+  const spriteZ = makeTextSprite('Z', '#0000ff');
+  spriteZ.position.set(0, 0, 1.1);
+  scene.add(spriteZ);
+
   fbxLoader = new FBXLoader();
   window.addEventListener('resize', handleWindowResize);
 
@@ -183,6 +213,24 @@ function extract3DParameters(object) {
   plateauBones.leftMesh = object.getObjectByName('Rive_G');
   plateauBones.rightMesh = object.getObjectByName('Rive_D');
   plateauBones.frontMesh = object.getObjectByName('Rive_Av');
+
+  // Sauvegarde des positions initiales pour les offsets relatifs
+  plateauBones.baseLeftBoneX = plateauBones.leftBone ? plateauBones.leftBone.position.x : -400;
+  plateauBones.baseRightBoneX = plateauBones.rightBone ? plateauBones.rightBone.position.x : 400;
+  
+  if (plateauBones.leftMesh) plateauBones.baseLeftMeshX = plateauBones.leftMesh.position.x;
+  if (plateauBones.rightMesh) plateauBones.baseRightMeshX = plateauBones.rightMesh.position.x;
+  
+  if (plateauBones.frontMesh) {
+    plateauBones.baseFrontMeshX = plateauBones.frontMesh.position.x;
+    if (plateauBones.frontMesh.geometry) {
+      plateauBones.frontMesh.geometry.computeBoundingBox();
+      const bbox = plateauBones.frontMesh.geometry.boundingBox;
+      if (bbox) {
+        baseFrontLength = bbox.max.x - bbox.min.x;
+      }
+    }
+  }
 }
 
 function show3DPreview() {
@@ -195,9 +243,20 @@ function showImagePreview(url) {
   if (threeCanvas) threeCanvas.style.display = 'none';
   if (mainPreviewImg) {
     mainPreviewImg.style.display = 'block';
-    if (mainPreviewImg.src !== url) {
+    
+    if (!url || url === 'Image') {
+      mainPreviewImg.style.opacity = 0;
+      if (viewerLoading) viewerLoading.classList.remove('show');
+      return;
+    }
+
+    if (mainPreviewImg.getAttribute('src') !== url) {
+      if (viewerLoading) viewerLoading.classList.add('show');
       mainPreviewImg.style.opacity = 0;
       mainPreviewImg.src = url;
+    } else {
+      if (viewerLoading) viewerLoading.classList.remove('show');
+      mainPreviewImg.style.opacity = 1;
     }
   }
 }
@@ -207,22 +266,33 @@ function update3DScale() {
 
   const baseScale = 0.01;
   const yScale = state.height / 14;
-  const zScale = is3DModel() ? 1 : state.depth / 45;
   const objectYScale = is3DModel() ? 1 : yScale;
 
-  current3DObject.scale.set(baseScale, baseScale * objectYScale, baseScale * zScale);
+  // Le parent reste toujours centré sur l'origine (repère XYZ fixe)
+  current3DObject.scale.set(baseScale, baseScale * objectYScale, baseScale);
+  current3DObject.position.set(0, 0, 0);
 
   if (is3DModel()) {
     const lengthMm = state.length * 10;
-    const lengthScale = state.length / 80;
-    const depthScale = state.depth / 45;
+    const halfLength = lengthMm / 2;
 
-    if (plateauBones.leftBone) plateauBones.leftBone.position.x = -lengthMm / 2;
-    if (plateauBones.rightBone) plateauBones.rightBone.position.x = lengthMm / 2;
+    // Hauteur retombées : scale sur l'axe Y (descente des rives)
+    // 14cm = taille de référence du FBX d'origine
+    const yScale = state.height / 14;
 
-    if (plateauBones.leftMesh) plateauBones.leftMesh.scale.set(1, yScale, depthScale);
-    if (plateauBones.rightMesh) plateauBones.rightMesh.scale.set(1, yScale, depthScale);
-    if (plateauBones.frontMesh) plateauBones.frontMesh.scale.set(lengthScale, yScale, 1);
+    // Les os s'écartent symétriquement depuis le centre
+    if (plateauBones.leftBone) plateauBones.leftBone.position.x = -halfLength;
+    if (plateauBones.rightBone) plateauBones.rightBone.position.x = halfLength;
+
+    // Les meshes des rives suivent leurs bones parents
+    // Le scale s'applique sur l'axe Y monde (hauteur retombées de haut en bas)
+    if (plateauBones.leftMesh) plateauBones.leftMesh.scale.set(1, 1, yScale);
+    if (plateauBones.rightMesh) plateauBones.rightMesh.scale.set(1, 1, yScale);
+    
+    if (plateauBones.frontMesh) {
+      const frontScaleX = lengthMm / baseFrontLength;
+      plateauBones.frontMesh.scale.set(frontScaleX, 1, yScale);
+    }
   }
 }
 
@@ -255,7 +325,19 @@ function load3DModelForSelection() {
       if (child.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
-        child.material.side = THREE.DoubleSide;
+        if (child.material) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => {
+              m.side = THREE.DoubleSide;
+              m.transparent = false;
+              m.opacity = 1;
+            });
+          } else {
+            child.material.side = THREE.DoubleSide;
+            child.material.transparent = false;
+            child.material.opacity = 1;
+          }
+        }
       }
     });
 
@@ -287,7 +369,9 @@ async function fetchCatalogue() {
     const rows = json.table.rows;
     cuvesData = {};
 
-    rows.forEach(row => {
+    rows.forEach((row, index) => {
+      // Ignorer la ligne d'en-tête (index 0)
+      if (index === 0) return;
       if (!row.c || !row.c[0] || !row.c[0].v) return;
       const modelName = row.c[0].v;
       const imgUrl = row.c[1] ? row.c[1].v : '';
@@ -302,8 +386,9 @@ async function fetchCatalogue() {
         if (parts.length >= 2) {
           const parsedMin = parseInt(parts[0], 10);
           const parsedMax = parseInt(parts[1], 10);
-          if (!Number.isNaN(parsedMin)) minLength = parsedMin;
-          if (!Number.isNaN(parsedMax)) maxLength = parsedMax;
+          // Si les valeurs sont > 200, on assume que c'est en millimètres (donc on divise par 10)
+          if (!Number.isNaN(parsedMin)) minLength = parsedMin > 200 ? parsedMin / 10 : parsedMin;
+          if (!Number.isNaN(parsedMax)) maxLength = parsedMax > 200 ? parsedMax / 10 : parsedMax;
         }
       }
 
@@ -460,7 +545,6 @@ function bindSlider(slider, valEl, fillEl, mtEl, stateKey) {
 
 bindSlider(sliderLength, valLength, fillLength, mtLength, 'length');
 bindSlider(sliderPosition, valPosition, fillPosition, null, 'position');
-bindSlider(sliderDepth, valDepth, fillDepth, mtDepth, 'depth');
 bindSlider(sliderHeight, valHeight, fillHeight, mtHeight, 'height');
 
 
@@ -591,7 +675,6 @@ function init() {
   if (sliderLength) {
     sliderLength.dispatchEvent(new Event('input'));
     if (sliderPosition) sliderPosition.dispatchEvent(new Event('input'));
-    sliderDepth.dispatchEvent(new Event('input'));
     sliderHeight.dispatchEvent(new Event('input'));
   }
   fetchCatalogue(); // Déclenche le téléchargement
