@@ -783,7 +783,6 @@ body {
 .viewer-top-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   padding: 12px 18px;
   border-bottom: 1px solid var(--panel-border);
@@ -791,6 +790,41 @@ body {
   backdrop-filter: blur(10px);
   flex-shrink: 0;
   z-index: 10;
+}
+
+.view-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--glass);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--r-sm);
+  padding: 4px;
+}
+
+.view-btn {
+  width: 34px; height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease);
+}
+.view-btn:hover { color: var(--text-1); background: var(--glass-hover); }
+.view-btn.active {
+  background: rgba(124,110,245,0.15);
+  color: var(--accent);
+}
+
+.view-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--panel-border);
+  margin: 0 2px;
 }
 
 .viewer-model-tag {
@@ -802,20 +836,28 @@ body {
   color: var(--text-1);
   flex: 1;
 }
-
-.viewer-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.tag-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(52,211,153,0.6);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
 }
 
-#btn-3d-reset,
-#btn-3d-screenshot {
-  width: 32px;
-  height: 32px;
+.viewer-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tool-btn {
+  width: 34px; height: 30px;
   border: 1px solid var(--panel-border);
   border-radius: var(--r-sm);
-  background: rgba(124,110,245,0.08);
+  background: transparent;
   color: var(--text-2);
   display: flex;
   align-items: center;
@@ -823,17 +865,11 @@ body {
   cursor: pointer;
   transition: all var(--dur) var(--ease);
 }
-
-#btn-3d-reset:hover,
-#btn-3d-screenshot:hover {
-  color: var(--text-1);
+.tool-btn:hover { color: var(--text-1); border-color: rgba(255,255,255,0.12); }
+.tool-btn.active {
+  color: var(--accent);
   border-color: rgba(124,110,245,0.3);
-  background: rgba(124,110,245,0.15);
-}
-
-#btn-3d-reset:active,
-#btn-3d-screenshot:active {
-  transform: scale(0.95);
+  background: rgba(124,110,245,0.1);
 }
 
 /* Canvas */
@@ -870,8 +906,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   z-index: 5;
   transition: all var(--dur-md) var(--ease);
+}
+
+.three-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .model-shadow {
