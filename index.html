@@ -123,17 +123,45 @@
             </div>
           </div>
 
-          <div class="slider-item" id="slider-item-position">
+          <div class="slider-item" id="slider-item-plage-g">
             <div class="slider-label-row">
-              <label class="slider-label" for="slider-position">Position cuve</label>
+              <label class="slider-label" for="slider-plage-g">Plage gauche</label>
               <div class="slider-value-box">
-                <span id="val-position">40</span>
+                <span id="val-plage-g">40</span>
                 <span class="slider-unit">cm</span>
               </div>
             </div>
             <div class="slider-track-wrap">
-              <input type="range" class="slider" id="slider-position" min="20" max="60" value="40" step="1" />
-              <div class="slider-fill" id="fill-position"></div>
+              <input type="range" class="slider" id="slider-plage-g" min="5" max="60" value="40" step="0.5" />
+              <div class="slider-fill" id="fill-plage-g"></div>
+            </div>
+          </div>
+
+          <div class="slider-item" id="slider-item-plage-d">
+            <div class="slider-label-row">
+              <label class="slider-label" for="slider-plage-d">Plage droite</label>
+              <div class="slider-value-box">
+                <span id="val-plage-d">40</span>
+                <span class="slider-unit">cm</span>
+              </div>
+            </div>
+            <div class="slider-track-wrap">
+              <input type="range" class="slider" id="slider-plage-d" min="5" max="60" value="40" step="0.5" />
+              <div class="slider-fill" id="fill-plage-d"></div>
+            </div>
+          </div>
+
+          <div class="slider-item" id="slider-item-plage-entre" style="display: none;">
+            <div class="slider-label-row">
+              <label class="slider-label" for="slider-plage-entre">Plage entre cuves</label>
+              <div class="slider-value-box">
+                <span id="val-plage-entre">10</span>
+                <span class="slider-unit">cm</span>
+              </div>
+            </div>
+            <div class="slider-track-wrap">
+              <input type="range" class="slider" id="slider-plage-entre" min="5" max="50" value="10" step="0.5" />
+              <div class="slider-fill" id="fill-plage-entre"></div>
             </div>
           </div>
 

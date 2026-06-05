@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('3D - Morth Targets/VO390/VO390_3.fbx', 'utf8'); const matches = content.match(/Bone_[a-zA-Z0-9_]+/g); console.log(Array.from(new Set(matches)));

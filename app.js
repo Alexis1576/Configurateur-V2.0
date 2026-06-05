@@ -4,6 +4,20 @@
 
 'use strict';
 
+window.addEventListener('error', function(e) {
+  const errDiv = document.createElement('div');
+  errDiv.style.cssText = 'position:fixed; top:0; left:0; width:100%; background:red; color:white; z-index:9999; padding: 20px; font-size:16px; font-weight:bold;';
+  errDiv.innerHTML = `ERREUR JS: ${e.message} à la ligne ${e.lineno}`;
+  document.body.appendChild(errDiv);
+});
+
+window.addEventListener('unhandledrejection', function(e) {
+  const errDiv = document.createElement('div');
+  errDiv.style.cssText = 'position:fixed; top:80px; left:0; width:100%; background:darkred; color:white; z-index:9999; padding: 20px; font-size:16px; font-weight:bold;';
+  errDiv.innerHTML = `ERREUR ASYNC: ${e.reason}`;
+  document.body.appendChild(errDiv);
+});
+
 import * as THREE from 'https://esm.sh/three@0.160.0';
 import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
@@ -23,6 +37,7 @@ const state = {
   model:       '',
   length:      80,
   position:    40,
+  plageEntreCuves: 10,
   height:      14,
   finition:    'blanc-mat',
   tropPlein:   true,  // true = Avec, false = Sans (-STP)
@@ -37,15 +52,23 @@ const state = {
 const $ = id => document.getElementById(id);
 
 // Sliders
-const sliderItemPosition = $('slider-item-position');
+const sliderItemPlageG = $('slider-item-plage-g');
+const sliderItemPlageD = $('slider-item-plage-d');
 const sliderLength = $('slider-length');
-const sliderPosition = $('slider-position');
+const sliderPlageG = $('slider-plage-g');
+const sliderPlageD = $('slider-plage-d');
+const sliderItemPlageEntre = $('slider-item-plage-entre');
+const sliderPlageEntre = $('slider-plage-entre');
 const sliderHeight = $('slider-height');
 const valLength    = $('val-length');
-const valPosition  = $('val-position');
+const valPlageG    = $('val-plage-g');
+const valPlageD    = $('val-plage-d');
+const valPlageEntre= $('val-plage-entre');
 const valHeight    = $('val-height');
 const fillLength   = $('fill-length');
-const fillPosition = $('fill-position');
+const fillPlageG   = $('fill-plage-g');
+const fillPlageD   = $('fill-plage-d');
+const fillPlageEntre=$('fill-plage-entre');
 const fillHeight   = $('fill-height');
 const mtLength     = $('mt-length');
 const mtHeight     = $('mt-height');
@@ -89,6 +112,7 @@ let initialCameraState = {
   position: new THREE.Vector3(0, 1.15, 2.3),
   target: new THREE.Vector3(0, 0.4, 0)
 };
+let baseCuveModelPromise = null;
 
 function init3DViewer() {
   if (!threeCanvas) return;
@@ -208,11 +232,29 @@ function is3DModel() {
 }
 
 function extract3DParameters(object) {
+  // Log ALL objects to find exact bone names
+  console.log('=== ALL OBJECTS IN FBX ===');
+  object.traverse(child => {
+    console.log(`[${child.type}] ${child.name} | pos.x=${child.position.x.toFixed(1)}`);
+  });
+  console.log('=========================');
+
   plateauBones.leftBone = object.getObjectByName('Bone_Long_G');
   plateauBones.rightBone = object.getObjectByName('Bone_Long_D');
   plateauBones.leftMesh = object.getObjectByName('Rive_G');
   plateauBones.rightMesh = object.getObjectByName('Rive_D');
   plateauBones.frontMesh = object.getObjectByName('Rive_Av');
+  
+  plateauBones.cuveBones = [];
+  plateauBones.baseCuveBoneX = [];
+  for (let i = 1; i <= 4; i++) {
+    const b = object.getObjectByName(`Bone_Cuve${i}`);
+    if (b) {
+      plateauBones.cuveBones.push(b);
+      plateauBones.baseCuveBoneX.push(b.position.x);
+    }
+  }
+  console.log('Cuve bones found:', plateauBones.cuveBones.map((b,i) => b.name + ' x=' + plateauBones.baseCuveBoneX[i]));
 
   // Sauvegarde des positions initiales pour les offsets relatifs
   plateauBones.baseLeftBoneX = plateauBones.leftBone ? plateauBones.leftBone.position.x : -400;
@@ -276,22 +318,48 @@ function update3DScale() {
     const lengthMm = state.length * 10;
     const halfLength = lengthMm / 2;
 
-    // Hauteur retombées : scale sur l'axe Y (descente des rives)
-    // 14cm = taille de référence du FBX d'origine
-    const yScale = state.height / 14;
+    const data = cuvesData[state.model] || {};
+    const cLengthMm = data.cuveLength || 390;
+    const gapMm = state.plageEntreCuves * 10;
+    const nb = parseInt(state.nbCuves) || 1;
 
-    // Les os s'écartent symétriquement depuis le centre
+    // Le plan est centré autour de 0, les cuves se déplacent en absolu
+    const plageGaucheMm = state.position * 10;
+
+    // Déplacement des os des cuves (positions absolues par rapport au centre du modèle)
+    if (plateauBones.cuveBones && plateauBones.cuveBones.length > 0) {
+      for (let i = 0; i < plateauBones.cuveBones.length; i++) {
+        if (i < nb) {
+          // Centre de la cuve i (en mm, dans l'espace world centré à 0)
+          const cuveX = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
+          plateauBones.cuveBones[i].position.x = cuveX;
+          
+          if (plateauBones.cuveMeshes && plateauBones.cuveMeshes[i]) {
+            plateauBones.cuveMeshes[i].position.x = cuveX;
+            plateauBones.cuveMeshes[i].position.y = -12; // -1.2cm sur l'axe Y
+            plateauBones.cuveMeshes[i].position.z = 0;
+          }
+        }
+      }
+    }
+
+    // Déplacement des os (extrémités du plan, toujours centrées)
     if (plateauBones.leftBone) plateauBones.leftBone.position.x = -halfLength;
     if (plateauBones.rightBone) plateauBones.rightBone.position.x = halfLength;
 
-    // Les meshes des rives suivent leurs bones parents
-    // Le scale s'applique sur l'axe Y monde (hauteur retombées de haut en bas)
-    if (plateauBones.leftMesh) plateauBones.leftMesh.scale.set(1, 1, yScale);
-    if (plateauBones.rightMesh) plateauBones.rightMesh.scale.set(1, 1, yScale);
+    // Déplacement des meshes latéraux (Rive_G et Rive_D)
+    if (plateauBones.leftMesh) {
+      plateauBones.leftMesh.scale.set(1, 1, yScale);
+    }
+    if (plateauBones.rightMesh) {
+      plateauBones.rightMesh.scale.set(1, 1, yScale);
+    }
     
+    // Déplacement et mise à l'échelle de la jupe avant (Rive_Av)
     if (plateauBones.frontMesh) {
       const frontScaleX = lengthMm / baseFrontLength;
       plateauBones.frontMesh.scale.set(frontScaleX, 1, yScale);
+      plateauBones.frontMesh.position.x = 0; // Toujours centré
     }
   }
 }
@@ -306,6 +374,30 @@ function load3DModelForSelection() {
   }
 
   const modelPath = `3D - Morth Targets/VO390/VO390_${targetCount}.fbx`;
+
+  function loadBaseCuve() {
+    if (!baseCuveModelPromise) {
+      baseCuveModelPromise = new Promise((resolve, reject) => {
+        fbxLoader.load(encodeURI('3D - Morth Targets/VO390/Cuve_VO390.fbx'), object => {
+          object.traverse(child => {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              if (child.material) {
+                if (Array.isArray(child.material)) {
+                  child.material.forEach(m => { m.side = THREE.DoubleSide; });
+                } else {
+                  child.material.side = THREE.DoubleSide;
+                }
+              }
+            }
+          });
+          resolve(object);
+        }, undefined, reject);
+      });
+    }
+    return baseCuveModelPromise;
+  }
 
   if (viewerLoading) viewerLoading.classList.add('show');
   if (current3DObject) {
@@ -343,12 +435,32 @@ function load3DModelForSelection() {
 
     object.position.set(0, 0, 0);
     object.rotation.y = Math.PI;
-    current3DObject = object;
-    scene.add(object);
 
-    extract3DParameters(object);
-    update3DScale();
-    if (viewerLoading) viewerLoading.classList.remove('show');
+    loadBaseCuve().then(cuveModel => {
+      plateauBones.cuveMeshes = [];
+      const nb = parseInt(targetCount);
+      for (let i = 0; i < nb; i++) {
+        const clone = cuveModel.clone();
+        object.add(clone);
+        plateauBones.cuveMeshes.push(clone);
+      }
+      
+      current3DObject = object;
+      scene.add(object);
+
+      extract3DParameters(object);
+      update3DScale();
+      if (viewerLoading) viewerLoading.classList.remove('show');
+    }).catch(err => {
+      console.error("Erreur chargement Cuve_VO390", err);
+      // Fallback si la cuve n'est pas trouvée
+      current3DObject = object;
+      scene.add(object);
+      extract3DParameters(object);
+      update3DScale();
+      if (viewerLoading) viewerLoading.classList.remove('show');
+    });
+
   }, undefined, err => {
     console.error('Erreur de chargement 3D:', err);
     if (viewerLoading) viewerLoading.classList.remove('show');
@@ -370,13 +482,12 @@ async function fetchCatalogue() {
     cuvesData = {};
 
     rows.forEach((row, index) => {
-      // Ignorer la ligne d'en-tête (index 0)
-      if (index === 0) return;
       if (!row.c || !row.c[0] || !row.c[0].v) return;
       const modelName = row.c[0].v;
       const imgUrl = row.c[1] ? row.c[1].v : '';
       const utilisateurs = row.c[2] ? row.c[2].v : '1';
       const longueurLimitsRaw = row.c[3] ? String(row.c[3].v) : '';
+      const cuveLength = row.c[4] && row.c[4].v ? parseFloat(row.c[4].v) : 390;
       let minLength = 40;
       let maxLength = 160;
 
@@ -396,6 +507,7 @@ async function fetchCatalogue() {
         label: modelName,
         img: imgUrl,
         cuves: utilisateurs,
+        cuveLength: cuveLength,
         lengthLimits: {
           min: minLength,
           max: maxLength
@@ -410,6 +522,7 @@ async function fetchCatalogue() {
     if (firstModel) {
       state.model = firstModel;
       selectModel.value = firstModel;
+      applyStandardPosition();
       updateVisuals();
     }
 
@@ -477,16 +590,33 @@ document.querySelectorAll('.step').forEach(el => {
   });
 });
 
+function applyStandardPosition() {
+  const data = cuvesData[state.model] || {};
+  const nb = parseInt(state.nbCuves) || 1;
+  const cLength = (data.cuveLength || 390) / 10;
+  
+  if (nb === 1) {
+    state.position = Math.round(((state.length - cLength) / 2) * 10) / 10;
+  } else {
+    const remainingSpace = state.length - (nb * cLength);
+    const plageEntreCuves = remainingSpace / nb;
+    state.plageEntreCuves = Math.round(plageEntreCuves * 10) / 10;
+    state.position = Math.round((plageEntreCuves / 2) * 10) / 10;
+  }
+}
+
 /* ══════════════════════════════════
    EVENT LISTENERS
 ══════════════════════════════════ */
 selectModel?.addEventListener('change', e => {
   state.model = e.target.value;
+  applyStandardPosition();
   updateVisuals();
 });
 
 selectNbCuves?.addEventListener('change', e => {
   state.nbCuves = e.target.value;
+  applyStandardPosition();
   updateVisuals();
 });
 
@@ -532,10 +662,11 @@ function calcMorphValue(slider) {
   return ((slider.value - slider.min) / (slider.max - slider.min)).toFixed(2);
 }
 
-function bindSlider(slider, valEl, fillEl, mtEl, stateKey) {
+function bindSlider(slider, valEl, fillEl, mtEl, stateKey, onInputCb = null) {
   if(!slider) return;
   slider.addEventListener('input', () => {
     state[stateKey] = parseInt(slider.value);
+    if(onInputCb) onInputCb();
     if(valEl) valEl.textContent = state[stateKey];
     if(fillEl) fillEl.style.width = calcFillPct(slider) + '%';
     if(mtEl) mtEl.textContent = calcMorphValue(slider);
@@ -543,9 +674,53 @@ function bindSlider(slider, valEl, fillEl, mtEl, stateKey) {
   });
 }
 
-bindSlider(sliderLength, valLength, fillLength, mtLength, 'length');
-bindSlider(sliderPosition, valPosition, fillPosition, null, 'position');
+if (sliderLength) {
+  sliderLength.addEventListener('input', () => {
+    state.length = parseInt(sliderLength.value);
+    applyStandardPosition();
+    if (valLength) valLength.textContent = state.length;
+    if (fillLength) fillLength.style.width = calcFillPct(sliderLength) + '%';
+    if (mtLength) mtLength.textContent = calcMorphValue(sliderLength);
+    updateVisuals();
+  });
+}
 bindSlider(sliderHeight, valHeight, fillHeight, mtHeight, 'height');
+
+function bindPlageSliders() {
+  if (!sliderPlageG || !sliderPlageD) return;
+
+  function recalculatePlageD() {
+    const data = cuvesData[state.model];
+    const nb = parseInt(state.nbCuves) || 1;
+    const cLength = (data && data.cuveLength ? data.cuveLength : 390) / 10;
+    const innerSpace = nb * cLength + (nb - 1) * state.plageEntreCuves;
+    return state.length - state.position - innerSpace;
+  }
+
+  sliderPlageG.addEventListener('input', (e) => {
+    state.position = parseFloat(e.target.value);
+    updateVisuals();
+  });
+
+  sliderPlageD.addEventListener('input', (e) => {
+    let valD = parseFloat(e.target.value);
+    const data = cuvesData[state.model];
+    const nb = parseInt(state.nbCuves) || 1;
+    const cLength = (data && data.cuveLength ? data.cuveLength : 390) / 10;
+    const innerSpace = nb * cLength + (nb - 1) * state.plageEntreCuves;
+    
+    state.position = state.length - valD - innerSpace;
+    updateVisuals();
+  });
+
+  if (sliderPlageEntre) {
+    sliderPlageEntre.addEventListener('input', (e) => {
+      state.plageEntreCuves = parseFloat(e.target.value);
+      updateVisuals();
+    });
+  }
+}
+bindPlageSliders();
 
 
 /* ══════════════════════════════════
@@ -560,16 +735,35 @@ function updateVisuals() {
   // 1. Preview mode (3D / image)
   applyLengthLimits(data);
   
-  if (sliderPosition) {
-    const minPos = 20; // 20cm du bord gauche par défaut
-    const maxPos = Math.max(minPos, state.length - 20); // 20cm du bord droit
-    sliderPosition.min = minPos;
-    sliderPosition.max = maxPos;
+  if (sliderPlageG && sliderPlageD) {
+    const nb = parseInt(state.nbCuves) || 1;
+    const cLength = (data.cuveLength || 390) / 10;
+    const innerSpace = nb * cLength + (nb - 1) * state.plageEntreCuves;
+
+    const minPos = 5; // 5cm minimum pour chaque plage
+    const maxPos = Math.max(minPos, state.length - minPos - innerSpace);
+    
+    sliderPlageG.min = minPos;
+    sliderPlageG.max = maxPos;
+    
     if (state.position < minPos) state.position = minPos;
     if (state.position > maxPos) state.position = maxPos;
-    sliderPosition.value = state.position;
-    if (valPosition) valPosition.textContent = state.position;
-    if (fillPosition) fillPosition.style.width = calcFillPct(sliderPosition) + '%';
+    
+    const valD = Math.round((state.length - state.position - innerSpace) * 10) / 10;
+    sliderPlageD.min = minPos;
+    sliderPlageD.max = Math.max(minPos, state.length - minPos - innerSpace);
+    
+    sliderPlageG.value = state.position;
+    sliderPlageD.value = valD;
+    if (sliderPlageEntre) sliderPlageEntre.value = state.plageEntreCuves;
+    
+    if (valPlageG) valPlageG.textContent = state.position;
+    if (valPlageD) valPlageD.textContent = valD;
+    if (valPlageEntre) valPlageEntre.textContent = state.plageEntreCuves;
+    
+    if (fillPlageG) fillPlageG.style.width = calcFillPct(sliderPlageG) + '%';
+    if (fillPlageD) fillPlageD.style.width = calcFillPct(sliderPlageD) + '%';
+    if (fillPlageEntre && sliderPlageEntre) fillPlageEntre.style.width = calcFillPct(sliderPlageEntre) + '%';
   }
 
   const imgUrl = data.img;
@@ -620,8 +814,12 @@ function updateVisuals() {
     sumNbCuves.textContent = state.nbCuves === '1' ? '1 Cuve' : `${state.nbCuves} Cuves`;
   }
 
-  if (sliderItemPosition) {
-    sliderItemPosition.style.display = state.nbCuves === '1' ? 'block' : 'none';
+  if (sumItemCuves) sumItemCuves.style.display = data.cuves === '1' ? 'none' : 'flex';
+  
+  if (sliderItemPlageG) sliderItemPlageG.style.display = 'block';
+  if (sliderItemPlageD) sliderItemPlageD.style.display = 'block';
+  if (sliderItemPlageEntre) {
+    sliderItemPlageEntre.style.display = parseInt(state.nbCuves) > 1 ? 'block' : 'none';
   }
 }
 
@@ -674,7 +872,7 @@ function init() {
   btnReset?.addEventListener('click', resetCamera);
   if (sliderLength) {
     sliderLength.dispatchEvent(new Event('input'));
-    if (sliderPosition) sliderPosition.dispatchEvent(new Event('input'));
+    if (sliderPlageG) sliderPlageG.dispatchEvent(new Event('input'));
     sliderHeight.dispatchEvent(new Event('input'));
   }
   fetchCatalogue(); // Déclenche le téléchargement
