@@ -43,7 +43,8 @@ const state = {
   tropPlein:   true,  // true = Avec, false = Sans (-STP)
   credence:    '',    // '', 'C', 'P', 'M', 'T'
   mur:         'aucun',// 'aucun', 'entre', 'gauche', 'droite'
-  nbCuves:     '1'    // '1', '2', ... '8'
+  nbCuves:     '1',    // '1', '2', ... '8'
+  support:     ''      // '', 'TH', 'THALL', 'THALLIS', 'THALLISOL'
 };
 
 /* ══════════════════════════════════
@@ -94,12 +95,17 @@ const toggleTropplein = $('toggle-tropplein');
 const groupNbCuves    = $('group-nb-cuves');
 const selectNbCuves   = $('select-nb-cuves');
 const selectModel     = $('select-model');
+const selectSupport   = $('select-support');
 
 // 3D Viewer
 const threeCanvas     = $('three-canvas');
 const viewerCanvas    = $('viewer-canvas');
 let scene, camera, renderer, controls, fbxLoader, current3DObject = null;
 let loadedModelCount = null;
+let baseCuveModel = null;
+let cuveInstances = [];
+let baseSupportModel = null;
+let supportInstance = null;
 let plateauBones = {
   leftBone: null,
   rightBone: null,
@@ -112,7 +118,6 @@ let initialCameraState = {
   position: new THREE.Vector3(0, 1.15, 2.3),
   target: new THREE.Vector3(0, 0.4, 0)
 };
-let baseCuveModelPromise = null;
 
 function init3DViewer() {
   if (!threeCanvas) return;
@@ -147,16 +152,10 @@ function init3DViewer() {
   dirLight.shadow.camera.near = 0.1;
   dirLight.shadow.camera.far = 20;
   dirLight.shadow.mapSize.set(1024, 1024);
+  dirLight.shadow.bias = -0.001;
   scene.add(dirLight);
 
-  const floor = new THREE.Mesh(
-    new THREE.PlaneGeometry(60, 60),
-    new THREE.ShadowMaterial({ opacity: 0.15 })
-  );
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.y = 0;
-  floor.receiveShadow = true;
-  scene.add(floor);
+  // Sol avec ombre retiré à la demande de l'utilisateur
 
   const markerMaterial = new THREE.LineBasicMaterial({ color: 0xffd700, toneMapped: false });
   const markerGeometry = new THREE.BufferGeometry().setFromPoints([
@@ -227,8 +226,20 @@ function renderScene() {
   requestAnimationFrame(renderScene);
 }
 
+// Retourne le nom de base du modèle sans suffixe -STP
+function getBaseModelName() {
+  return (state.model || '').replace(/-STP$/, '');
+}
+
+// Retourne true si le modèle sélectionné est STP (sans trop-plein)
+function isSTPModel() {
+  return (state.model || '').endsWith('-STP');
+}
+
+// Retourne true si on a un modèle 3D disponible (VO390 pour l'instant)
 function is3DModel() {
-  return state.model === 'VO390';
+  const base = getBaseModelName();
+  return base === 'VO390';
 }
 
 function extract3DParameters(object) {
@@ -333,12 +344,6 @@ function update3DScale() {
           // Centre de la cuve i (en mm, dans l'espace world centré à 0)
           const cuveX = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
           plateauBones.cuveBones[i].position.x = cuveX;
-          
-          if (plateauBones.cuveMeshes && plateauBones.cuveMeshes[i]) {
-            plateauBones.cuveMeshes[i].position.x = cuveX;
-            plateauBones.cuveMeshes[i].position.y = -12; // -1.2cm sur l'axe Y
-            plateauBones.cuveMeshes[i].position.z = 0;
-          }
         }
       }
     }
@@ -361,43 +366,153 @@ function update3DScale() {
       plateauBones.frontMesh.scale.set(frontScaleX, 1, yScale);
       plateauBones.frontMesh.position.x = 0; // Toujours centré
     }
+
+    // Gestion des instances de cuve 3D (meshes indépendants)
+    cuveInstances.forEach(inst => {
+      if (current3DObject) current3DObject.remove(inst);
+    });
+    cuveInstances = [];
+
+    if (baseCuveModel && current3DObject) {
+      for (let i = 0; i < nb; i++) {
+        const cuveInst = baseCuveModel.clone();
+        const cuveX = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
+        cuveInst.position.x = cuveX;
+        current3DObject.add(cuveInst);
+        cuveInstances.push(cuveInst);
+      }
+    }
+
+    // ── Support 3D ──
+    if (supportInstance && current3DObject) {
+      current3DObject.remove(supportInstance);
+      supportInstance = null;
+    }
+    if (baseSupportModel && current3DObject && state.support) {
+      supportInstance = baseSupportModel.clone();
+      // Le support est centré sous le plateau, à la même échelle de longueur
+      supportInstance.position.set(0, 0, 0);
+      current3DObject.add(supportInstance);
+    }
   }
+}
+
+function loadCuveModel(callback) {
+  const base = getBaseModelName();
+  const stp = isSTPModel();
+  // Nom du fichier cuve : Cuve_VO390_STP.fbx ou Cuve_VO390.fbx
+  const cuveFileName = stp ? `Cuve_${base}_STP.fbx` : `Cuve_${base}.fbx`;
+  const cuvePath = `3D - Morth Targets/${base}/${cuveFileName}`;
+
+  // Si le modèle chargé correspond déjà au bon fichier, on ne recharge pas
+  if (baseCuveModel && baseCuveModel._loadedPath === cuvePath) {
+    if (callback) callback();
+    return;
+  }
+  
+  // Réinitialise pour forcer le rechargement lors d'un changement de modèle
+  baseCuveModel = null;
+
+  fbxLoader.load(encodeURI(cuvePath), object => {
+    object.traverse(child => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        if (child.material) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => {
+              m.side = THREE.DoubleSide;
+              m.transparent = false;
+              m.opacity = 1;
+            });
+          } else {
+            child.material.side = THREE.DoubleSide;
+            child.material.transparent = false;
+            child.material.opacity = 1;
+          }
+        }
+      }
+    });
+    object.scale.set(1, 1, 1);
+    object._loadedPath = cuvePath; // mémorise le chemin chargé
+    baseCuveModel = object;
+    if (callback) callback();
+  }, undefined, err => {
+    console.warn(`Cuve FBX introuvable: ${cuvePath}`, err);
+    // Fallback : on continue sans cuve si le fichier n'existe pas
+    if (callback) callback();
+  });
+}
+
+function loadSupportModel(callback) {
+  if (!state.support || !fbxLoader) {
+    baseSupportModel = null;
+    if (callback) callback();
+    return;
+  }
+
+  const base = getBaseModelName();
+  const supportFileName = `${base}_Thal.fbx`;
+  const supportPath = `3D - Morth Targets/${base}/${supportFileName}`;
+
+  if (baseSupportModel && baseSupportModel._loadedPath === supportPath) {
+    if (callback) callback();
+    return;
+  }
+
+  baseSupportModel = null;
+  fbxLoader.load(encodeURI(supportPath), object => {
+    object.traverse(child => {
+      // Masquer les composants EOS qui sont liés aux bones du plateau
+      // et s'étirent de manière incorrecte quand ajoutés comme enfant
+      if (child.name && child.name.includes('EOS')) {
+        child.visible = false;
+        return;
+      }
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        if (child.material) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => {
+              m.side = THREE.DoubleSide;
+              m.transparent = false;
+              m.opacity = 1;
+            });
+          } else {
+            child.material.side = THREE.DoubleSide;
+            child.material.transparent = false;
+            child.material.opacity = 1;
+          }
+        }
+      }
+    });
+    object._loadedPath = supportPath;
+    baseSupportModel = object;
+    if (callback) callback();
+  }, undefined, err => {
+    console.warn(`Support FBX introuvable: ${supportPath}`, err);
+    if (callback) callback();
+  });
 }
 
 function load3DModelForSelection() {
   if (!is3DModel() || !fbxLoader) return;
 
   const targetCount = state.nbCuves || '1';
-  if (loadedModelCount === targetCount && current3DObject) {
-    update3DScale();
+  const base = getBaseModelName();
+  const cacheKey = `${base}_${targetCount}`;
+  if (loadedModelCount === cacheKey && current3DObject) {
+    // Le plateau est déjà chargé, mais la cuve/support peuvent avoir changé
+    loadCuveModel(() => {
+      loadSupportModel(() => {
+        update3DScale();
+      });
+    });
     return;
   }
 
-  const modelPath = `3D - Morth Targets/VO390/VO390_${targetCount}.fbx`;
-
-  function loadBaseCuve() {
-    if (!baseCuveModelPromise) {
-      baseCuveModelPromise = new Promise((resolve, reject) => {
-        fbxLoader.load(encodeURI('3D - Morth Targets/VO390/Cuve_VO390.fbx'), object => {
-          object.traverse(child => {
-            if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-              if (child.material) {
-                if (Array.isArray(child.material)) {
-                  child.material.forEach(m => { m.side = THREE.DoubleSide; });
-                } else {
-                  child.material.side = THREE.DoubleSide;
-                }
-              }
-            }
-          });
-          resolve(object);
-        }, undefined, reject);
-      });
-    }
-    return baseCuveModelPromise;
-  }
+  const modelPath = `3D - Morth Targets/${base}/${base}_${targetCount}.fbx`;
 
   if (viewerLoading) viewerLoading.classList.add('show');
   if (current3DObject) {
@@ -411,7 +526,7 @@ function load3DModelForSelection() {
     current3DObject = null;
   }
 
-  loadedModelCount = targetCount;
+  loadedModelCount = `${getBaseModelName()}_${targetCount}`;
   fbxLoader.load(encodeURI(modelPath), object => {
     object.traverse(child => {
       if (child.isMesh) {
@@ -435,32 +550,17 @@ function load3DModelForSelection() {
 
     object.position.set(0, 0, 0);
     object.rotation.y = Math.PI;
+    current3DObject = object;
+    scene.add(object);
 
-    loadBaseCuve().then(cuveModel => {
-      plateauBones.cuveMeshes = [];
-      const nb = parseInt(targetCount);
-      for (let i = 0; i < nb; i++) {
-        const clone = cuveModel.clone();
-        object.add(clone);
-        plateauBones.cuveMeshes.push(clone);
-      }
-      
-      current3DObject = object;
-      scene.add(object);
-
-      extract3DParameters(object);
-      update3DScale();
-      if (viewerLoading) viewerLoading.classList.remove('show');
-    }).catch(err => {
-      console.error("Erreur chargement Cuve_VO390", err);
-      // Fallback si la cuve n'est pas trouvée
-      current3DObject = object;
-      scene.add(object);
-      extract3DParameters(object);
-      update3DScale();
-      if (viewerLoading) viewerLoading.classList.remove('show');
+    extract3DParameters(object);
+    
+    loadCuveModel(() => {
+      loadSupportModel(() => {
+        update3DScale();
+        if (viewerLoading) viewerLoading.classList.remove('show');
+      });
     });
-
   }, undefined, err => {
     console.error('Erreur de chargement 3D:', err);
     if (viewerLoading) viewerLoading.classList.remove('show');
@@ -546,14 +646,35 @@ function populateModelSelect() {
 
 function applyLengthLimits(data) {
   if (!sliderLength) return;
-  const min = data.lengthLimits?.min || 40;
+  
+  const nb = parseInt(state.nbCuves) || 1;
+  const cLength = (data.cuveLength || 390) / 10;
+  
+  let baseMin = data.lengthLimits?.min || 40;
   const max = data.lengthLimits?.max || 160;
 
-  sliderLength.min = min;
-  sliderLength.max = max;
+  // Calcul du minimum absolu physique : (nb cuves * longueur cuve) + (nb plages * 5cm)
+  // Il y a toujours (nb + 1) plages.
+  const dynamicMin = (nb * cLength) + ((nb + 1) * 5);
+  
+  const min = Math.max(baseMin, dynamicMin);
 
-  if (state.length < min) state.length = min;
-  if (state.length > max) state.length = max;
+  sliderLength.min = min;
+  sliderLength.max = Math.max(min, max);
+
+  let lengthChanged = false;
+  if (state.length < min) {
+    state.length = min;
+    lengthChanged = true;
+  }
+  if (state.length > max) {
+    state.length = max;
+    lengthChanged = true;
+  }
+  
+  if (lengthChanged) {
+    applyStandardPosition();
+  }
   sliderLength.value = state.length;
 
   if (valLength) valLength.textContent = state.length;
@@ -596,12 +717,21 @@ function applyStandardPosition() {
   const cLength = (data.cuveLength || 390) / 10;
   
   if (nb === 1) {
-    state.position = Math.round(((state.length - cLength) / 2) * 10) / 10;
+    state.position = Math.max(5, Math.round(((state.length - cLength) / 2) * 10) / 10);
   } else {
     const remainingSpace = state.length - (nb * cLength);
-    const plageEntreCuves = remainingSpace / nb;
+    let plageEntreCuves = remainingSpace / nb;
+    let pos = plageEntreCuves / 2;
+
+    if (pos < 5) {
+      pos = 5;
+      // Il y a (nb - 1) plages entre cuves.
+      // Espace restant pour elles = remainingSpace - 2 * pos
+      plageEntreCuves = (remainingSpace - 10) / (nb - 1);
+    }
+
     state.plageEntreCuves = Math.round(plageEntreCuves * 10) / 10;
-    state.position = Math.round((plageEntreCuves / 2) * 10) / 10;
+    state.position = Math.round(pos * 10) / 10;
   }
 }
 
@@ -610,8 +740,19 @@ function applyStandardPosition() {
 ══════════════════════════════════ */
 selectModel?.addEventListener('change', e => {
   state.model = e.target.value;
+  // Reset le support chargé car le modèle de base a peut-être changé
+  baseSupportModel = null;
   applyStandardPosition();
   updateVisuals();
+});
+
+selectSupport?.addEventListener('change', e => {
+  state.support = e.target.value;
+  if (is3DModel() && current3DObject) {
+    loadSupportModel(() => {
+      update3DScale();
+    });
+  }
 });
 
 selectNbCuves?.addEventListener('change', e => {
@@ -774,16 +915,14 @@ function updateVisuals() {
   }
 
   // 2. Référence
-  const stpSuffix = state.tropPlein ? '' : '-STP';
+  // Le suffixe STP est maintenant directement dans le nom du modèle (ex: VO390-STP)
   const credSuffix = state.credence;
   
   // Règle LYNKA (si le modèle ne commence pas déjà par LYNKA)
   const isLynka = state.model.startsWith('LYNKA');
   const mainRef = isLynka ? `${state.model}${credSuffix}` : `LYNKA-${state.model}${credSuffix}`;
   
-  // Pour le subref, on enlève "LYNKA-" s'il y est, et on ajoute -STP (pour affichage debug)
-  const baseName = state.model.replace('LYNKA-', '');
-  const subRef = `${baseName}${stpSuffix}`;
+  const subRef = state.model;
 
   // 3. UI
   if (lynkaRef) lynkaRef.textContent = mainRef;
@@ -793,7 +932,7 @@ function updateVisuals() {
   const murLabels = { 'aucun': 'Sans mur', 'entre': 'Entre murs', 'gauche': 'Mur à gauche', 'droite': 'Mur à droite' };
   
   if (sumModel) sumModel.textContent = data.label;
-  if (sumStp) sumStp.textContent = state.tropPlein ? 'Avec' : 'Sans (-STP)';
+  if (sumStp) sumStp.textContent = isSTPModel() ? 'Sans trop-plein (-STP)' : 'Avec trop-plein';
   if (sumMur) sumMur.textContent = murLabels[state.mur];
   if (sumCredence) sumCredence.textContent = state.credence ? `Type ${state.credence}` : 'Aucune';
   
