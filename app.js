@@ -44,7 +44,7 @@ const state = {
   credence:    '',    // '', 'C', 'P', 'M', 'T'
   mur:         'aucun',// 'aucun', 'entre', 'gauche', 'droite'
   nbCuves:     '1',    // '1', '2', ... '8'
-  support:     ''      // '', 'TH', 'THALL', 'THALLIS', 'THALLISOL'
+  support:     ''      // '', 'TH', 'THAL', 'THALLIS', 'THALLISOL'
 };
 
 /* ══════════════════════════════════
@@ -97,15 +97,17 @@ const selectNbCuves   = $('select-nb-cuves');
 const selectModel     = $('select-model');
 const selectSupport   = $('select-support');
 
+
 // 3D Viewer
 const threeCanvas     = $('three-canvas');
 const viewerCanvas    = $('viewer-canvas');
 let scene, camera, renderer, controls, fbxLoader, current3DObject = null;
 let loadedModelCount = null;
 let baseCuveModel = null;
-let cuveInstances = [];
 let baseSupportModel = null;
 let supportInstance = null;
+let cuveInstances = [];
+
 let plateauBones = {
   leftBone: null,
   rightBone: null,
@@ -391,22 +393,48 @@ function update3DScale() {
     if (baseSupportModel && current3DObject && state.support) {
       supportInstance = baseSupportModel.clone();
       
-      // Le support FBX est en millimètres, le modèle en centimètres
-      // Diviser par 100 pour convertir mm → cm, puis le rendre proportionnel
-      const scaleFromMMtoCM = 0.01;  // 1/100 pour convertir mm en cm
-      supportInstance.scale.set(scaleFromMMtoCM, scaleFromMMtoCM, scaleFromMMtoCM);
+      // Calculer la bounding box du support pour le rescaler correctement
+      const supportBbox = new THREE.Box3().setFromObject(supportInstance);
+      const supportSize = supportBbox.getSize(new THREE.Vector3());
+      console.log('Support original size (mm):', {x: supportSize.x, y: supportSize.y, z: supportSize.z});
+      
+      // Prendre la plus grande dimension comme "hauteur"
+      const maxDimension = Math.max(supportSize.x, supportSize.y, supportSize.z);
+      const targetHeightMm = 800;  // 80cm en mm
+      const scaleNeeded = targetHeightMm / maxDimension;
+      
+      console.log('Support max dimension:', maxDimension, 'mm');
+      console.log('Support scale needed:', scaleNeeded);
+      
+      // Appliquer le rescale uniformément
+      supportInstance.scale.set(scaleNeeded, scaleNeeded, scaleNeeded);
       
       // Rotation: FaceThal à l'avant, Dos_Thal à l'arrière
       // Tourner de 90 degrés (Math.PI/2) autour de l'axe Y pour orienter correctement
       supportInstance.rotation.y = Math.PI / 2;
       
-      // Le support est placé directement sous le plateau (collé au plateau)
-      supportInstance.position.set(0, -35, 0);  // Ajusté pour être en contact direct avec le plateau
+      // Calculer la bounding box de la cuve pour placer le support correctement en dessous
+      const cuveBbox = new THREE.Box3().setFromObject(current3DObject);
+      const cuveSize = cuveBbox.getSize(new THREE.Vector3());
+      const cuveCenter = cuveBbox.getCenter(new THREE.Vector3());
+      
+      console.log('Cuve bbox:', {center: cuveCenter, size: cuveSize});
+      
+      // Placer le support en dessous du plateau
+      // La base du plateau est à cuveBbox.min.y, on place le support à y = base - hauteurSupport/2
+      const supportHeightAfterScale = (supportSize.y * scaleNeeded);  // Hauteur du support après rescale
+      const supportYPosition = cuveBbox.min.y - (supportHeightAfterScale / 2);
+      
+      supportInstance.position.set(cuveCenter.x, supportYPosition, cuveCenter.z);
       current3DObject.add(supportInstance);
-      console.log('✓ Support instance added to scene at position:', supportInstance.position, 'scale:', scaleFromMMtoCM, 'rotation.y:', Math.PI / 2);
-    } else {
-      console.log('Support NOT added: baseSupportModel=', !!baseSupportModel, 'current3DObject=', !!current3DObject, 'state.support=', state.support);
+      
+      console.log('✓ Support instance added to scene');
+      console.log('  Position:', supportInstance.position);
+      console.log('  Scale:', scaleNeeded);
+      console.log('  Rotation.y:', supportInstance.rotation.y);
     }
+
+
   }
 }
 
@@ -464,16 +492,7 @@ function loadSupportModel(callback) {
     return;
   }
 
-  // Le support THAL/TH est réservé à ces deux sélections uniquement
   const base = getBaseModelName();
-  // Seul 'TH' ou 'THAL' déclenchent l'affichage du support
-  const supportAliases = ['TH', 'THAL'];
-  if (!supportAliases.includes(state.support) || base !== 'VO390') {
-    baseSupportModel = null;
-    if (callback) callback();
-    return;
-  }
-
   const supportFileName = `${base}_Thal.fbx`;
   const supportPath = `3D - Morth Targets/${base}/${supportFileName}`;
   console.log('Loading support model:', state.support, supportPath);
@@ -485,25 +504,11 @@ function loadSupportModel(callback) {
 
   baseSupportModel = null;
   fbxLoader.load(encodeURI(supportPath), object => {
-    console.log('Support FBX loaded, traversing children...');
-    let meshCount = 0;
-    let totalVertices = 0;
-    let hiddenCount = 0;
-    
+    console.log('Support FBX loaded');
     object.traverse(child => {
-      // NOTE: Pour le support, on ne cache PAS les EOS !
-      // Les EOS du plateau sont pris en charge dans loadCuveModel
-      // Le support doit être entièrement visible
-      
       if (child.isMesh) {
-        meshCount++;
-        if (child.geometry && child.geometry.attributes.position) {
-          totalVertices += child.geometry.attributes.position.count;
-        }
         child.castShadow = true;
         child.receiveShadow = true;
-        child.visible = true;  // Forcer la visibilité
-        
         if (child.material) {
           if (Array.isArray(child.material)) {
             child.material.forEach(m => {
@@ -519,16 +524,6 @@ function loadSupportModel(callback) {
         }
       }
     });
-    
-    // Calculer la bounding box pour voir la taille réelle
-    const bbox = new THREE.Box3().setFromObject(object);
-    const size = bbox.getSize(new THREE.Vector3());
-    console.log(`Support model loaded: ${supportPath}`);
-    console.log(`  → Meshes: ${meshCount}, Vertices: ${totalVertices}`);
-    console.log(`  → Size: X=${size.x.toFixed(2)}, Y=${size.y.toFixed(2)}, Z=${size.z.toFixed(2)}`);
-    console.log(`  → BBox min: ${bbox.min.x.toFixed(2)}, ${bbox.min.y.toFixed(2)}, ${bbox.min.z.toFixed(2)}`);
-    console.log(`  → BBox max: ${bbox.max.x.toFixed(2)}, ${bbox.max.y.toFixed(2)}, ${bbox.max.z.toFixed(2)}`);
-    
     object._loadedPath = supportPath;
     baseSupportModel = object;
     if (callback) callback();
@@ -537,6 +532,7 @@ function loadSupportModel(callback) {
     if (callback) callback();
   });
 }
+
 
 function load3DModelForSelection() {
   if (!is3DModel() || !fbxLoader) return;
@@ -783,7 +779,12 @@ function applyStandardPosition() {
 selectModel?.addEventListener('change', e => {
   state.model = e.target.value;
   // Reset le support chargé car le modèle de base a peut-être changé
-  baseSupportModel = null;
+  applyStandardPosition();
+  updateVisuals();
+});
+
+selectNbCuves?.addEventListener('change', e => {
+  state.nbCuves = e.target.value;
   applyStandardPosition();
   updateVisuals();
 });
@@ -795,12 +796,6 @@ selectSupport?.addEventListener('change', e => {
       update3DScale();
     });
   }
-});
-
-selectNbCuves?.addEventListener('change', e => {
-  state.nbCuves = e.target.value;
-  applyStandardPosition();
-  updateVisuals();
 });
 
 document.querySelectorAll('input[name="mur"]').forEach(radio => {
