@@ -390,9 +390,22 @@ function update3DScale() {
     }
     if (baseSupportModel && current3DObject && state.support) {
       supportInstance = baseSupportModel.clone();
-      // Le support est centré sous le plateau, à la même échelle de longueur
-      supportInstance.position.set(0, 0, 0);
+      
+      // Le support FBX est en millimètres, le modèle en centimètres
+      // Diviser par 100 pour convertir mm → cm, puis le rendre proportionnel
+      const scaleFromMMtoCM = 0.01;  // 1/100 pour convertir mm en cm
+      supportInstance.scale.set(scaleFromMMtoCM, scaleFromMMtoCM, scaleFromMMtoCM);
+      
+      // Rotation: FaceThal à l'avant, Dos_Thal à l'arrière
+      // Tourner de 90 degrés (Math.PI/2) autour de l'axe Y pour orienter correctement
+      supportInstance.rotation.y = Math.PI / 2;
+      
+      // Le support est placé directement sous le plateau (collé au plateau)
+      supportInstance.position.set(0, -35, 0);  // Ajusté pour être en contact direct avec le plateau
       current3DObject.add(supportInstance);
+      console.log('✓ Support instance added to scene at position:', supportInstance.position, 'scale:', scaleFromMMtoCM, 'rotation.y:', Math.PI / 2);
+    } else {
+      console.log('Support NOT added: baseSupportModel=', !!baseSupportModel, 'current3DObject=', !!current3DObject, 'state.support=', state.support);
     }
   }
 }
@@ -451,9 +464,19 @@ function loadSupportModel(callback) {
     return;
   }
 
+  // Le support THAL/TH est réservé à ces deux sélections uniquement
   const base = getBaseModelName();
+  // Seul 'TH' ou 'THAL' déclenchent l'affichage du support
+  const supportAliases = ['TH', 'THAL'];
+  if (!supportAliases.includes(state.support) || base !== 'VO390') {
+    baseSupportModel = null;
+    if (callback) callback();
+    return;
+  }
+
   const supportFileName = `${base}_Thal.fbx`;
   const supportPath = `3D - Morth Targets/${base}/${supportFileName}`;
+  console.log('Loading support model:', state.support, supportPath);
 
   if (baseSupportModel && baseSupportModel._loadedPath === supportPath) {
     if (callback) callback();
@@ -462,16 +485,25 @@ function loadSupportModel(callback) {
 
   baseSupportModel = null;
   fbxLoader.load(encodeURI(supportPath), object => {
+    console.log('Support FBX loaded, traversing children...');
+    let meshCount = 0;
+    let totalVertices = 0;
+    let hiddenCount = 0;
+    
     object.traverse(child => {
-      // Masquer les composants EOS qui sont liés aux bones du plateau
-      // et s'étirent de manière incorrecte quand ajoutés comme enfant
-      if (child.name && child.name.includes('EOS')) {
-        child.visible = false;
-        return;
-      }
+      // NOTE: Pour le support, on ne cache PAS les EOS !
+      // Les EOS du plateau sont pris en charge dans loadCuveModel
+      // Le support doit être entièrement visible
+      
       if (child.isMesh) {
+        meshCount++;
+        if (child.geometry && child.geometry.attributes.position) {
+          totalVertices += child.geometry.attributes.position.count;
+        }
         child.castShadow = true;
         child.receiveShadow = true;
+        child.visible = true;  // Forcer la visibilité
+        
         if (child.material) {
           if (Array.isArray(child.material)) {
             child.material.forEach(m => {
@@ -487,6 +519,16 @@ function loadSupportModel(callback) {
         }
       }
     });
+    
+    // Calculer la bounding box pour voir la taille réelle
+    const bbox = new THREE.Box3().setFromObject(object);
+    const size = bbox.getSize(new THREE.Vector3());
+    console.log(`Support model loaded: ${supportPath}`);
+    console.log(`  → Meshes: ${meshCount}, Vertices: ${totalVertices}`);
+    console.log(`  → Size: X=${size.x.toFixed(2)}, Y=${size.y.toFixed(2)}, Z=${size.z.toFixed(2)}`);
+    console.log(`  → BBox min: ${bbox.min.x.toFixed(2)}, ${bbox.min.y.toFixed(2)}, ${bbox.min.z.toFixed(2)}`);
+    console.log(`  → BBox max: ${bbox.max.x.toFixed(2)}, ${bbox.max.y.toFixed(2)}, ${bbox.max.z.toFixed(2)}`);
+    
     object._loadedPath = supportPath;
     baseSupportModel = object;
     if (callback) callback();
