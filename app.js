@@ -35,6 +35,7 @@ let cuvesData = {};
 const state = {
   step:        1,
   model:       '',
+  support:     'SANS',  // 'SANS', 'TH', 'THAL', 'THALLIS', 'THALLISOL'
   length:      80,
   position:    40,
   plageEntreCuves: 10,
@@ -44,7 +45,7 @@ const state = {
   credence:    '',    // '', 'C', 'P', 'M', 'T'
   mur:         'aucun',// 'aucun', 'entre', 'gauche', 'droite'
   nbCuves:     '1',    // '1', '2', ... '8'
-  support:     ''      // '', 'TH', 'THAL', 'THALLIS', 'THALLISOL'
+
 };
 
 /* ══════════════════════════════════
@@ -104,9 +105,19 @@ const viewerCanvas    = $('viewer-canvas');
 let scene, camera, renderer, controls, fbxLoader, current3DObject = null;
 let loadedModelCount = null;
 let baseCuveModel = null;
-let baseSupportModel = null;
-let supportInstance = null;
 let cuveInstances = [];
+let supportModel = null;  // Variable pour stocker le modèle de support
+let supportScaleMeshes = [];
+let supportMoveMeshes = [];
+let supportBaseLocalX = new Map();
+let supportLeftBone = null;   // Bone_Long_G dans le support
+let supportRightBone = null;  // Bone_Long_D dans le support
+let supportLeftChildren = [];  // Enfants de Bone_Long_G
+let supportRightChildren = []; // Enfants de Bone_Long_D
+let supportLeftBasePositions = new Map();  // Positions initiales des enfants de G
+let supportRightBasePositions = new Map(); // Positions initiales des enfants de D
+let supportLeftBoneBaseY = 0;  // Position Y initiale de Bone_Long_G
+let supportRightBoneBaseY = 0; // Position Y initiale de Bone_Long_D
 
 let plateauBones = {
   leftBone: null,
@@ -385,56 +396,120 @@ function update3DScale() {
       }
     }
 
-    // ── Support 3D ──
-    if (supportInstance && current3DObject) {
-      current3DObject.remove(supportInstance);
-      supportInstance = null;
-    }
-    if (baseSupportModel && current3DObject && state.support) {
-      supportInstance = baseSupportModel.clone();
+    // Mise à l'échelle des pièces spécifiques du support et déplacement des autres sur Y
+    if (supportModel) {
+      const lengthMm = state.length * 10;
+      const halfLength = lengthMm / 2;
       
-      // Calculer la bounding box du support pour le rescaler correctement
-      const supportBbox = new THREE.Box3().setFromObject(supportInstance);
-      const supportSize = supportBbox.getSize(new THREE.Vector3());
-      console.log('Support original size (mm):', {x: supportSize.x, y: supportSize.y, z: supportSize.z});
+      // Récupérer la demi-longueur de base pour le calcul du ratio
+      // Le modèle FBX de base est fait pour 600mm (60cm), donc baseHalfLength = 300mm
+      const baseHalfLength = 300;
       
-      // Prendre la plus grande dimension comme "hauteur"
-      const maxDimension = Math.max(supportSize.x, supportSize.y, supportSize.z);
-      const targetHeightMm = 800;  // 80cm en mm
-      const scaleNeeded = targetHeightMm / maxDimension;
+      supportScaleMeshes.forEach(mesh => {
+        // Le support doit suivre exactement la même échelle que le plan vasque
+        // Le modèle FBX de base est fait pour 800mm (80cm) = baseFrontLength
+        const supportScaleX = lengthMm / baseFrontLength;
+        mesh.scale.x = supportScaleX;
+        console.log(`Scale mesh "${mesh.name}": supportScaleX=${supportScaleX.toFixed(4)} (lengthMm=${lengthMm}, baseFrontLength=${baseFrontLength})`);
+      });
+
+      // Déplacement symétrique des pièces G et D comme le plateau vasque
+      // Bone_Long_G (gauche) et Bone_Long_D (droite)
+      // Calculer le déplacement depuis la position de base
+      const displacement = halfLength - baseHalfLength;
       
-      console.log('Support max dimension:', maxDimension, 'mm');
-      console.log('Support scale needed:', scaleNeeded);
-      
-      // Appliquer le rescale uniformément
-      supportInstance.scale.set(scaleNeeded, scaleNeeded, scaleNeeded);
-      
-      // Rotation: FaceThal à l'avant, Dos_Thal à l'arrière
-      // Tourner de 90 degrés (Math.PI/2) autour de l'axe Y pour orienter correctement
-      supportInstance.rotation.y = Math.PI / 2;
-      
-      // Calculer la bounding box de la cuve pour placer le support correctement en dessous
-      const cuveBbox = new THREE.Box3().setFromObject(current3DObject);
-      const cuveSize = cuveBbox.getSize(new THREE.Vector3());
-      const cuveCenter = cuveBbox.getCenter(new THREE.Vector3());
-      
-      console.log('Cuve bbox:', {center: cuveCenter, size: cuveSize});
-      
-      // Placer le support en dessous du plateau
-      // La base du plateau est à cuveBbox.min.y, on place le support à y = base - hauteurSupport/2
-      const supportHeightAfterScale = (supportSize.y * scaleNeeded);  // Hauteur du support après rescale
-      const supportYPosition = cuveBbox.min.y - (supportHeightAfterScale / 2);
-      
-      supportInstance.position.set(cuveCenter.x, supportYPosition, cuveCenter.z);
-      current3DObject.add(supportInstance);
-      
-      console.log('✓ Support instance added to scene');
-      console.log('  Position:', supportInstance.position);
-      console.log('  Scale:', scaleNeeded);
-      console.log('  Rotation.y:', supportInstance.rotation.y);
+      if (supportLeftBone) {
+        supportLeftBone.position.y = supportLeftBoneBaseY - displacement; // Gauche: direction -
+        // Déplacer aussi TOUS les enfants de la même distance
+        supportLeftChildren.forEach(child => {
+          const basePos = supportLeftBasePositions.get(child.uuid);
+          if (basePos) {
+            child.position.y = basePos.y - displacement;
+          }
+        });
+      }
+      if (supportRightBone) {
+        supportRightBone.position.y = supportRightBoneBaseY + displacement; // Droite: direction +
+        // Déplacer aussi TOUS les enfants de la même distance
+        supportRightChildren.forEach(child => {
+          const basePos = supportRightBasePositions.get(child.uuid);
+          if (basePos) {
+            child.position.y = basePos.y + displacement;
+          }
+        });
+      }
+
+      supportModel.position.set(0, 0, 0);
     }
 
+  }
+}
 
+function collectSupportMorphTargets(object) {
+  supportScaleMeshes = [];
+  supportMoveMeshes = [];
+  supportBaseLocalX = new Map();
+  supportLeftBone = null;
+  supportRightBone = null;
+  supportLeftChildren = [];
+  supportRightChildren = [];
+  supportLeftBasePositions = new Map();
+  supportRightBasePositions = new Map();
+  supportLeftBoneBaseY = 0;
+  supportRightBoneBaseY = 0;
+
+  const scaleNames = ['thallis_dos', 'bas_eos_thallisol', 'face_eos_thallisol', 'plintheeos_thallisol'];
+
+  console.log('=== COLLECTING SUPPORT MESHES ===');
+  object.traverse(child => {
+    const name = String(child.name || '').toLowerCase();
+    
+    // Détection des os Bone_Long_G et Bone_Long_D
+    if (child.name === 'Bone_Long_G') {
+      supportLeftBone = child;
+      supportLeftBoneBaseY = child.position.y;
+      console.log(`Support left bone found: "${child.name}" | Y=${child.position.y.toFixed(2)}`);
+      // Récupérer tous les enfants directs et sauvegarder leurs positions
+      child.children.forEach(c => {
+        supportLeftChildren.push(c);
+        supportLeftBasePositions.set(c.uuid, { y: c.position.y });
+        console.log(`  Child of Bone_Long_G: "${c.name}" | Y=${c.position.y.toFixed(2)}`);
+      });
+    } else if (child.name === 'Bone_Long_D') {
+      supportRightBone = child;
+      supportRightBoneBaseY = child.position.y;
+      console.log(`Support right bone found: "${child.name}" | Y=${child.position.y.toFixed(2)}`);
+      // Récupérer tous les enfants directs et sauvegarder leurs positions
+      child.children.forEach(c => {
+        supportRightChildren.push(c);
+        supportRightBasePositions.set(c.uuid, { y: c.position.y });
+        console.log(`  Child of Bone_Long_D: "${c.name}" | Y=${c.position.y.toFixed(2)}`);
+      });
+    }
+    
+    if (child.isMesh) {
+      supportBaseLocalX.set(child.uuid, child.position.x);
+      const shouldScale = scaleNames.some(key => name.includes(key));
+      
+      if (shouldScale) {
+        supportScaleMeshes.push(child);
+        // Mesurer la dimension X de base
+        const bbox = new THREE.Box3().setFromObject(child);
+        const baseSizeX = bbox.max.x - bbox.min.x;
+        console.log(`📐 SCALE MESH: "${child.name}" | baseSize_X=${baseSizeX.toFixed(2)}mm | Position_X=${child.position.x.toFixed(2)}`);
+      } else {
+        console.log(`Support mesh: "${child.name}" | X=${child.position.x.toFixed(2)} | shouldScale=${shouldScale}`);
+      }
+      
+      if (Array.isArray(child.morphTargetInfluences) && child.morphTargetInfluences.length > 0) {
+        console.log('Support morph target mesh:', child.name, child.morphTargetDictionary);
+      }
+    }
+  });
+  console.log(`=== END: ${supportScaleMeshes.length} scale meshes, LEFT=${supportLeftChildren.length} children, RIGHT=${supportRightChildren.length} children ===`);
+
+  if (supportScaleMeshes.length === 0) {
+    console.warn('Aucun mesh à mise à l\'échelle détecté dans le support. Les pièces spécifiées n\'ont pas été trouvées.');
   }
 }
 
@@ -486,25 +561,55 @@ function loadCuveModel(callback) {
 }
 
 function loadSupportModel(callback) {
-  if (!state.support || !fbxLoader) {
-    baseSupportModel = null;
-    if (callback) callback();
-    return;
-  }
-
   const base = getBaseModelName();
-  const supportFileName = `${base}_Thal.fbx`;
-  const supportPath = `3D - Morth Targets/${base}/${supportFileName}`;
-  console.log('Loading support model:', state.support, supportPath);
-
-  if (baseSupportModel && baseSupportModel._loadedPath === supportPath) {
+  const support = state.support;
+  
+  // Si le support est "SANS", on ne charge rien
+  if (support === 'SANS') {
+    if (supportModel && current3DObject) {
+      current3DObject.remove(supportModel);
+    }
+    supportModel = null;
+    supportScaleMeshes = [];
+    supportMoveMeshes = [];
+    supportBaseLocalX = new Map();
+    supportLeftBone = null;
+    supportRightBone = null;
+    supportLeftChildren = [];
+    supportRightChildren = [];
+    supportLeftBasePositions = new Map();
+    supportRightBasePositions = new Map();
+    supportLeftBoneBaseY = 0;
+    supportRightBoneBaseY = 0;
     if (callback) callback();
     return;
   }
+  
+  // Construire le chemin du fichier de support
+  // Mapping des supports aux noms de fichiers
+  const supportMapping = {
+    'TH': 'TH',
+    'THAL': 'Thal',
+    'THALLIS': 'Thallis',
+    'THALLISOL': 'Thallisol'
+  };
+  
+  const supportFileName = supportMapping[support] || support;
+  const supportPath = `3D - Morth Targets/${base}/${base}_${supportFileName}.fbx`;
+  
+  // Si le modèle chargé correspond déjà au bon fichier, on ne recharge pas
+  if (supportModel && supportModel._loadedPath === supportPath) {
+    if (callback) callback();
+    return;
+  }
+  
+  // Réinitialise pour forcer le rechargement lors d'un changement de support
+  if (supportModel && current3DObject) {
+    current3DObject.remove(supportModel);
+  }
+  supportModel = null;
 
-  baseSupportModel = null;
   fbxLoader.load(encodeURI(supportPath), object => {
-    console.log('Support FBX loaded');
     object.traverse(child => {
       if (child.isMesh) {
         child.castShadow = true;
@@ -524,14 +629,24 @@ function loadSupportModel(callback) {
         }
       }
     });
-    object._loadedPath = supportPath;
-    baseSupportModel = object;
+    object.scale.set(1, 1, 1);
+    object._loadedPath = supportPath; // mémorise le chemin chargé
+    supportModel = object;
+    collectSupportMorphTargets(object);
+    
+    // Ajouter le support à la scène 3D
+    if (current3DObject) {
+      current3DObject.add(supportModel);
+    }
+    
     if (callback) callback();
   }, undefined, err => {
     console.warn(`Support FBX introuvable: ${supportPath}`, err);
+    // Fallback : on continue sans support si le fichier n'existe pas
     if (callback) callback();
   });
 }
+
 
 
 function load3DModelForSelection() {
@@ -783,19 +898,15 @@ selectModel?.addEventListener('change', e => {
   updateVisuals();
 });
 
+selectSupport?.addEventListener('change', e => {
+  state.support = e.target.value;
+  updateVisuals();
+});
+
 selectNbCuves?.addEventListener('change', e => {
   state.nbCuves = e.target.value;
   applyStandardPosition();
   updateVisuals();
-});
-
-selectSupport?.addEventListener('change', e => {
-  state.support = e.target.value;
-  if (is3DModel() && current3DObject) {
-    loadSupportModel(() => {
-      update3DScale();
-    });
-  }
 });
 
 document.querySelectorAll('input[name="mur"]').forEach(radio => {
