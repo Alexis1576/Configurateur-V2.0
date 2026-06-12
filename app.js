@@ -19,6 +19,7 @@ window.addEventListener('unhandledrejection', function(e) {
 });
 
 import * as THREE from 'https://esm.sh/three@0.160.0';
+window.THREE = THREE;
 import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
 
@@ -110,14 +111,15 @@ let supportModel = null;  // Variable pour stocker le modèle de support
 let supportScaleMeshes = [];
 let supportMoveMeshes = [];
 let supportBaseLocalX = new Map();
-let supportLeftBone = null;   // Bone_Long_G dans le support
-let supportRightBone = null;  // Bone_Long_D dans le support
-let supportLeftChildren = [];  // Enfants de Bone_Long_G
-let supportRightChildren = []; // Enfants de Bone_Long_D
-let supportLeftBasePositions = new Map();  // Positions initiales des enfants de G
-let supportRightBasePositions = new Map(); // Positions initiales des enfants de D
-let supportLeftBoneBaseY = 0;  // Position Y initiale de Bone_Long_G
-let supportRightBoneBaseY = 0; // Position Y initiale de Bone_Long_D
+let supportLeftBones = [];    // Liste des os Bone_Long_G dans le support
+let supportRightBones = [];   // Liste des os Bone_Long_D dans le support
+let supportLeftBonesBasePos = new Map();  // Positions 3D initiales de chaque os G (Vector3) dans l'espace du support
+let supportRightBonesBasePos = new Map(); // Positions 3D initiales de chaque os D (Vector3) dans l'espace du support
+let basePorteModel = null;        // Modèle 3D de porte de base chargé pour le support THALLISOL
+let baseSepModel = null;          // Modèle 3D de séparation de base chargé pour le support THALLISOL
+let supportPortesGroup = null;    // Groupe contenant toutes les instances de portes (THREE.Group)
+
+
 
 let plateauBones = {
   leftBone: null,
@@ -334,7 +336,7 @@ function update3DScale() {
   const yScale = state.height / 14;
   const objectYScale = is3DModel() ? 1 : yScale;
 
-  // Le parent reste toujours centré sur l'origine (repère XYZ fixe)
+  // Parent remains centered on origin (fixed XYZ frame)
   current3DObject.scale.set(baseScale, baseScale * objectYScale, baseScale);
   current3DObject.position.set(0, 0, 0);
 
@@ -347,25 +349,24 @@ function update3DScale() {
     const gapMm = state.plageEntreCuves * 10;
     const nb = parseInt(state.nbCuves) || 1;
 
-    // Le plan est centré autour de 0, les cuves se déplacent en absolu
+    // Plan is centered around 0, basins move in absolute units
     const plageGaucheMm = state.position * 10;
 
-    // Déplacement des os des cuves (positions absolues par rapport au centre du modèle)
+    // Moving basin bones
     if (plateauBones.cuveBones && plateauBones.cuveBones.length > 0) {
       for (let i = 0; i < plateauBones.cuveBones.length; i++) {
         if (i < nb) {
-          // Centre de la cuve i (en mm, dans l'espace world centré à 0)
           const cuveX = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
           plateauBones.cuveBones[i].position.x = cuveX;
         }
       }
     }
 
-    // Déplacement des os (extrémités du plan, toujours centrées)
+    // Moving plan side bones
     if (plateauBones.leftBone) plateauBones.leftBone.position.x = -halfLength;
     if (plateauBones.rightBone) plateauBones.rightBone.position.x = halfLength;
 
-    // Déplacement des meshes latéraux (Rive_G et Rive_D)
+    // Scale side meshes (Rive_G and Rive_D)
     if (plateauBones.leftMesh) {
       plateauBones.leftMesh.scale.set(1, 1, yScale);
     }
@@ -373,14 +374,14 @@ function update3DScale() {
       plateauBones.rightMesh.scale.set(1, 1, yScale);
     }
     
-    // Déplacement et mise à l'échelle de la jupe avant (Rive_Av)
+    // Scale front apron (Rive_Av)
     if (plateauBones.frontMesh) {
       const frontScaleX = lengthMm / baseFrontLength;
       plateauBones.frontMesh.scale.set(frontScaleX, 1, yScale);
-      plateauBones.frontMesh.position.x = 0; // Toujours centré
+      plateauBones.frontMesh.position.x = 0;
     }
 
-    // Gestion des instances de cuve 3D (meshes indépendants)
+    // Manage 3D basin instances
     cuveInstances.forEach(inst => {
       if (current3DObject) current3DObject.remove(inst);
     });
@@ -396,47 +397,311 @@ function update3DScale() {
       }
     }
 
-    // Mise à l'échelle des pièces spécifiques du support et déplacement des autres sur Y
+    // Scale and position specific support pieces
     if (supportModel) {
+      window.supportModel = supportModel;
+      window.supportScaleMeshes = supportScaleMeshes;
       const lengthMm = state.length * 10;
       const halfLength = lengthMm / 2;
       
-      // Récupérer la demi-longueur de base pour le calcul du ratio
-      // Le modèle FBX de base est fait pour 600mm (60cm), donc baseHalfLength = 300mm
       const baseHalfLength = 300;
       
-      supportScaleMeshes.forEach(mesh => {
-        // Le support doit suivre exactement la même échelle que le plan vasque
-        // Le modèle FBX de base est fait pour 800mm (80cm) = baseFrontLength
-        const supportScaleX = lengthMm / baseFrontLength;
-        mesh.scale.x = supportScaleX;
-        console.log(`Scale mesh "${mesh.name}": supportScaleX=${supportScaleX.toFixed(4)} (lengthMm=${lengthMm}, baseFrontLength=${baseFrontLength})`);
+      supportScaleMeshes.forEach(item => {
+        const { mesh, baseSize, retrait } = item;
+        let scaleX = 1;
+        if (baseSize > 0) {
+          scaleX = (lengthMm - retrait) / baseSize;
+        }
+        mesh.scale.x = scaleX;
+        console.log(`Scale mesh "${mesh.name}": scaleX=${scaleX.toFixed(4)} (lengthMm=${lengthMm}, retrait=${retrait}, baseSize=${baseSize.toFixed(2)})`);
       });
 
-      // Déplacement symétrique des pièces G et D comme le plateau vasque
-      // Bone_Long_G (gauche) et Bone_Long_D (droite)
-      // Calculer le déplacement depuis la position de base
+      // Symmetric translation of left and right support sections
       const displacement = halfLength - baseHalfLength;
       
-      if (supportLeftBone) {
-        supportLeftBone.position.y = supportLeftBoneBaseY - displacement; // Gauche: direction -
-        // Déplacer aussi TOUS les enfants de la même distance
-        supportLeftChildren.forEach(child => {
-          const basePos = supportLeftBasePositions.get(child.uuid);
-          if (basePos) {
-            child.position.y = basePos.y - displacement;
-          }
-        });
+      // S'assurer que les matrices mondiales du support sont à jour
+      supportModel.updateMatrixWorld(true);
+
+      supportLeftBones.forEach(bone => {
+        const basePos = supportLeftBonesBasePos.get(bone.uuid);
+        if (basePos && bone.parent) {
+          // Le déplacement cible dans le repère local de supportModel
+          const targetPosInSupport = basePos.clone();
+          targetPosInSupport.x -= displacement;
+
+          // Conversion de supportModel local vers monde
+          const targetWorldPos = targetPosInSupport.clone().applyMatrix4(supportModel.matrixWorld);
+
+          // Conversion de monde vers local parent de l'os
+          bone.parent.updateMatrixWorld(true);
+          const invParentMatrix = new THREE.Matrix4().copy(bone.parent.matrixWorld).invert();
+          const targetLocalPos = targetWorldPos.clone().applyMatrix4(invParentMatrix);
+
+          bone.position.copy(targetLocalPos);
+        }
+      });
+
+      supportRightBones.forEach(bone => {
+        const basePos = supportRightBonesBasePos.get(bone.uuid);
+        if (basePos && bone.parent) {
+          // Le déplacement cible dans le repère local de supportModel
+          const targetPosInSupport = basePos.clone();
+          targetPosInSupport.x += displacement;
+
+          // Conversion de supportModel local vers monde
+          const targetWorldPos = targetPosInSupport.clone().applyMatrix4(supportModel.matrixWorld);
+
+          // Conversion de monde vers local parent de l'os
+          bone.parent.updateMatrixWorld(true);
+          const invParentMatrix = new THREE.Matrix4().copy(bone.parent.matrixWorld).invert();
+          const targetLocalPos = targetWorldPos.clone().applyMatrix4(invParentMatrix);
+
+          bone.position.copy(targetLocalPos);
+        }
+      });
+
+      // --- GESTION DES PORTES DU SUPPORT THALLISOL ---
+      // 1. Nettoyer le groupe existant de portes
+      if (supportPortesGroup) {
+        supportModel.remove(supportPortesGroup);
+        supportPortesGroup = null;
       }
-      if (supportRightBone) {
-        supportRightBone.position.y = supportRightBoneBaseY + displacement; // Droite: direction +
-        // Déplacer aussi TOUS les enfants de la même distance
-        supportRightChildren.forEach(child => {
-          const basePos = supportRightBasePositions.get(child.uuid);
-          if (basePos) {
-            child.position.y = basePos.y + displacement;
+
+      // 2. Instancier et centrer le groupe de portes si basePorteModel est chargé
+      if (basePorteModel) {
+        // Déterminer le nombre de portes et leur largeur selon la formule utilisateur (porte max 600mm)
+        let minDoors = 1;
+        while (true) {
+          const w = (lengthMm - (69 + 3 * (minDoors - 1))) / minDoors;
+          if (w <= 600) {
+            break;
           }
-        });
+          minDoors++;
+        }
+        
+        // Fonction pour vérifier si une coordonnée X (locale dans le repère du meuble) est sous une cuve
+        // On ajoute 50mm de marge (25mm de chaque côté) car la cuve est plus longue en dessous.
+        const isUnderCuve = (xVal) => {
+          for (let k = 0; k < nb; k++) {
+            const cuveX = -halfLength + plageGaucheMm + k * (cLengthMm + gapMm) + cLengthMm / 2;
+            const effectiveLength = cLengthMm + 50;
+            const leftBound = cuveX - effectiveLength / 2;
+            const rightBound = cuveX + effectiveLength / 2;
+            if (xVal >= leftBound && xVal <= rightBound) {
+              return true;
+            }
+          }
+          return false;
+        };
+
+        let bestConfig = null;
+        
+        // Parcourir tous les nombres de portes candidats possibles (où la largeur de porte >= 200mm)
+        for (let n = minDoors; n <= minDoors + 10; n++) {
+          const w = (lengthMm - (69 + 3 * (n - 1))) / n;
+          if (w < 200) {
+            break; // Empêcher les portes d'être trop étroites
+          }
+          
+          const groupWidth = n * w + 3 * (n - 1);
+          const startX = -groupWidth / 2;
+          
+          // Algorithme de Programmation Dynamique pour trouver les rotations optimales
+          // dp[i][r] = { cost, path: [] }
+          const dp = [];
+          for (let i = 0; i < n; i++) {
+            dp.push([
+              { cost: Infinity, path: [] }, // r = 0 (N)
+              { cost: Infinity, path: [] }  // r = 1 (R)
+            ]);
+          }
+          
+          // Cas de base : la première porte doit être R (true)
+          dp[0][1] = { cost: 0, path: [true] };
+          
+          for (let i = 1; i < n; i++) {
+            const g = i - 1;
+            const xGap = startX + g * (w + 3) + w + 1.5;
+            const gapUnderCuve = isUnderCuve(xGap);
+            
+            for (let r = 0; r <= 1; r++) { // Rotation de la porte actuelle (0 = N, 1 = R)
+              if (i === n - 1 && r === 1) {
+                // La dernière porte doit être N (0)
+                continue;
+              }
+              
+              let bestPrev = -1;
+              let minCost = Infinity;
+              
+              for (let p = 0; p <= 1; p++) { // Rotation de la porte précédente (0 = N, 1 = R)
+                if (dp[i-1][p].cost === Infinity) continue;
+                
+                const leftDoorHingesAtGap = (p === 0 && g > 0);
+                const rightDoorHingesAtGap = (r === 1 && i < n - 1);
+                const hasHinge = leftDoorHingesAtGap || rightDoorHingesAtGap;
+                
+                let transitionCost = 0;
+                if (hasHinge) {
+                  // Les collisions coûtent 1000 pour être pénalisées en priorité
+                  transitionCost = 1 + (gapUnderCuve ? 1000 : 0);
+                }
+                
+                const totalCost = dp[i-1][p].cost + transitionCost;
+                if (totalCost < minCost) {
+                  minCost = totalCost;
+                  bestPrev = p;
+                }
+              }
+              
+              if (bestPrev !== -1) {
+                dp[i][r] = {
+                  cost: minCost,
+                  path: [...dp[i-1][bestPrev].path, r === 1]
+                };
+              }
+            }
+          }
+          
+          const result = dp[n - 1][0];
+          if (result && result.cost !== Infinity) {
+            const collisions = Math.floor(result.cost / 1000);
+            const separations = result.cost % 1000;
+            
+            // Sélectionner la meilleure configuration :
+            // 1. D'abord celle avec le moins de collisions.
+            // 2. Ensuite celle avec le moins de séparations.
+            // 3. En cas d'égalité, celle avec le moins de portes pour éviter d'avoir trop de petites portes.
+            if (!bestConfig || 
+                collisions < bestConfig.collisions || 
+                (collisions === bestConfig.collisions && separations < bestConfig.separations) ||
+                (collisions === bestConfig.collisions && separations === bestConfig.separations && n < bestConfig.n)) {
+              bestConfig = {
+                n,
+                w,
+                rotations: result.path,
+                collisions,
+                separations
+              };
+            }
+          }
+        }
+        
+        let numDoors = minDoors;
+        let doorWidth = (lengthMm - (69 + 3 * (numDoors - 1))) / numDoors;
+        let doorRotations = [];
+        
+        if (bestConfig) {
+          numDoors = bestConfig.n;
+          doorWidth = bestConfig.w;
+          doorRotations = bestConfig.rotations;
+          console.log(`🚪 Configuration optimale choisie : ${numDoors} portes de ${doorWidth.toFixed(1)}mm de large, ${bestConfig.separations} séparations, ${bestConfig.collisions} collisions.`);
+        } else {
+          // Fallback minimal
+          console.warn("⚠️ Aucune configuration valide trouvée par DP, fallback sur le mode minimal.");
+          doorRotations = [];
+          const groupWidth = numDoors * doorWidth + 3 * (numDoors - 1);
+          const startX = -groupWidth / 2;
+          for (let i = 0; i < numDoors; i++) {
+            let shouldRotate = false;
+            if (numDoors > 1) {
+              if (i === 0) {
+                shouldRotate = true;
+              } else if (i === numDoors - 1) {
+                shouldRotate = false;
+              } else {
+                const doorX = startX + i * (doorWidth + 3);
+                const leftGapX = doorX - 1.5;
+                const rightGapX = doorX + doorWidth + 1.5;
+                const leftUnder = isUnderCuve(leftGapX);
+                const rightUnder = isUnderCuve(rightGapX);
+                if (rightUnder && !leftUnder) {
+                  shouldRotate = true;
+                } else if (leftUnder && !rightUnder) {
+                  shouldRotate = false;
+                } else {
+                  shouldRotate = (i % 2 === 0);
+                }
+              }
+            }
+            doorRotations.push(shouldRotate);
+          }
+        }
+        
+        // Largeur de base de la porte dans le FBX = 531 mm
+        const doorScaleX = doorWidth / 531;
+        
+        // Largeur totale occupée par l'ensemble des portes + les gonds/jeux intermédiaires de 3mm
+        const totalDoorsGroupWidth = numDoors * doorWidth + 3 * (numDoors - 1);
+        
+        // Coordonnée locale de début du groupe (centré sur son origine 0)
+        const xStartLocal = -totalDoorsGroupWidth / 2;
+        
+        supportPortesGroup = new THREE.Group();
+        supportPortesGroup.name = "SupportPortesGroup";
+
+        for (let i = 0; i < numDoors; i++) {
+          const porteClone = basePorteModel.clone();
+          const shouldRotate = doorRotations[i];
+          const doorXLocal = xStartLocal + i * (doorWidth + 3);
+          
+          if (shouldRotate) {
+            // Rotation de 180° autour de l'axe Z (à la demande de l'utilisateur)
+            porteClone.rotation.z = Math.PI;
+            porteClone.position.set(doorXLocal + 265.5, -940, 0);
+          } else {
+            porteClone.position.set(doorXLocal - 265.5 + doorWidth, 0, 0);
+          }
+          
+          // Mettre à l'échelle uniquement le Mesh de la porte
+          const porteMesh = porteClone.getObjectByName('PorteThalliSol');
+          if (porteMesh) {
+            porteMesh.scale.x = doorScaleX;
+          }
+          
+          // Repositionner les charnières CharB et CharH au bord de la porte
+          const charX = 250.22;
+          
+          const charB = porteClone.getObjectByName('CharB');
+          if (charB) {
+            charB.position.x = charX;
+            charB.scale.set(1, 1, 1);
+          }
+          const charH = porteClone.getObjectByName('CharH');
+          if (charH) {
+            charH.position.x = charX;
+            charH.scale.set(1, 1, 1);
+          }
+          
+          supportPortesGroup.add(porteClone);
+        }
+
+        // 3. Instancier et positionner les séparations s'il y a des charnières dans le vide (hors sous-cuves)
+        if (baseSepModel) {
+          for (let g = 0; g < numDoors - 1; g++) {
+            const leftRotated = doorRotations[g];
+            const rightRotated = doorRotations[g+1];
+            
+            const leftDoorHingesAtGap = (!leftRotated && g > 0);
+            const rightDoorHingesAtGap = (rightRotated && (g + 1) < numDoors - 1);
+            
+            if (leftDoorHingesAtGap || rightDoorHingesAtGap) {
+              const xGap = xStartLocal + g * (doorWidth + 3) + doorWidth + 1.5;
+              
+              if (!isUnderCuve(xGap)) {
+                const sepClone = baseSepModel.clone();
+                sepClone.position.set(xGap, 0, 0);
+                supportPortesGroup.add(sepClone);
+                console.log(`🔨 Ajout séparation au jeu ${g} (X = ${xGap.toFixed(1)}mm)`);
+              } else {
+                console.log(`⚠️ Séparation au jeu ${g} (X = ${xGap.toFixed(1)}mm) ignorée car située sous une cuve`);
+              }
+            }
+          }
+        }
+        
+        // Centrer le groupe par rapport à supportModel (X=0)
+        supportPortesGroup.position.set(0, 0, 0);
+        supportModel.add(supportPortesGroup);
       }
 
       supportModel.position.set(0, 0, 0);
@@ -449,56 +714,71 @@ function collectSupportMorphTargets(object) {
   supportScaleMeshes = [];
   supportMoveMeshes = [];
   supportBaseLocalX = new Map();
-  supportLeftBone = null;
-  supportRightBone = null;
-  supportLeftChildren = [];
-  supportRightChildren = [];
-  supportLeftBasePositions = new Map();
-  supportRightBasePositions = new Map();
-  supportLeftBoneBaseY = 0;
-  supportRightBoneBaseY = 0;
+  supportLeftBones = [];
+  supportRightBones = [];
+  supportLeftBonesBasePos = new Map();
+  supportRightBonesBasePos = new Map();
 
-  const scaleNames = ['thallis_dos', 'bas_eos_thallisol', 'face_eos_thallisol', 'plintheeos_thallisol'];
+  const RETRAITS = {
+    'thallis_dos': 28,
+    'bas_eos_thallisol': 66,
+    'face_eos_thallisol': 66,
+    'plintheeos_thallisol': 88
+  };
+
+  // Mettre à jour les matrices mondiales de l'objet pour pouvoir calculer les positions dans son repère
+  object.updateMatrixWorld(true);
+  const invSupportMatrix = new THREE.Matrix4().copy(object.matrixWorld).invert();
 
   console.log('=== COLLECTING SUPPORT MESHES ===');
   object.traverse(child => {
     const name = String(child.name || '').toLowerCase();
     
-    // Détection des os Bone_Long_G et Bone_Long_D
+    // Detect Bone_Long_G and Bone_Long_D
     if (child.name === 'Bone_Long_G') {
-      supportLeftBone = child;
-      supportLeftBoneBaseY = child.position.y;
-      console.log(`Support left bone found: "${child.name}" | Y=${child.position.y.toFixed(2)}`);
-      // Récupérer tous les enfants directs et sauvegarder leurs positions
-      child.children.forEach(c => {
-        supportLeftChildren.push(c);
-        supportLeftBasePositions.set(c.uuid, { y: c.position.y });
-        console.log(`  Child of Bone_Long_G: "${c.name}" | Y=${c.position.y.toFixed(2)}`);
-      });
+      supportLeftBones.push(child);
+      
+      const boneWorldPos = new THREE.Vector3();
+      child.getWorldPosition(boneWorldPos);
+      const basePosInSupport = boneWorldPos.clone().applyMatrix4(invSupportMatrix);
+      supportLeftBonesBasePos.set(child.uuid, basePosInSupport);
+      
+      console.log(`Support left bone found: "${child.name}" (UUID: ${child.uuid}) | BasePosInSupport: Y=${basePosInSupport.y.toFixed(2)}`);
     } else if (child.name === 'Bone_Long_D') {
-      supportRightBone = child;
-      supportRightBoneBaseY = child.position.y;
-      console.log(`Support right bone found: "${child.name}" | Y=${child.position.y.toFixed(2)}`);
-      // Récupérer tous les enfants directs et sauvegarder leurs positions
-      child.children.forEach(c => {
-        supportRightChildren.push(c);
-        supportRightBasePositions.set(c.uuid, { y: c.position.y });
-        console.log(`  Child of Bone_Long_D: "${c.name}" | Y=${c.position.y.toFixed(2)}`);
-      });
+      supportRightBones.push(child);
+      
+      const boneWorldPos = new THREE.Vector3();
+      child.getWorldPosition(boneWorldPos);
+      const basePosInSupport = boneWorldPos.clone().applyMatrix4(invSupportMatrix);
+      supportRightBonesBasePos.set(child.uuid, basePosInSupport);
+      
+      console.log(`Support right bone found: "${child.name}" (UUID: ${child.uuid}) | BasePosInSupport: Y=${basePosInSupport.y.toFixed(2)}`);
     }
     
     if (child.isMesh) {
       supportBaseLocalX.set(child.uuid, child.position.x);
-      const shouldScale = scaleNames.some(key => name.includes(key));
       
-      if (shouldScale) {
-        supportScaleMeshes.push(child);
-        // Mesurer la dimension X de base
+      let retraitMm = null;
+      for (const key of Object.keys(RETRAITS)) {
+        if (name.includes(key)) {
+          retraitMm = RETRAITS[key];
+          break;
+        }
+      }
+      
+      if (retraitMm !== null) {
+        // Measure base width along X
         const bbox = new THREE.Box3().setFromObject(child);
         const baseSizeX = bbox.max.x - bbox.min.x;
-        console.log(`📐 SCALE MESH: "${child.name}" | baseSize_X=${baseSizeX.toFixed(2)}mm | Position_X=${child.position.x.toFixed(2)}`);
+        
+        supportScaleMeshes.push({
+          mesh: child,
+          baseSize: baseSizeX,
+          retrait: retraitMm
+        });
+        console.log(`📐 SCALE MESH: "${child.name}" | baseSize_X=${baseSizeX.toFixed(2)}mm | Retrait=${retraitMm}mm | Position_X=${child.position.x.toFixed(2)}`);
       } else {
-        console.log(`Support mesh: "${child.name}" | X=${child.position.x.toFixed(2)} | shouldScale=${shouldScale}`);
+        console.log(`Support mesh: "${child.name}" | X=${child.position.x.toFixed(2)} | shouldScale=false`);
       }
       
       if (Array.isArray(child.morphTargetInfluences) && child.morphTargetInfluences.length > 0) {
@@ -506,7 +786,7 @@ function collectSupportMorphTargets(object) {
       }
     }
   });
-  console.log(`=== END: ${supportScaleMeshes.length} scale meshes, LEFT=${supportLeftChildren.length} children, RIGHT=${supportRightChildren.length} children ===`);
+  console.log(`=== END: ${supportScaleMeshes.length} scale meshes collected ===`);
 
   if (supportScaleMeshes.length === 0) {
     console.warn('Aucun mesh à mise à l\'échelle détecté dans le support. Les pièces spécifiées n\'ont pas été trouvées.');
@@ -573,14 +853,16 @@ function loadSupportModel(callback) {
     supportScaleMeshes = [];
     supportMoveMeshes = [];
     supportBaseLocalX = new Map();
-    supportLeftBone = null;
-    supportRightBone = null;
-    supportLeftChildren = [];
-    supportRightChildren = [];
-    supportLeftBasePositions = new Map();
-    supportRightBasePositions = new Map();
-    supportLeftBoneBaseY = 0;
-    supportRightBoneBaseY = 0;
+    supportLeftBones = [];
+    supportRightBones = [];
+    supportLeftBonesBasePos.clear();
+    supportRightBonesBasePos.clear();
+    
+    // Nettoyer les portes du support
+    supportPortesGroup = null;
+    basePorteModel = null;
+    baseSepModel = null;
+
     if (callback) callback();
     return;
   }
@@ -632,14 +914,82 @@ function loadSupportModel(callback) {
     object.scale.set(1, 1, 1);
     object._loadedPath = supportPath; // mémorise le chemin chargé
     supportModel = object;
+    window.supportModel = object;
     collectSupportMorphTargets(object);
+    window.supportScaleMeshes = supportScaleMeshes;
     
     // Ajouter le support à la scène 3D
     if (current3DObject) {
       current3DObject.add(supportModel);
     }
     
-    if (callback) callback();
+    if (support === 'THALLISOL') {
+      const portePath = `3D - Morth Targets/${base}/PorteThalliSol.fbx`;
+      const sepPath = `3D - Morth Targets/${base}/ThalliSol_Sep_EOS.fbx`;
+      fbxLoader.load(encodeURI(portePath), porteObject => {
+        porteObject.traverse(child => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            if (child.material) {
+              if (Array.isArray(child.material)) {
+                child.material.forEach(m => {
+                  m.side = THREE.DoubleSide;
+                  m.transparent = false;
+                  m.opacity = 1;
+                });
+              } else {
+                child.material.side = THREE.DoubleSide;
+                child.material.transparent = false;
+                child.material.opacity = 1;
+              }
+            }
+          }
+        });
+        basePorteModel = porteObject;
+        console.log(`Porte FBX chargée avec succès depuis : ${portePath}`);
+        
+        // Charger la séparation
+        fbxLoader.load(encodeURI(sepPath), sepObject => {
+          sepObject.traverse(child => {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              if (child.material) {
+                if (Array.isArray(child.material)) {
+                  child.material.forEach(m => {
+                    m.side = THREE.DoubleSide;
+                    m.transparent = false;
+                    m.opacity = 1;
+                  });
+                } else {
+                  child.material.side = THREE.DoubleSide;
+                  child.material.transparent = false;
+                  child.material.opacity = 1;
+                }
+              }
+            }
+          });
+          baseSepModel = sepObject;
+          console.log(`Séparation FBX chargée avec succès depuis : ${sepPath}`);
+          if (callback) callback();
+        }, undefined, err => {
+          console.warn(`FBX Séparation introuvable : ${sepPath}`, err);
+          baseSepModel = null;
+          if (callback) callback();
+        });
+      }, undefined, err => {
+        console.warn(`FBX Porte introuvable : ${portePath}`, err);
+        basePorteModel = null;
+        baseSepModel = null;
+        if (callback) callback();
+      });
+    } else {
+      supportPortesGroup = null;
+      basePorteModel = null;
+      baseSepModel = null;
+      if (callback) callback();
+    }
   }, undefined, err => {
     console.warn(`Support FBX introuvable: ${supportPath}`, err);
     // Fallback : on continue sans support si le fichier n'existe pas
