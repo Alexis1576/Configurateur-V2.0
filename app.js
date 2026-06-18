@@ -424,22 +424,117 @@ window.captureMiseEnPlanViews = function(callback) {
         }
         
         // Target colors
-        const targetHex = isSupport ? 0xD4D0C8 : 0xF0F0F0; // Warm grey for support, light grey for basin
+        const targetHex = isSupport ? 0x9ca3af : 0xe5e7eb; // Architectural grey-blue for support, light grey for basin
         
         if (Array.isArray(child.material)) {
           child.material.forEach(m => {
             if (m.color) {
               if (!originalColors.has(m)) originalColors.set(m, m.color.getHex());
               m.color.setHex(targetHex);
+              m.polygonOffset = true;
+              m.polygonOffsetFactor = 1;
+              m.polygonOffsetUnits = 1;
             }
           });
         } else {
           if (child.material.color) {
             if (!originalColors.has(child.material)) originalColors.set(child.material, child.material.color.getHex());
             child.material.color.setHex(targetHex);
+            child.material.polygonOffset = true;
+            child.material.polygonOffsetFactor = 1;
+            child.material.polygonOffsetUnits = 1;
           }
         }
       }
+    }
+  });
+
+  const edgeHelpers = [];
+  scene.traverse(child => {
+    if (child.isMesh && !child.userData.isEdgeHelper && !child.name.includes("ClippingPlane") && !child.name.includes("StencilCap")) {
+      
+      let geomToEdge = child.geometry;
+      let clonedGeom = null;
+
+      // GPU bone deformations (SkinnedMesh) must be calculated on the CPU for EdgesGeometry
+      if (child.isSkinnedMesh && child.skeleton) {
+        clonedGeom = child.geometry.clone();
+        child.skeleton.update();
+        const posAttr = clonedGeom.attributes.position;
+        const skinIndexAttr = clonedGeom.attributes.skinIndex;
+        const skinWeightAttr = clonedGeom.attributes.skinWeight;
+
+        if (skinIndexAttr && skinWeightAttr) {
+          const bindMatrix = child.bindMatrix;
+          const bindMatrixInverse = child.bindMatrixInverse;
+          const boneMatrices = child.skeleton.boneMatrices;
+
+          const vertex = new THREE.Vector3();
+          const skinMatrix = new THREE.Matrix4();
+          const boneMatrix = new THREE.Matrix4();
+
+          for (let i = 0; i < posAttr.count; i++) {
+            vertex.fromBufferAttribute(posAttr, i);
+            vertex.applyMatrix4(bindMatrix);
+
+            skinMatrix.elements.fill(0);
+
+            for (let j = 0; j < 4; j++) {
+              const weight = skinWeightAttr.getComponent(i, j);
+              if (weight > 0) {
+                const boneIndex = skinIndexAttr.getComponent(i, j);
+                boneMatrix.fromArray(boneMatrices, boneIndex * 16);
+                for (let k = 0; k < 16; k++) {
+                  skinMatrix.elements[k] += boneMatrix.elements[k] * weight;
+                }
+              }
+            }
+
+            vertex.applyMatrix4(skinMatrix);
+            vertex.applyMatrix4(bindMatrixInverse);
+            posAttr.setXYZ(i, vertex.x, vertex.y, vertex.z);
+          }
+        }
+        geomToEdge = clonedGeom;
+      }
+
+      // Handle morph targets for the plan vasque so edges match the stretched geometry
+      if (child.morphTargetInfluences && child.morphTargetInfluences.length > 0) {
+        let hasActiveMorphTargets = false;
+        for (let i = 0; i < child.morphTargetInfluences.length; i++) {
+          if (Math.abs(child.morphTargetInfluences[i]) > 0.001) {
+            hasActiveMorphTargets = true; break;
+          }
+        }
+        
+        if (hasActiveMorphTargets && child.geometry.morphAttributes && child.geometry.morphAttributes.position) {
+          clonedGeom = child.geometry.clone();
+          const positionAttribute = clonedGeom.attributes.position;
+          const morphAttributes = clonedGeom.morphAttributes.position;
+          
+          for (let i = 0; i < child.morphTargetInfluences.length; i++) {
+            const influence = child.morphTargetInfluences[i];
+            if (Math.abs(influence) > 0.001 && morphAttributes[i]) {
+              for (let j = 0; j < positionAttribute.count; j++) {
+                positionAttribute.setXYZ(
+                  j,
+                  positionAttribute.getX(j) + morphAttributes[i].getX(j) * influence,
+                  positionAttribute.getY(j) + morphAttributes[i].getY(j) * influence,
+                  positionAttribute.getZ(j) + morphAttributes[i].getZ(j) * influence
+                );
+              }
+            }
+          }
+          geomToEdge = clonedGeom;
+        }
+      }
+
+      // Add edges helper for better visibility in plans
+      const edges = new THREE.EdgesGeometry(geomToEdge, 10);
+      const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 1 }));
+      line.userData.isEdgeHelper = true;
+      child.add(line);
+      edgeHelpers.push({ parent: child, line: line, geomToDispose: clonedGeom });
     }
   });
 
@@ -598,13 +693,15 @@ window.captureMiseEnPlanViews = function(callback) {
 
       // Add clipping plane to existing materials
       scene.traverse(child => {
-        if (child.isMesh && child.material) {
+        if (child.material) {
           if (Array.isArray(child.material)) {
             child.material.forEach(m => m.clippingPlanes = [ clippingPlane ]);
           } else {
             child.material.clippingPlanes = [ clippingPlane ];
           }
-          
+        }
+        
+        if (child.isMesh && child.material && !child.userData.isEdgeHelper) {
           // Only create stencil for things that are cut
           const backMesh = new THREE.Mesh(child.geometry, backMat);
           backMesh.matrix.copy(child.matrixWorld);
@@ -641,7 +738,7 @@ window.captureMiseEnPlanViews = function(callback) {
       stencilMeshes.length = 0;
       
       scene.traverse(child => {
-        if (child.isMesh && child.material) {
+        if (child.material) {
           if (Array.isArray(child.material)) {
             child.material.forEach(m => m.clippingPlanes = null);
           } else {
@@ -672,6 +769,19 @@ window.captureMiseEnPlanViews = function(callback) {
   });
   originalColors.forEach((color, material) => {
     material.color.setHex(color);
+    material.polygonOffset = false;
+    material.polygonOffsetFactor = 0;
+    material.polygonOffsetUnits = 0;
+  });
+
+  // Remove edge helpers
+  edgeHelpers.forEach(({parent, line, geomToDispose}) => {
+    parent.remove(line);
+    line.geometry.dispose();
+    line.material.dispose();
+    if (geomToDispose) {
+      geomToDispose.dispose();
+    }
   });
 
   restoreNonSupport();
