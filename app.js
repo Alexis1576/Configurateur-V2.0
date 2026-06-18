@@ -22,6 +22,26 @@ import * as THREE from 'https://esm.sh/three@0.160.0';
 window.THREE = THREE;
 import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
+import './blueprint.js';
+
+function applyStandardMeshSettings(child) {
+  if (!child.isMesh) return;
+  child.castShadow = true;
+  child.receiveShadow = true;
+  if (child.material) {
+    if (Array.isArray(child.material)) {
+      child.material.forEach(m => {
+        m.side = THREE.DoubleSide;
+        m.transparent = false;
+        m.opacity = 1;
+      });
+    } else {
+      child.material.side = THREE.DoubleSide;
+      child.material.transparent = false;
+      child.material.opacity = 1;
+    }
+  }
+}
 
 const G_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1atF6VK20aO1ONcRJFAuEK5VrqeTzwhl2VKbotdRhBBM/gviz/tq?tqx=out:json&gid=943156125';
 
@@ -48,6 +68,9 @@ const state = {
   nbCuves:     '1',    // '1', '2', ... '8'
 
 };
+
+window.state = state;
+window.cuvesData = cuvesData;
 
 /* ══════════════════════════════════
    DOM CACHE
@@ -158,14 +181,17 @@ function init3DViewer() {
   controls.target.copy(initialCameraState.target);
   controls.update();
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x080820, 0.85);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.85);
   scene.add(hemiLight);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.1);
-  dirLight.position.set(2, 5, 4);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(ambientLight);
+
+  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  dirLight.position.set(5, 10, 7);
   dirLight.castShadow = true;
   dirLight.shadow.camera.near = 0.1;
-  dirLight.shadow.camera.far = 20;
+  dirLight.shadow.camera.far = 30;
   dirLight.shadow.mapSize.set(1024, 1024);
   dirLight.shadow.bias = -0.001;
   scene.add(dirLight);
@@ -227,6 +253,453 @@ function init3DViewer() {
 
   renderScene();
 }
+
+window.captureIsometricView = function(callback) {
+  if (!camera || !renderer || !scene) return;
+  const oldPos = camera.position.clone();
+  const oldTarget = controls.target.clone();
+  
+  // Set camera to isometric position
+  camera.position.set(1.6, 1.2, 1.6);
+  controls.target.set(0, 0.35, 0);
+  controls.update();
+  
+  // Temporarily hide helpers
+  scene.traverse(child => {
+    if (child instanceof THREE.AxesHelper || child instanceof THREE.Sprite || child instanceof THREE.LineSegments || (child instanceof THREE.Mesh && child.geometry instanceof THREE.SphereGeometry)) {
+      child.visible = false;
+    }
+  });
+  
+  // Force render
+  renderer.render(scene, camera);
+  
+  // Capture
+  const imgDataUrl = renderer.domElement.toDataURL('image/png');
+  
+  // Restore helpers
+  scene.traverse(child => {
+    if (child instanceof THREE.AxesHelper || child instanceof THREE.Sprite || child instanceof THREE.LineSegments || (child instanceof THREE.Mesh && child.geometry instanceof THREE.SphereGeometry)) {
+      child.visible = true;
+    }
+  });
+  
+  // Restore camera
+  camera.position.copy(oldPos);
+  controls.target.copy(oldTarget);
+  controls.update();
+  renderer.render(scene, camera);
+  
+  callback(imgDataUrl);
+};
+
+// --- Hatch Texture for Cross Section ---
+function createHatchTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 64;
+  canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  
+  ctx.fillStyle = '#ffffff'; 
+  ctx.fillRect(0, 0, 64, 64);
+  
+  ctx.strokeStyle = '#000000';
+  ctx.lineWidth = 1.5;
+  
+  ctx.beginPath();
+  for (let i = -64; i < 128; i += 8) {
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i + 64, 64);
+  }
+  ctx.stroke();
+  
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(50, 50); // Scale the hatching
+  return texture;
+}
+
+window.captureMiseEnPlanViews = function(callback) {
+  if (!scene || !camera || !renderer) {
+    if (callback) callback(null);
+    return;
+  }
+
+  const results = {};
+  
+  // Save original camera, target, and renderer size
+  const oldPos = camera.position.clone();
+  const oldTarget = controls.target.clone();
+  const originalSize = new THREE.Vector2();
+  renderer.getSize(originalSize);
+  
+  // Save helper visibilities and hide them
+  const helpersToRestore = [];
+  scene.traverse(child => {
+    if (child instanceof THREE.AxesHelper || child instanceof THREE.GridHelper || child instanceof THREE.Sprite || child instanceof THREE.LineSegments || (child instanceof THREE.Mesh && child.geometry instanceof THREE.SphereGeometry)) {
+      if (child.visible) {
+        helpersToRestore.push(child);
+        child.visible = false;
+      }
+    }
+  });
+
+  // Helper to hide non-support meshes
+  const hiddenMeshes = [];
+  const hideNonSupport = () => {
+    if (!supportModel) return;
+    current3DObject.traverse(child => {
+      let isSupport = false;
+      let p = child;
+      while (p) {
+        if (p === supportModel) {
+          isSupport = true;
+          break;
+        }
+        p = p.parent;
+      }
+      if (!isSupport && child !== current3DObject && child.visible) {
+        hiddenMeshes.push(child);
+        child.visible = false;
+      }
+    });
+    cuveInstances.forEach(inst => {
+      if (inst.visible) {
+        hiddenMeshes.push(inst);
+        inst.visible = false;
+      }
+    });
+  };
+
+  const restoreNonSupport = () => {
+    hiddenMeshes.forEach(m => {
+      m.visible = true;
+    });
+    hiddenMeshes.length = 0;
+  };
+
+  // Temporarily set transparent background and adjust lighting for better contrast on white paper
+  const originalBackground = scene.background;
+  scene.background = null;
+
+  // Find lights to adjust intensity
+  let hemiLight, ambientLight, dirLight;
+  scene.traverse(child => {
+    if (child.isHemisphereLight) hemiLight = child;
+    if (child.isAmbientLight) ambientLight = child;
+    if (child.isDirectionalLight) dirLight = child;
+  });
+
+  const oldHemiIntensity = hemiLight ? hemiLight.intensity : 0;
+  const oldAmbientIntensity = ambientLight ? ambientLight.intensity : 0;
+  const oldDirIntensity = dirLight ? dirLight.intensity : 0;
+
+  // Lower intensities so white materials appear grey-ish and stand out against white paper
+  if (hemiLight) hemiLight.intensity = 0.5;
+  if (ambientLight) ambientLight.intensity = 0.3;
+  if (dirLight) {
+    dirLight.intensity = 0.6;
+    dirLight.castShadow = false; // Disable cast shadows on plan
+  }
+
+  // Temporarily disable frustum culling and override colors for the plan
+  const originalFrustumStates = new Map();
+  const originalColors = new Map();
+  
+  scene.traverse(child => {
+    if (child.isMesh) {
+      originalFrustumStates.set(child, child.frustumCulled);
+      child.frustumCulled = false;
+      
+      if (child.material) {
+        // Determine if this mesh belongs to the support
+        let isSupport = false;
+        if (typeof supportModel !== 'undefined' && supportModel) {
+          let current = child;
+          while (current) {
+            if (current === supportModel) { isSupport = true; break; }
+            current = current.parent;
+          }
+        }
+        
+        // Target colors
+        const targetHex = isSupport ? 0xD4D0C8 : 0xF0F0F0; // Warm grey for support, light grey for basin
+        
+        if (Array.isArray(child.material)) {
+          child.material.forEach(m => {
+            if (m.color) {
+              if (!originalColors.has(m)) originalColors.set(m, m.color.getHex());
+              m.color.setHex(targetHex);
+            }
+          });
+        } else {
+          if (child.material.color) {
+            if (!originalColors.has(child.material)) originalColors.set(child.material, child.material.color.getHex());
+            child.material.color.setHex(targetHex);
+          }
+        }
+      }
+    }
+  });
+
+  // Calculate true bounding box to guarantee perfect framing
+  const box = new THREE.Box3();
+  if (current3DObject) {
+    box.setFromObject(current3DObject);
+  } else {
+    box.set(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 1, 1));
+  }
+  
+  const center = new THREE.Vector3();
+  box.getCenter(center);
+  const size = new THREE.Vector3();
+  box.getSize(size);
+
+  const halfWidth = size.x / 2;
+  const halfHeight = size.y / 2;
+  const halfDepth = size.z / 2;
+  
+  // Add some padding
+  const pad = 0.1;
+
+  // Let's define the 5 standard CAO views dynamically based on the exact bounding box
+  const views = [
+    {
+      name: 'face',
+      isOrtho: true,
+      orthoBounds: { left: -(halfWidth + pad), right: (halfWidth + pad), bottom: -(halfHeight + pad), top: (halfHeight + pad) },
+      cameraPos: { x: center.x, y: center.y, z: box.max.z + 2.0 },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    },
+    {
+      name: 'dessus',
+      isOrtho: true,
+      orthoBounds: { left: -(halfWidth + pad), right: (halfWidth + pad), bottom: -(halfDepth + pad), top: (halfDepth + pad) },
+      cameraPos: { x: center.x, y: box.max.y + 2.0, z: center.z },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    },
+    {
+      name: 'dessous',
+      isOrtho: true,
+      orthoBounds: { left: -(halfWidth + pad), right: (halfWidth + pad), bottom: -(halfDepth + pad), top: (halfDepth + pad) },
+      cameraPos: { x: center.x, y: box.min.y - 2.0, z: center.z },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    },
+    {
+      name: 'cote',
+      isOrtho: true,
+      orthoBounds: { left: -(halfDepth + pad), right: (halfDepth + pad), bottom: -(halfHeight + pad), top: (halfHeight + pad) },
+      cameraPos: { x: box.max.x + 2.0, y: center.y, z: center.z },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    },
+    {
+      name: 'cote_zoom',
+      isOrtho: true,
+      // Full height for zoom view
+      orthoBounds: { left: -(halfDepth + pad), right: (halfDepth + pad), bottom: -(halfHeight + pad), top: (halfHeight + pad) },
+      cameraPos: { x: box.max.x + 2.0, y: center.y, z: center.z },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    },
+    {
+      name: 'iso',
+      isOrtho: false,
+      cameraPos: { 
+        x: center.x + size.x * 0.8, 
+        y: box.max.y + size.y * 1.3, // Elevated more for top view
+        z: box.max.z + Math.max(size.x, size.z) * 1.5 
+      },
+      cameraTarget: { x: center.x, y: center.y, z: center.z },
+      hideTop: false
+    }
+  ];
+
+  const hatchTexture = createHatchTexture();
+  const clippingPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), center.x);
+
+  const backMat = new THREE.MeshBasicMaterial();
+  backMat.depthWrite = false;
+  backMat.depthTest = false;
+  backMat.colorWrite = false;
+  backMat.stencilWrite = true;
+  backMat.stencilRef = 1;
+  backMat.stencilFunc = THREE.AlwaysStencilFunc;
+  backMat.stencilFail = THREE.ReplaceStencilOp;
+  backMat.stencilZFail = THREE.ReplaceStencilOp;
+  backMat.stencilZPass = THREE.ReplaceStencilOp;
+  backMat.clippingPlanes = [ clippingPlane ];
+  backMat.side = THREE.BackSide;
+
+  const frontMat = new THREE.MeshBasicMaterial();
+  frontMat.depthWrite = false;
+  frontMat.depthTest = false;
+  frontMat.colorWrite = false;
+  frontMat.stencilWrite = true;
+  frontMat.stencilRef = 1;
+  frontMat.stencilFunc = THREE.AlwaysStencilFunc;
+  frontMat.stencilFail = THREE.DecrementWrapStencilOp;
+  frontMat.stencilZFail = THREE.DecrementWrapStencilOp;
+  frontMat.stencilZPass = THREE.DecrementWrapStencilOp;
+  frontMat.clippingPlanes = [ clippingPlane ];
+  frontMat.side = THREE.FrontSide;
+
+  const capMat = new THREE.MeshBasicMaterial({ map: hatchTexture });
+  capMat.stencilWrite = true;
+  capMat.stencilRef = 1;
+  capMat.stencilFunc = THREE.EqualStencilFunc;
+  // Ensure the cap plane renders even if it is behind the far plane of orthogonal camera? No, it's inside the frustum.
+
+  const stencilMeshes = [];
+
+  views.forEach(view => {
+    // Configure visibility
+    if (view.hideTop) {
+      hideNonSupport();
+    } else {
+      restoreNonSupport();
+    }
+
+    let activeCamera;
+    if (view.isOrtho) {
+      const { left, right, bottom, top } = view.orthoBounds;
+      const boundsAspect = (right - left) / (top - bottom);
+      
+      const targetHeight = 500;
+      const targetWidth = Math.round(targetHeight * boundsAspect);
+      renderer.setSize(targetWidth, targetHeight, false);
+      
+      activeCamera = new THREE.OrthographicCamera(left, right, top, bottom, 0.1, 100);
+      activeCamera.position.set(view.cameraPos.x, view.cameraPos.y, view.cameraPos.z);
+      activeCamera.lookAt(view.cameraTarget.x, view.cameraTarget.y, view.cameraTarget.z);
+      
+      if (view.name === 'face') {
+        console.log("Face Camera Pos:", activeCamera.position);
+        console.log("Face Camera Target:", view.cameraTarget);
+        console.log("Face Frustum (l,r,t,b):", left, right, top, bottom);
+      }
+    } else {
+      // Perspective camera (use fixed size for consistent framing, high res)
+      renderer.setSize(933, 600, false);
+      
+      activeCamera = camera;
+      camera.position.set(view.cameraPos.x, view.cameraPos.y, view.cameraPos.z);
+      controls.target.set(view.cameraTarget.x, view.cameraTarget.y, view.cameraTarget.z);
+      controls.update();
+    }
+
+    // Setup Cross Section Stencil
+    if (view.name === 'cote_zoom') {
+      renderer.localClippingEnabled = true;
+
+      // Add clipping plane to existing materials
+      scene.traverse(child => {
+        if (child.isMesh && child.material) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => m.clippingPlanes = [ clippingPlane ]);
+          } else {
+            child.material.clippingPlanes = [ clippingPlane ];
+          }
+          
+          // Only create stencil for things that are cut
+          const backMesh = new THREE.Mesh(child.geometry, backMat);
+          backMesh.matrix.copy(child.matrixWorld);
+          backMesh.matrixWorld.copy(child.matrixWorld);
+          backMesh.matrixAutoUpdate = false;
+          
+          const frontMesh = new THREE.Mesh(child.geometry, frontMat);
+          frontMesh.matrix.copy(child.matrixWorld);
+          frontMesh.matrixWorld.copy(child.matrixWorld);
+          frontMesh.matrixAutoUpdate = false;
+
+          scene.add(backMesh);
+          scene.add(frontMesh);
+          stencilMeshes.push(backMesh, frontMesh);
+        }
+      });
+
+      // Add the cap mesh
+      const capGeom = new THREE.PlaneGeometry(5000, 5000);
+      const capMesh = new THREE.Mesh(capGeom, capMat);
+      capMesh.position.x = center.x;
+      capMesh.rotation.y = Math.PI / 2; // Facing the camera
+      scene.add(capMesh);
+      stencilMeshes.push(capMesh);
+    }
+
+    // Render view
+    renderer.render(scene, activeCamera);
+    
+    // Clean up Cross Section Stencil
+    if (view.name === 'cote_zoom') {
+      renderer.localClippingEnabled = false;
+      stencilMeshes.forEach(m => scene.remove(m));
+      stencilMeshes.length = 0;
+      
+      scene.traverse(child => {
+        if (child.isMesh && child.material) {
+          if (Array.isArray(child.material)) {
+            child.material.forEach(m => m.clippingPlanes = null);
+          } else {
+            child.material.clippingPlanes = null;
+          }
+        }
+      });
+    }
+
+    // Capture data URL
+    results[view.name] = renderer.domElement.toDataURL('image/png');
+  });
+
+  // Restore everything
+  scene.background = originalBackground;
+  
+  // Restore lighting
+  if (hemiLight) hemiLight.intensity = oldHemiIntensity;
+  if (ambientLight) ambientLight.intensity = oldAmbientIntensity;
+  if (dirLight) {
+    dirLight.intensity = oldDirIntensity;
+    dirLight.castShadow = true;
+  }
+
+  // Restore frustum culling and original colors
+  originalFrustumStates.forEach((state, child) => {
+    child.frustumCulled = state;
+  });
+  originalColors.forEach((color, material) => {
+    material.color.setHex(color);
+  });
+
+  restoreNonSupport();
+  helpersToRestore.forEach(h => { h.visible = true; });
+  camera.position.copy(oldPos);
+  controls.target.copy(oldTarget);
+  controls.update();
+  
+  // Restore original renderer size
+  renderer.setSize(originalSize.x, originalSize.y, false);
+
+  const resultData = {
+    images: results,
+    dims: {
+      x: (size.x + 2 * pad) * 100, // Include padding and scale 100 to mm!
+      y: (size.y + 2 * pad) * 100,
+      z: (size.z + 2 * pad) * 100,
+      boxY: size.y * 100,
+      boxZ: size.z * 100
+    }
+  };
+  
+  // Re-render final scene
+  renderer.render(scene, camera);
+
+  if (callback) callback(resultData);
+};
+
 
 function handleWindowResize() {
   if (!camera || !renderer || !threeCanvas) return;
@@ -623,9 +1096,14 @@ function update3DScale() {
                 }
               }
             }
-            doorRotations.push(shouldRotate);
-          }
         }
+      }
+        
+      state.doorLayout = {
+          numDoors,
+          doorWidth,
+          doorRotations: [...doorRotations]
+        };
         
         // Largeur de base de la porte dans le FBX = 531 mm
         const doorScaleX = doorWidth / 531;
@@ -811,23 +1289,7 @@ function loadCuveModel(callback) {
 
   fbxLoader.load(encodeURI(cuvePath), object => {
     object.traverse(child => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        if (child.material) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach(m => {
-              m.side = THREE.DoubleSide;
-              m.transparent = false;
-              m.opacity = 1;
-            });
-          } else {
-            child.material.side = THREE.DoubleSide;
-            child.material.transparent = false;
-            child.material.opacity = 1;
-          }
-        }
-      }
+      applyStandardMeshSettings(child);
     });
     object.scale.set(1, 1, 1);
     object._loadedPath = cuvePath; // mémorise le chemin chargé
@@ -893,23 +1355,7 @@ function loadSupportModel(callback) {
 
   fbxLoader.load(encodeURI(supportPath), object => {
     object.traverse(child => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        if (child.material) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach(m => {
-              m.side = THREE.DoubleSide;
-              m.transparent = false;
-              m.opacity = 1;
-            });
-          } else {
-            child.material.side = THREE.DoubleSide;
-            child.material.transparent = false;
-            child.material.opacity = 1;
-          }
-        }
-      }
+      applyStandardMeshSettings(child);
     });
     object.scale.set(1, 1, 1);
     object._loadedPath = supportPath; // mémorise le chemin chargé
@@ -928,23 +1374,7 @@ function loadSupportModel(callback) {
       const sepPath = `3D - Morth Targets/${base}/ThalliSol_Sep_EOS.fbx`;
       fbxLoader.load(encodeURI(portePath), porteObject => {
         porteObject.traverse(child => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-            if (child.material) {
-              if (Array.isArray(child.material)) {
-                child.material.forEach(m => {
-                  m.side = THREE.DoubleSide;
-                  m.transparent = false;
-                  m.opacity = 1;
-                });
-              } else {
-                child.material.side = THREE.DoubleSide;
-                child.material.transparent = false;
-                child.material.opacity = 1;
-              }
-            }
-          }
+          applyStandardMeshSettings(child);
         });
         basePorteModel = porteObject;
         console.log(`Porte FBX chargée avec succès depuis : ${portePath}`);
@@ -952,23 +1382,7 @@ function loadSupportModel(callback) {
         // Charger la séparation
         fbxLoader.load(encodeURI(sepPath), sepObject => {
           sepObject.traverse(child => {
-            if (child.isMesh) {
-              child.castShadow = true;
-              child.receiveShadow = true;
-              if (child.material) {
-                if (Array.isArray(child.material)) {
-                  child.material.forEach(m => {
-                    m.side = THREE.DoubleSide;
-                    m.transparent = false;
-                    m.opacity = 1;
-                  });
-                } else {
-                  child.material.side = THREE.DoubleSide;
-                  child.material.transparent = false;
-                  child.material.opacity = 1;
-                }
-              }
-            }
+            applyStandardMeshSettings(child);
           });
           baseSepModel = sepObject;
           console.log(`Séparation FBX chargée avec succès depuis : ${sepPath}`);
@@ -1032,27 +1446,11 @@ function load3DModelForSelection() {
   loadedModelCount = `${getBaseModelName()}_${targetCount}`;
   fbxLoader.load(encodeURI(modelPath), object => {
     object.traverse(child => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        if (child.material) {
-          if (Array.isArray(child.material)) {
-            child.material.forEach(m => {
-              m.side = THREE.DoubleSide;
-              m.transparent = false;
-              m.opacity = 1;
-            });
-          } else {
-            child.material.side = THREE.DoubleSide;
-            child.material.transparent = false;
-            child.material.opacity = 1;
-          }
-        }
-      }
+      applyStandardMeshSettings(child);
     });
 
     object.position.set(0, 0, 0);
-    object.rotation.y = Math.PI;
+    object.rotation.y = 0; // Fix: face the camera by default
     current3DObject = object;
     scene.add(object);
 
@@ -1118,6 +1516,7 @@ async function fetchCatalogue() {
       };
     });
 
+    window.cuvesData = cuvesData;
     populateModelSelect();
     
     // Auto-sélection du premier modèle si disponible
@@ -1366,6 +1765,7 @@ bindPlageSliders();
    UPDATE VISUALS & REF
 ══════════════════════════════════ */
 function updateVisuals() {
+  state.doorLayout = null;
   if (!state.model) return;
   
   const data = cuvesData[state.model];
@@ -1458,6 +1858,10 @@ function updateVisuals() {
   if (sliderItemPlageEntre) {
     sliderItemPlageEntre.style.display = parseInt(state.nbCuves) > 1 ? 'block' : 'none';
   }
+  
+  if (window.Blueprint && window.Blueprint.isOpen) {
+    window.Blueprint.draw();
+  }
 }
 
 function populateNbCuvesOptions(multiple) {
@@ -1513,6 +1917,10 @@ function init() {
     sliderHeight.dispatchEvent(new Event('input'));
   }
   fetchCatalogue(); // Déclenche le téléchargement
+  
+  if (window.Blueprint) {
+    window.Blueprint.init();
+  }
 }
 
 init();

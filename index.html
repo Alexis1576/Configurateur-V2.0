@@ -36,6 +36,10 @@
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
         Réinitialiser
       </button>
+      <button class="btn-primary" id="btn-blueprint" style="margin-left: 12px; gap: 8px; display: flex; align-items: center;" title="Mise en plan">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/></svg>
+        Mise en plan
+      </button>
     </div>
   </header>
 
@@ -479,7 +483,108 @@
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
     <span id="toast-msg">Mise à jour</span>
   </div>
+  
+  <!-- ── BLUEPRINT WORKSPACE ── -->
+  <div id="blueprint-workspace" class="blueprint-workspace" style="display: none;">
+    <!-- Sidebar Control Panel -->
+    <aside class="blueprint-sidebar">
+      <div class="sidebar-header">
+        <h3>Mise en Plan Technique</h3>
+        <p>Ajustez les champs et imprimez le plan</p>
+      </div>
 
-  <script type="module" src="app.js"></script>
+      <!-- Formulaire Cartouche -->
+      <div class="blueprint-form">
+        <h4>Données du Cartouche</h4>
+        <div class="form-group">
+          <label for="bp-project">Projet / Référence</label>
+          <input type="text" id="bp-project" value="PlanVasques4300" />
+        </div>
+        <div class="form-group">
+          <label for="bp-client">Client / Descriptif</label>
+          <input type="text" id="bp-client" value="134173 - Eurexpo Hall 4.3 - Lyon (69)" />
+        </div>
+        <div class="form-group">
+          <label for="bp-location">Lieu</label>
+          <input type="text" id="bp-location" value="Lieu dit vaujalat" />
+        </div>
+        <div class="form-group">
+          <label for="bp-author">Dessinateur</label>
+          <input type="text" id="bp-author" value="Pv" />
+        </div>
+        <div class="form-group">
+          <label for="bp-email">Contact / Email</label>
+          <input type="text" id="bp-email" value="hugo@istone.fr" />
+        </div>
+        <div class="form-group">
+          <label for="bp-scale">Échelle</label>
+          <input type="text" id="bp-scale" value="1:25" />
+        </div>
+        <div class="form-group">
+          <label for="bp-index">Indice</label>
+          <input type="text" id="bp-index" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="bp-date">Date de création</label>
+          <input type="text" id="bp-date" />
+        </div>
+        <div class="form-group">
+          <label for="bp-date-update">Mise à jour</label>
+          <input type="text" id="bp-date-update" />
+        </div>
+        <div class="form-group">
+          <label for="bp-page">Page</label>
+          <input type="text" id="bp-page" value="1/1" />
+        </div>
+        <div class="form-group">
+          <label for="bp-delai">Délai de livraison</label>
+          <input type="text" id="bp-delai" value="3 semaines après validation de ces plans par vos soins." />
+        </div>
+        <div class="form-group">
+          <label for="bp-quantite">Quantité</label>
+          <input type="text" id="bp-quantite" value="1" />
+        </div>
+        <div class="form-group">
+          <label for="bp-version">Version</label>
+          <input type="text" id="bp-version" value="A" />
+        </div>
+        <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px; margin-top: 4px;">
+          <input type="checkbox" id="bp-pmr" style="width: auto; margin: 0; cursor: pointer;" />
+          <label for="bp-pmr" style="margin: 0; cursor: pointer; font-weight: 600;">Option PMR</label>
+        </div>
+        <div class="form-group">
+          <label for="bp-commentaire">Commentaire</label>
+          <textarea id="bp-commentaire" rows="3" placeholder="Saisissez un commentaire..." style="resize: vertical;"></textarea>
+        </div>
+      </div>
+
+      <!-- Boutons Actions -->
+      <div class="blueprint-actions" style="margin-top: auto; padding-top: 20px;">
+        <button id="btn-bp-print" class="btn-primary" style="width: 100%; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+          Imprimer / Exporter PDF
+        </button>
+        <button id="btn-bp-close" class="btn-ghost" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Retour au Configurateur
+        </button>
+      </div>
+    </aside>
+
+    <!-- Virtual Sheet Container -->
+    <div class="blueprint-canvas-container" style="position: relative;">
+      <div id="bp-loading" class="viewer-loading" style="background: rgba(8,11,18,0.9); z-index: 100;">
+        <div class="loading-ring"></div>
+        <p>Génération du plan en cours (captures 3D)...</p>
+      </div>
+      <div class="blueprint-sheet-wrapper">
+        <div id="blueprint-sheet" class="blueprint-sheet A3-landscape">
+          <!-- SVG dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js?v=21"></script>
 </body>
 </html>
