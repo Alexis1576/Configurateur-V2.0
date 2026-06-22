@@ -22,6 +22,7 @@ import * as THREE from 'https://esm.sh/three@0.160.0';
 window.THREE = THREE;
 import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 import { FBXLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/FBXLoader.js';
+import * as SkeletonUtils from 'https://esm.sh/three@0.160.0/examples/jsm/utils/SkeletonUtils.js';
 import './blueprint.js';
 
 function applyStandardMeshSettings(child) {
@@ -181,10 +182,10 @@ function init3DViewer() {
   controls.target.copy(initialCameraState.target);
   controls.update();
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.85);
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xaabbcc, 0.8); // Bleu gris clair depuis le sol
   scene.add(hemiLight);
 
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
   scene.add(ambientLight);
 
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -195,6 +196,11 @@ function init3DViewer() {
   dirLight.shadow.mapSize.set(1024, 1024);
   dirLight.shadow.bias = -0.001;
   scene.add(dirLight);
+
+  // Ajout d'une lumière de remplissage pour déboucher les ombres sous le plan vasque
+  const bottomFillLight = new THREE.DirectionalLight(0xffffff, 0.45);
+  bottomFillLight.position.set(0, -10, 8); // Vient du bas et de l'avant
+  scene.add(bottomFillLight);
 
   // Sol avec ombre retiré à la demande de l'utilisateur
 
@@ -384,24 +390,26 @@ window.captureMiseEnPlanViews = function(callback) {
   scene.background = null;
 
   // Find lights to adjust intensity
-  let hemiLight, ambientLight, dirLight;
+  let hemiLight, ambientLight;
+  const dirLights = [];
   scene.traverse(child => {
     if (child.isHemisphereLight) hemiLight = child;
     if (child.isAmbientLight) ambientLight = child;
-    if (child.isDirectionalLight) dirLight = child;
+    if (child.isDirectionalLight) dirLights.push(child);
   });
 
   const oldHemiIntensity = hemiLight ? hemiLight.intensity : 0;
   const oldAmbientIntensity = ambientLight ? ambientLight.intensity : 0;
-  const oldDirIntensity = dirLight ? dirLight.intensity : 0;
+  const oldDirIntensities = new Map();
 
   // Lower intensities so white materials appear grey-ish and stand out against white paper
   if (hemiLight) hemiLight.intensity = 0.5;
   if (ambientLight) ambientLight.intensity = 0.3;
-  if (dirLight) {
-    dirLight.intensity = 0.6;
-    dirLight.castShadow = false; // Disable cast shadows on plan
-  }
+  dirLights.forEach(dl => {
+    oldDirIntensities.set(dl, dl.intensity);
+    dl.intensity = 0.6;
+    dl.castShadow = false; // Disable cast shadows on plan
+  });
 
   // Temporarily disable frustum culling and override colors for the plan
   const originalFrustumStates = new Map();
@@ -749,19 +757,22 @@ window.captureMiseEnPlanViews = function(callback) {
     }
 
     // Capture data URL
+  // Capture data URL
     results[view.name] = renderer.domElement.toDataURL('image/png');
   });
 
   // Restore everything
   scene.background = originalBackground;
-  
+
   // Restore lighting
   if (hemiLight) hemiLight.intensity = oldHemiIntensity;
   if (ambientLight) ambientLight.intensity = oldAmbientIntensity;
-  if (dirLight) {
-    dirLight.intensity = oldDirIntensity;
-    dirLight.castShadow = true;
-  }
+  dirLights.forEach(dl => {
+    if (oldDirIntensities.has(dl)) {
+      dl.intensity = oldDirIntensities.get(dl);
+      dl.castShadow = true;
+    }
+  });
 
   // Restore frustum culling and original colors
   originalFrustumStates.forEach((state, child) => {
@@ -1043,6 +1054,135 @@ function update3DScale() {
         }
       });
 
+      // ---- Ajout des équerres supplémentaires ----
+      if (!window.extraBrackets) window.extraBrackets = [];
+
+      if (state.nbCuves > 1) {
+        const boneG = supportLeftBones.length > 0 ? supportLeftBones[0] : null;
+        const boneD = supportRightBones.length > 0 ? supportRightBones[0] : null;
+
+        if (boneG && boneD) {
+          const cLengthMm = cuvesData[state.model]?.cuveLength || 390;
+          const gapMm = state.plageEntreCuves * 10;
+          const plageGaucheMm = state.position * 10;
+          const numNeeded = state.nbCuves - 1;
+
+          // Retirer les équerres en trop
+          while (window.extraBrackets.length > numNeeded) {
+            const b = window.extraBrackets.pop();
+            if (b.parent) b.parent.remove(b);
+            b.traverse(child => {
+              if (child.isMesh && child.userData.customMaterial) {
+                if (Array.isArray(child.userData.customMaterial)) {
+                  child.userData.customMaterial.forEach(m => m.dispose());
+                } else {
+                  child.userData.customMaterial.dispose();
+                }
+              }
+            });
+          }
+
+          for (let i = 0; i < numNeeded; i++) {
+            const cuve1X = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
+            const cuve2X = cuve1X + cLengthMm + gapMm;
+            const centerX = (cuve1X + cuve2X) / 2;
+
+            // Choose bracket based on center
+            const isLeft = centerX < 0;
+            const srcBone = isLeft ? boneG : boneD;
+            const boneType = isLeft ? 'G' : 'D';
+            
+            // Calculer le décalage relatif à l'os source
+            // L'os gauche est actuellement placé pour correspondre à -halfLength
+            // L'os droit est placé pour correspondre à +halfLength
+            const refX = isLeft ? -halfLength : halfLength;
+            const deltaX = centerX - refX;
+            const targetX = srcBone.position.x + deltaX;
+            
+            let clonedBone;
+            if (i < window.extraBrackets.length) {
+              clonedBone = window.extraBrackets[i];
+              if (clonedBone.userData.boneType !== boneType) {
+                 // Remplacer si le type de console (G/D) a changé
+                 if (clonedBone.parent) clonedBone.parent.remove(clonedBone);
+                 clonedBone.traverse(child => {
+                   if (child.isMesh && child.userData.customMaterial) {
+                     if (Array.isArray(child.userData.customMaterial)) child.userData.customMaterial.forEach(m => m.dispose());
+                     else child.userData.customMaterial.dispose();
+                   }
+                 });
+                 clonedBone = SkeletonUtils.clone(srcBone);
+                 clonedBone.userData.boneType = boneType;
+                 srcBone.parent.add(clonedBone);
+                 window.extraBrackets[i] = clonedBone;
+              }
+              clonedBone.position.x = targetX;
+            } else {
+              clonedBone = SkeletonUtils.clone(srcBone);
+              clonedBone.userData.boneType = boneType;
+              clonedBone.position.copy(srcBone.position);
+              clonedBone.position.x = targetX;
+              srcBone.parent.add(clonedBone);
+              window.extraBrackets.push(clonedBone);
+            }
+          }
+        }
+      } else {
+         // 1 cuve -> nettoyer tout
+         if (window.extraBrackets) {
+           window.extraBrackets.forEach(b => {
+             if (b.parent) b.parent.remove(b);
+             b.traverse(child => {
+               if (child.isMesh && child.userData.customMaterial) {
+                 if (Array.isArray(child.userData.customMaterial)) child.userData.customMaterial.forEach(m => m.dispose());
+                 else child.userData.customMaterial.dispose();
+               }
+             });
+           });
+           window.extraBrackets = [];
+         }
+      }
+      // --------------------------------------------
+      // DEBUG LOG INJECTION
+      if (boneG && boneD) {
+        let dbgStr = "Brackets Debug:\n";
+        dbgStr += `halfLength: ${halfLength}\n`;
+        dbgStr += `boneG: pos=(${boneG.position.x.toFixed(1)}, ${boneG.position.y.toFixed(1)}, ${boneG.position.z.toFixed(1)}) | vis=${boneG.visible}\n`;
+        dbgStr += `boneD: pos=(${boneD.position.x.toFixed(1)}, ${boneD.position.y.toFixed(1)}, ${boneD.position.z.toFixed(1)}) | vis=${boneD.visible}\n`;
+        
+        window.extraBrackets.forEach((b, i) => {
+          dbgStr += `extra[${i}] (${b.userData.boneType}): pos=(${b.position.x.toFixed(1)}, ${b.position.y.toFixed(1)}, ${b.position.z.toFixed(1)}) | vis=${b.visible}\n`;
+          if (b.children) {
+            b.children.forEach(c => {
+               dbgStr += `  child ${c.name}: pos=(${c.position.x.toFixed(1)}, ${c.position.y.toFixed(1)}, ${c.position.z.toFixed(1)}) | vis=${c.visible}\n`;
+               if (c.material) {
+                 dbgStr += `    mat: color=${c.material.color?.getHexString()}, op=${c.material.opacity}, trans=${c.material.transparent}\n`;
+               }
+            });
+          }
+        });
+        
+        let div = document.getElementById('debug-log-div');
+        if (!div) {
+          div = document.createElement('div');
+          div.id = 'debug-log-div';
+          div.style.position = 'fixed';
+          div.style.top = '0';
+          div.style.left = '0';
+          div.style.zIndex = '9999';
+          div.style.backgroundColor = 'rgba(0,0,0,0.8)';
+          div.style.color = 'white';
+          div.style.padding = '10px';
+          div.style.fontFamily = 'monospace';
+          div.style.whiteSpace = 'pre';
+          div.style.pointerEvents = 'none';
+          document.body.appendChild(div);
+        }
+        div.textContent = dbgStr;
+      }
+      // --------------------------------------------
+
+
       // --- GESTION DES PORTES DU SUPPORT THALLISOL ---
       // 1. Nettoyer le groupe existant de portes
       if (supportPortesGroup) {
@@ -1309,6 +1449,8 @@ function collectSupportMorphTargets(object) {
 
   const RETRAITS = {
     'thallis_dos': 28,
+    'dos_thal': 28,
+    'facethal': 28,
     'bas_eos_thallisol': 66,
     'face_eos_thallisol': 66,
     'plintheeos_thallisol': 88
@@ -1466,6 +1608,13 @@ function loadSupportModel(callback) {
   fbxLoader.load(encodeURI(supportPath), object => {
     object.traverse(child => {
       applyStandardMeshSettings(child);
+      if (child.isMesh && child.material) {
+        if (Array.isArray(child.material)) {
+          child.userData.originalMaterial = child.material.map(m => (m && typeof m.clone === 'function') ? m.clone() : m);
+        } else {
+          child.userData.originalMaterial = (child.material && typeof child.material.clone === 'function') ? child.material.clone() : child.material;
+        }
+      }
     });
     object.scale.set(1, 1, 1);
     object._loadedPath = supportPath; // mémorise le chemin chargé
@@ -1872,6 +2021,68 @@ bindPlageSliders();
 
 
 /* ══════════════════════════════════
+   UPDATE SUPPORT COLORS
+══════════════════════════════════ */
+function updateSupportColors() {
+  if (!window.supportModel) return;
+  
+  // Couleurs de fond légèrement plus foncées que le plan vasque
+  const darkerColor = state.finition === 'noir' ? 0x111115 : 
+                      state.finition === 'beton' ? 0x757a82 : 0xd8d4cc;
+                      
+  window.supportModel.traverse(child => {
+    if (!child.isMesh) return;
+    
+    // Equerres en métal gris
+    if (child.name.includes('Console') || child.name.includes('Equerre') || child.name.includes('Bone_Long') || child.name.includes('Bras')) {
+      if (child.userData.originalMaterial) {
+        if (!child.userData.customMaterial) {
+          if (Array.isArray(child.userData.originalMaterial)) {
+            child.userData.customMaterial = child.userData.originalMaterial.map(m => (m && typeof m.clone === 'function') ? m.clone() : m);
+          } else {
+            child.userData.customMaterial = (typeof child.userData.originalMaterial.clone === 'function') ? child.userData.originalMaterial.clone() : child.userData.originalMaterial;
+          }
+        }
+        child.material = child.userData.customMaterial;
+        
+        if (Array.isArray(child.material)) {
+          child.material.forEach(m => {
+            if (m && m.color && typeof m.color.setHex === 'function') m.color.setHex(0x999999);
+            if (m) { m.metalness = 0.5; m.roughness = 0.4; }
+          });
+        } else {
+          if (child.material && child.material.color && typeof child.material.color.setHex === 'function') child.material.color.setHex(0x999999); // Gris métallique plus clair
+          if (child.material) { child.material.metalness = 0.5; child.material.roughness = 0.4; }
+        }
+      }
+    } 
+    // Fond TH
+    else if (child.name === 'TH' || child.name === 'FaceThal' || child.name === 'Dos_Thal' || child.name.includes('Face_EOS') || child.name.includes('Bas_EOS')) {
+      if (child.userData.originalMaterial) {
+        if (!child.userData.customMaterial) {
+          if (Array.isArray(child.userData.originalMaterial)) {
+            child.userData.customMaterial = child.userData.originalMaterial.map(m => (m && typeof m.clone === 'function') ? m.clone() : m);
+          } else {
+            child.userData.customMaterial = (typeof child.userData.originalMaterial.clone === 'function') ? child.userData.originalMaterial.clone() : child.userData.originalMaterial;
+          }
+        }
+        child.material = child.userData.customMaterial;
+        
+        if (Array.isArray(child.material)) {
+          child.material.forEach(m => {
+            if (m && m.color && typeof m.color.setHex === 'function') m.color.setHex(darkerColor);
+            if (m) { m.metalness = 0.1; m.roughness = 0.8; }
+          });
+        } else {
+          if (child.material && child.material.color && typeof child.material.color.setHex === 'function') child.material.color.setHex(darkerColor);
+          if (child.material) { child.material.metalness = 0.1; child.material.roughness = 0.8; }
+        }
+      }
+    }
+  });
+}
+
+/* ══════════════════════════════════
    UPDATE VISUALS & REF
 ══════════════════════════════════ */
 function updateVisuals() {
@@ -1918,6 +2129,7 @@ function updateVisuals() {
   const imgUrl = data.img;
   if (is3DModel()) {
     show3DPreview();
+    updateSupportColors();
   } else {
     showImagePreview(imgUrl);
   }
