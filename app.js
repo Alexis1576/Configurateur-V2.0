@@ -1143,45 +1143,6 @@ function update3DScale() {
          }
       }
       // --------------------------------------------
-      // DEBUG LOG INJECTION
-      if (boneG && boneD) {
-        let dbgStr = "Brackets Debug:\n";
-        dbgStr += `halfLength: ${halfLength}\n`;
-        dbgStr += `boneG: pos=(${boneG.position.x.toFixed(1)}, ${boneG.position.y.toFixed(1)}, ${boneG.position.z.toFixed(1)}) | vis=${boneG.visible}\n`;
-        dbgStr += `boneD: pos=(${boneD.position.x.toFixed(1)}, ${boneD.position.y.toFixed(1)}, ${boneD.position.z.toFixed(1)}) | vis=${boneD.visible}\n`;
-        
-        window.extraBrackets.forEach((b, i) => {
-          dbgStr += `extra[${i}] (${b.userData.boneType}): pos=(${b.position.x.toFixed(1)}, ${b.position.y.toFixed(1)}, ${b.position.z.toFixed(1)}) | vis=${b.visible}\n`;
-          if (b.children) {
-            b.children.forEach(c => {
-               dbgStr += `  child ${c.name}: pos=(${c.position.x.toFixed(1)}, ${c.position.y.toFixed(1)}, ${c.position.z.toFixed(1)}) | vis=${c.visible}\n`;
-               if (c.material) {
-                 dbgStr += `    mat: color=${c.material.color?.getHexString()}, op=${c.material.opacity}, trans=${c.material.transparent}\n`;
-               }
-            });
-          }
-        });
-        
-        let div = document.getElementById('debug-log-div');
-        if (!div) {
-          div = document.createElement('div');
-          div.id = 'debug-log-div';
-          div.style.position = 'fixed';
-          div.style.top = '0';
-          div.style.left = '0';
-          div.style.zIndex = '9999';
-          div.style.backgroundColor = 'rgba(0,0,0,0.8)';
-          div.style.color = 'white';
-          div.style.padding = '10px';
-          div.style.fontFamily = 'monospace';
-          div.style.whiteSpace = 'pre';
-          div.style.pointerEvents = 'none';
-          document.body.appendChild(div);
-        }
-        div.textContent = dbgStr;
-      }
-      // --------------------------------------------
-
 
       // --- GESTION DES PORTES DU SUPPORT THALLISOL ---
       // 1. Nettoyer le groupe existant de portes
