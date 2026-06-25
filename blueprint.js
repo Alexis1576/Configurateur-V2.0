@@ -531,7 +531,7 @@ const Blueprint = {
     // The Cartouche is on the RIGHT side (X > 215). So the left column can go all the way down!
     // Usable height: 7 to 292 = 285 total.
     const MARGIN_TOP_PAGE = 7;        // top border
-    const MARGIN_FACE_TOP   = 11;     // space for "Vue de face" title
+    const MARGIN_FACE_TOP   = 24;     // space for "Vue de face" title and Coupe A-A title
     const MARGIN_FACE_BOT   = 18;     // dim below face
     const MARGIN_DESSUS_TOP = 18;     // gap + "Vue de dessus" title + top cote row
     const MARGIN_DESSUS_BOT = 16;     // dim below dessus
@@ -547,7 +547,10 @@ const Blueprint = {
     const availableForViews = maxH - totalFixedV; // ≈ 188 units for 3 stacked drawings
 
     // Available horizontal space in the left column
-    const maxW = 195;
+    // The frame border on the left is at X=5. The dimensions are drawn at X = cx - w/2 - 12.
+    // If cx=110, w/2 cannot exceed 88 (110 - 88 - 12 = 10, which is safe).
+    // So maxW is 176.
+    const maxW = 176;
 
     // --- Constraint 1: height ---
     const minScaleForHeight = (dims.y + 2 * dims.z) / Math.max(1, availableForViews);
