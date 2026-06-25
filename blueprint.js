@@ -153,6 +153,12 @@ const Blueprint = {
   },
 
   handleSVGClick(evt) {
+    // If we just finished dragging, prevent click
+    if (this._wasDragging) {
+      this._wasDragging = false;
+      return;
+    }
+    
     if (!this._annotMode) return;
     const coords = this.getSVGCoords(evt);
     if (!coords) return;
@@ -200,6 +206,69 @@ const Blueprint = {
       // Afficher le popup de saisie
       this.showDimPopup(p1, p2, axis, autoValMm);
     }
+  },
+
+  // Drag and Drop Logic
+  handleDragStart(evt) {
+    const target = evt.target.closest('.cote-draggable');
+    if (!target) return;
+    
+    evt.preventDefault(); // Prevent text selection
+    this._draggedDim = target;
+    this._dragAxis = target.getAttribute('data-axis');
+    this._dragId = target.getAttribute('data-dim-id');
+    this._wasDragging = false;
+    
+    const coords = this.getSVGCoords(evt.type.includes('touch') ? evt.touches[0] : evt);
+    this._dragStartCoords = coords;
+    
+    // Get initial offset from our state
+    const offset = this.dimOffsets ? this.dimOffsets[this._dragId] || { dx: 0, dy: 0 } : { dx: 0, dy: 0 };
+    this._initialOffset = { ...offset };
+  },
+
+  handleDragMove(evt) {
+    if (!this._draggedDim) return;
+    
+    const coords = this.getSVGCoords(evt.type.includes('touch') ? evt.touches[0] : evt);
+    if (!coords) return;
+    
+    const dx = coords.x - this._dragStartCoords.x;
+    const dy = coords.y - this._dragStartCoords.y;
+    
+    if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+      this._wasDragging = true;
+    }
+    
+    const newOffset = { ...this._initialOffset };
+    if (this._dragAxis === 'H') {
+      newOffset.dy += dy;
+    } else {
+      newOffset.dx += dx;
+    }
+    
+    // Visually update
+    if (this._dragAxis === 'H') {
+      this._draggedDim.setAttribute('transform', `translate(0, ${newOffset.dy})`);
+    } else {
+      this._draggedDim.setAttribute('transform', `translate(${newOffset.dx}, 0)`);
+    }
+    
+    // Temporarily store in state so handleDragEnd can save it
+    this._currentOffset = newOffset;
+  },
+
+  handleDragEnd(evt) {
+    if (!this._draggedDim) return;
+    
+    if (this._wasDragging && this._currentOffset) {
+      if (!this.dimOffsets) this.dimOffsets = {};
+      this.dimOffsets[this._dragId] = this._currentOffset;
+    }
+    
+    this._draggedDim = null;
+    this._dragAxis = null;
+    this._dragId = null;
   },
 
   showDimPopup(p1, p2, axis, autoValMm) {
@@ -378,11 +447,32 @@ const Blueprint = {
 
   // Helper to draw a dimension line (cotes)
   drawDimensionH(svg, x1, x2, y, valMm, labelOffset = -3, tickLen = 4) {
+    this.dimCounter++;
+    const id = `dim_H_${this.dimCounter}`;
+    const offset = this.dimOffsets ? this.dimOffsets[id] || { dx: 0, dy: 0 } : { dx: 0, dy: 0 };
+
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    g.setAttribute('class', 'cote-dim');
+    g.setAttribute('class', 'cote-dim cote-draggable');
+    g.setAttribute('data-dim-id', id);
+    g.setAttribute('data-axis', 'H');
     g.setAttribute('stroke', '#0000ff');
     g.setAttribute('stroke-width', '0.25');
     g.setAttribute('fill', 'none');
+    g.setAttribute('cursor', 'ns-resize');
+    if (offset.dy !== 0) {
+      g.setAttribute('transform', `translate(0, ${offset.dy})`);
+    }
+
+    // Transparent hitbox for easier dragging
+    const hitbox = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    hitbox.setAttribute('x', Math.min(x1, x2));
+    hitbox.setAttribute('y', y - 8);
+    hitbox.setAttribute('width', Math.abs(x2 - x1));
+    hitbox.setAttribute('height', 16);
+    hitbox.setAttribute('fill', 'transparent');
+    hitbox.setAttribute('stroke', 'none');
+    hitbox.setAttribute('pointer-events', 'all');
+    g.appendChild(hitbox);
 
     // Line
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -418,6 +508,7 @@ const Blueprint = {
     txt.setAttribute('font-family', "'Outfit', sans-serif");
     txt.setAttribute('font-weight', '500');
     txt.setAttribute('text-anchor', 'middle');
+    txt.setAttribute('pointer-events', 'none');
     txt.textContent = Math.round(valMm);
     g.appendChild(txt);
 
@@ -425,11 +516,32 @@ const Blueprint = {
   },
 
   drawDimensionV(svg, x, y1, y2, valMm, labelOffset = 3, tickLen = 4) {
+    this.dimCounter++;
+    const id = `dim_V_${this.dimCounter}`;
+    const offset = this.dimOffsets ? this.dimOffsets[id] || { dx: 0, dy: 0 } : { dx: 0, dy: 0 };
+
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    g.setAttribute('class', 'cote-dim');
+    g.setAttribute('class', 'cote-dim cote-draggable');
+    g.setAttribute('data-dim-id', id);
+    g.setAttribute('data-axis', 'V');
     g.setAttribute('stroke', '#0000ff');
     g.setAttribute('stroke-width', '0.25');
     g.setAttribute('fill', 'none');
+    g.setAttribute('cursor', 'ew-resize');
+    if (offset.dx !== 0) {
+      g.setAttribute('transform', `translate(${offset.dx}, 0)`);
+    }
+
+    // Transparent hitbox for easier dragging
+    const hitbox = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    hitbox.setAttribute('x', x - 8);
+    hitbox.setAttribute('y', Math.min(y1, y2));
+    hitbox.setAttribute('width', 16);
+    hitbox.setAttribute('height', Math.abs(y2 - y1));
+    hitbox.setAttribute('fill', 'transparent');
+    hitbox.setAttribute('stroke', 'none');
+    hitbox.setAttribute('pointer-events', 'all');
+    g.appendChild(hitbox);
 
     // Line
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -465,6 +577,7 @@ const Blueprint = {
     txt.setAttribute('font-family', "'Outfit', sans-serif");
     txt.setAttribute('font-weight', '500');
     txt.setAttribute('text-anchor', labelOffset > 0 ? 'start' : 'end');
+    txt.setAttribute('pointer-events', 'none');
     txt.textContent = Math.round(valMm);
     g.appendChild(txt);
 
@@ -473,6 +586,9 @@ const Blueprint = {
 
   // Main drawing controller
   draw() {
+    this.dimCounter = 0;
+    if (!this.dimOffsets) this.dimOffsets = {};
+
     const state = window.state;
     const container = document.getElementById('blueprint-sheet');
     if (!container) return;
@@ -642,6 +758,18 @@ const Blueprint = {
 
     // Attacher le handler de clic pour le mode annotation
     svg.addEventListener('click', (e) => this.handleSVGClick(e));
+    
+    // Attacher les handlers de drag & drop
+    svg.addEventListener('mousedown', (e) => this.handleDragStart(e));
+    svg.addEventListener('touchstart', (e) => this.handleDragStart(e), {passive: false});
+
+    if (!this._dragEventsInitialized) {
+      window.addEventListener('mousemove', (e) => this.handleDragMove(e));
+      window.addEventListener('mouseup', (e) => this.handleDragEnd(e));
+      window.addEventListener('touchmove', (e) => this.handleDragMove(e), {passive: false});
+      window.addEventListener('touchend', (e) => this.handleDragEnd(e));
+      this._dragEventsInitialized = true;
+    }
 
     container.appendChild(svg);
   },
@@ -784,7 +912,7 @@ const Blueprint = {
     this.drawLabel(svg, cx, y - 22, "Vue de dessus");
 
     // Axe cuve (par rapport à l'avant du plan vasque)
-    this.drawDimensionV(svg, x - 10, y + h/2, y + h, dims.boxZ / 2, -3);
+    this.drawDimensionV(svg, xl - 12, y + h/2, y + h, dims.boxZ / 2, -3);
 
     // Cotes verticales sur la cuve la plus à droite (profondeur)
     if (basinDims.length > 0) {
