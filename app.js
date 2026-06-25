@@ -61,7 +61,7 @@ const state = {
   length:      80,
   position:    40,
   plageEntreCuves: 10,
-  height:      14,
+  height:      10,
   finition:    'blanc-mat',
   tropPlein:   true,  // true = Avec, false = Sans (-STP)
   credence:    '',    // '', 'C', 'P', 'M', 'T'
@@ -596,7 +596,7 @@ window.captureMiseEnPlanViews = function(callback) {
       name: 'cote',
       isOrtho: true,
       orthoBounds: { left: -(halfDepth + pad), right: (halfDepth + pad), bottom: -(halfHeight + pad), top: (halfHeight + pad) },
-      cameraPos: { x: box.max.x + 2.0, y: center.y, z: center.z },
+      cameraPos: { x: box.min.x - 2.0, y: center.y, z: center.z },
       cameraTarget: { x: center.x, y: center.y, z: center.z },
       hideTop: false
     },
@@ -613,9 +613,9 @@ window.captureMiseEnPlanViews = function(callback) {
       name: 'iso',
       isOrtho: false,
       cameraPos: { 
-        x: center.x + size.x * 0.8, 
-        y: box.max.y + size.y * 1.3, // Elevated more for top view
-        z: box.max.z + Math.max(size.x, size.z) * 1.5 
+        x: center.x + Math.max(size.x, size.z) * 0.7, 
+        y: box.max.y + Math.max(size.x, size.z) * 0.5, 
+        z: box.max.z + Math.max(size.x, size.z) * 0.7 
       },
       cameraTarget: { x: center.x, y: center.y, z: center.z },
       hideTop: false
@@ -927,8 +927,15 @@ function update3DScale() {
   if (!current3DObject) return;
 
   const baseScale = 0.01;
-  const yScale = state.height / 14;
-  const objectYScale = is3DModel() ? 1 : yScale;
+  const primitiveYScale = state.height / 14;
+  const objectYScale = is3DModel() ? 1 : primitiveYScale;
+
+  // Calcul du yScale pour les retombées du modèle 3D :
+  // Le modèle de base a une retombée de 90mm + un plateau de 10mm (total = 100mm = 10cm).
+  // state.height donne la hauteur totale en cm (donc * 10 pour l'avoir en mm).
+  // La retombée souhaitée = (hauteur totale) - 10mm (plateau).
+  const retombeeMm = (state.height * 10) - 10;
+  const yScale = Math.max(0.1, retombeeMm / 90);
 
   // Parent remains centered on origin (fixed XYZ frame)
   current3DObject.scale.set(baseScale, baseScale * objectYScale, baseScale);
@@ -1011,6 +1018,7 @@ function update3DScale() {
       });
 
       // Symmetric translation of left and right support sections
+      // Symmetric translation of left and right support sections
       const displacement = halfLength - baseHalfLength;
       
       // S'assurer que les matrices mondiales du support sont à jour
@@ -1055,92 +1063,182 @@ function update3DScale() {
       });
 
       // ---- Ajout des équerres supplémentaires ----
+      // On cherche UNE SEULE FOIS le mesh source de la console (gauche ou droite)
+      // dans tout le supportModel, peu importe où Three.js l'a placé.
       if (!window.extraBrackets) window.extraBrackets = [];
+      
+      const boneG = supportLeftBones.length > 0 ? supportLeftBones[0] : null;
+      const boneD = supportRightBones.length > 0 ? supportRightBones[0] : null;
 
-      if (state.nbCuves > 1) {
-        const boneG = supportLeftBones.length > 0 ? supportLeftBones[0] : null;
-        const boneD = supportRightBones.length > 0 ? supportRightBones[0] : null;
-
-        if (boneG && boneD) {
-          const cLengthMm = cuvesData[state.model]?.cuveLength || 390;
-          const gapMm = state.plageEntreCuves * 10;
-          const plageGaucheMm = state.position * 10;
-          const numNeeded = state.nbCuves - 1;
-
-          // Retirer les équerres en trop
-          while (window.extraBrackets.length > numNeeded) {
-            const b = window.extraBrackets.pop();
-            if (b.parent) b.parent.remove(b);
-            b.traverse(child => {
-              if (child.isMesh && child.userData.customMaterial) {
-                if (Array.isArray(child.userData.customMaterial)) {
-                  child.userData.customMaterial.forEach(m => m.dispose());
-                } else {
-                  child.userData.customMaterial.dispose();
-                }
-              }
-            });
+      // Trouver les meshes sources (ConsoleG et ConsoleD)
+      if (!window._srcConsoleG) {
+        window._srcConsoleG = null;
+        window._srcConsoleD = null;
+        supportModel.traverse(child => {
+          if (!child.isMesh && !child.isSkinnedMesh) return;
+          const n = child.name.toLowerCase();
+          if (n.includes('consoleg') || n.includes('console_g') || (n.includes('console') && n.includes('g') && !n.includes('d'))) {
+            window._srcConsoleG = child;
+          } else if (n.includes('consoled') || n.includes('console_d') || (n.includes('console') && n.includes('d') && !n.includes('g'))) {
+            window._srcConsoleD = child;
           }
-
-          for (let i = 0; i < numNeeded; i++) {
-            const cuve1X = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
-            const cuve2X = cuve1X + cLengthMm + gapMm;
-            const centerX = (cuve1X + cuve2X) / 2;
-
-            // Choose bracket based on center
-            const isLeft = centerX < 0;
-            const srcBone = isLeft ? boneG : boneD;
-            const boneType = isLeft ? 'G' : 'D';
-            
-            // Calculer le décalage relatif à l'os source
-            // L'os gauche est actuellement placé pour correspondre à -halfLength
-            // L'os droit est placé pour correspondre à +halfLength
-            const refX = isLeft ? -halfLength : halfLength;
-            const deltaX = centerX - refX;
-            const targetX = srcBone.position.x + deltaX;
-            
-            let clonedBone;
-            if (i < window.extraBrackets.length) {
-              clonedBone = window.extraBrackets[i];
-              if (clonedBone.userData.boneType !== boneType) {
-                 // Remplacer si le type de console (G/D) a changé
-                 if (clonedBone.parent) clonedBone.parent.remove(clonedBone);
-                 clonedBone.traverse(child => {
-                   if (child.isMesh && child.userData.customMaterial) {
-                     if (Array.isArray(child.userData.customMaterial)) child.userData.customMaterial.forEach(m => m.dispose());
-                     else child.userData.customMaterial.dispose();
-                   }
-                 });
-                 clonedBone = SkeletonUtils.clone(srcBone);
-                 clonedBone.userData.boneType = boneType;
-                 srcBone.parent.add(clonedBone);
-                 window.extraBrackets[i] = clonedBone;
-              }
-              clonedBone.position.x = targetX;
-            } else {
-              clonedBone = SkeletonUtils.clone(srcBone);
-              clonedBone.userData.boneType = boneType;
-              clonedBone.position.copy(srcBone.position);
-              clonedBone.position.x = targetX;
-              srcBone.parent.add(clonedBone);
-              window.extraBrackets.push(clonedBone);
+        });
+        // Fallback : si pas trouvé par nom "console", chercher "bone_long"
+        if (!window._srcConsoleG || !window._srcConsoleD) {
+          supportModel.traverse(child => {
+            if (!child.isMesh && !child.isSkinnedMesh) return;
+            const n = child.name.toLowerCase();
+            if (!window._srcConsoleG && (n.includes('bone_long_g') || (n.includes('long') && n.includes('g')))) {
+              window._srcConsoleG = child;
+            } else if (!window._srcConsoleD && (n.includes('bone_long_d') || (n.includes('long') && n.includes('d')))) {
+              window._srcConsoleD = child;
             }
-          }
+          });
         }
-      } else {
-         // 1 cuve -> nettoyer tout
-         if (window.extraBrackets) {
-           window.extraBrackets.forEach(b => {
-             if (b.parent) b.parent.remove(b);
-             b.traverse(child => {
-               if (child.isMesh && child.userData.customMaterial) {
-                 if (Array.isArray(child.userData.customMaterial)) child.userData.customMaterial.forEach(m => m.dispose());
-                 else child.userData.customMaterial.dispose();
-               }
-             });
-           });
-           window.extraBrackets = [];
-         }
+        // Fallback 2 : chercher spécifiquement 'bras' ou 'equerre' sous l'os
+        if (!window._srcConsoleG && boneG) {
+          boneG.traverse(c => {
+            if ((c.isMesh || c.isSkinnedMesh) && !window._srcConsoleG) {
+              const n = c.name.toLowerCase();
+              if (n.includes('bras') || n.includes('equerre')) window._srcConsoleG = c;
+            }
+          });
+        }
+        if (!window._srcConsoleD && boneD) {
+          boneD.traverse(c => {
+            if ((c.isMesh || c.isSkinnedMesh) && !window._srcConsoleD) {
+              const n = c.name.toLowerCase();
+              if (n.includes('bras') || n.includes('equerre')) window._srcConsoleD = c;
+            }
+          });
+        }
+
+        // Dernier recours : prendre le premier mesh de chaque os (en évitant les joues, pieds, plinthes)
+        if (!window._srcConsoleG && boneG) {
+          boneG.traverse(c => {
+            if ((c.isMesh || c.isSkinnedMesh) && !window._srcConsoleG) {
+              const n = c.name.toLowerCase();
+              if (!n.includes('joue') && !n.includes('3dsolid') && !n.includes('plinthe') && !n.includes('pied')) {
+                window._srcConsoleG = c;
+              }
+            }
+          });
+        }
+        if (!window._srcConsoleD && boneD) {
+          boneD.traverse(c => {
+            if ((c.isMesh || c.isSkinnedMesh) && !window._srcConsoleD) {
+              const n = c.name.toLowerCase();
+              if (!n.includes('joue') && !n.includes('3dsolid') && !n.includes('plinthe') && !n.includes('pied')) {
+                window._srcConsoleD = c;
+              }
+            }
+          });
+        }
+        console.log('[Brackets] Sources trouvées:', window._srcConsoleG?.name, window._srcConsoleD?.name);
+      }
+
+      // Gestion des consoles génériques inter-cuves
+      // Celles-ci ne sont nécessaires QUE pour le support TH (qui est ouvert).
+      // Pour les autres (comme THALLISOL), les séparations/bras sont gérés via les portes.
+      const isTH = (state.support === 'TH');
+      const numNeededGeneric = (state.nbCuves > 1 && isTH && boneG && boneD) ? state.nbCuves - 1 : 0;
+
+      if (window.extraBrackets) {
+        // Retirer les équerres en trop ou toutes les équerres si numNeededGeneric = 0
+        while (window.extraBrackets.length > numNeededGeneric) {
+          const b = window.extraBrackets.pop();
+          if (b.parent) b.parent.remove(b);
+          b.traverse(child => {
+            if (child.isMesh && child.userData.customMaterial) {
+              if (Array.isArray(child.userData.customMaterial)) {
+                child.userData.customMaterial.forEach(m => { if (m && typeof m.dispose === 'function') m.dispose(); });
+              } else {
+                if (typeof child.userData.customMaterial.dispose === 'function') child.userData.customMaterial.dispose();
+              }
+            }
+          });
+        }
+      }
+
+      if (numNeededGeneric > 0) {
+        const cLengthMm = cuvesData[state.model]?.cuveLength || 390;
+        const gapMm = state.plageEntreCuves * 10;
+        const plageGaucheMm = state.position * 10;
+
+        for (let i = 0; i < numNeededGeneric; i++) {
+          const cuve1X = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
+          const cuve2X = cuve1X + cLengthMm + gapMm;
+          const centerX = (cuve1X + cuve2X) / 2;
+
+          const isLeft = centerX < 0;
+
+          // Utiliser le mesh source détecté une seule fois
+          const srcMesh = isLeft ? window._srcConsoleG : window._srcConsoleD;
+          if (!srcMesh) continue;
+
+          // Supprimer l'ancien clone pour recréer proprement
+          if (i < window.extraBrackets.length && window.extraBrackets[i]) {
+            const oldObj = window.extraBrackets[i];
+            if (oldObj.parent) oldObj.parent.remove(oldObj);
+          }
+
+          // Cloner le mesh source
+          // On utilise THREE.Mesh.clone() - cela copie geometry et material mais PAS le skeleton actif
+          const clonedMesh = new THREE.Mesh(srcMesh.geometry, srcMesh.material);
+          clonedMesh.name = srcMesh.name + '_extra_' + i;
+          clonedMesh.frustumCulled = false;
+          clonedMesh.visible = true;
+          clonedMesh.castShadow = true;
+          clonedMesh.receiveShadow = true;
+          clonedMesh.userData = Object.assign({}, srcMesh.userData);
+          clonedMesh.userData.boneType = isLeft ? 'G' : 'D';
+          
+          // Copier rotation/scale depuis le mesh source (après mise à jour des matrices)
+          supportModel.updateMatrixWorld(true);
+          srcMesh.updateMatrixWorld(true);
+          
+          // Extraire la rotation et le scale du mesh source dans l'espace local du support
+          const srcWorldMatrix = srcMesh.matrixWorld.clone();
+          const invSupportMatrix = new THREE.Matrix4().copy(supportModel.matrixWorld).invert();
+          const srcLocalMatrix = invSupportMatrix.multiply(srcWorldMatrix);
+          
+          const srcLocalPos = new THREE.Vector3();
+          const srcLocalQuat = new THREE.Quaternion();
+          const srcLocalScale = new THREE.Vector3();
+          srcLocalMatrix.decompose(srcLocalPos, srcLocalQuat, srcLocalScale);
+          
+          // Appliquer rotation et scale
+          // On décale l'équerre gauche de +35mm (vers la droite) et l'équerre droite de -35mm (vers la gauche)
+          const decalage = isLeft ? 35 : -35;
+          
+          clonedMesh.position.set(centerX + decalage, srcLocalPos.y, srcLocalPos.z);
+          clonedMesh.quaternion.copy(srcLocalQuat);
+          clonedMesh.scale.copy(srcLocalScale);
+
+          supportModel.add(clonedMesh);
+          window.extraBrackets[i] = clonedMesh;
+        }
+        
+        // Debug overlay
+        try {
+          let dbgStr = "Brackets:\n";
+          dbgStr += `halfLength=${halfLength.toFixed(0)} nbCuves=${state.nbCuves}\n`;
+          dbgStr += `srcG=${window._srcConsoleG?.name || 'NONE'} srcD=${window._srcConsoleD?.name || 'NONE'}\n`;
+          window.extraBrackets.forEach((b, i) => {
+            if (!b) return;
+            const wPos = new THREE.Vector3();
+            b.getWorldPosition(wPos);
+            dbgStr += `[${i}] locX=${b.position.x.toFixed(0)} wX=${wPos.x.toFixed(0)} vis=${b.visible}\n`;
+          });
+          let overlay = document.getElementById('debug-overlay');
+          if (!overlay) {
+              overlay = document.createElement('div');
+              overlay.id = 'debug-overlay';
+              overlay.style.cssText = 'position:fixed;top:10px;right:10px;background:rgba(0,0,0,0.8);color:#0f0;padding:10px;z-index:99999;white-space:pre;font-family:monospace;font-size:13px;pointer-events:none;';
+              document.body.appendChild(overlay);
+          }
+          overlay.innerText = dbgStr;
+        } catch(e) { console.error(e); }
       }
       // --------------------------------------------
 
@@ -1153,11 +1251,11 @@ function update3DScale() {
 
       // 2. Instancier et centrer le groupe de portes si basePorteModel est chargé
       if (basePorteModel) {
-        // Déterminer le nombre de portes et leur largeur selon la formule utilisateur (porte max 600mm)
+        // Déterminer le nombre de portes et leur largeur selon la formule utilisateur (porte max 650mm)
         let minDoors = 1;
         while (true) {
           const w = (lengthMm - (69 + 3 * (minDoors - 1))) / minDoors;
-          if (w <= 600) {
+          if (w <= 650) {
             break;
           }
           minDoors++;
@@ -1316,6 +1414,9 @@ function update3DScale() {
           doorRotations: [...doorRotations]
         };
         
+        // Expose configuration globally for the blueprint generator
+        window.supportDoorsConfig = { numDoors, doorWidth, doorRotations };
+        
         // Largeur de base de la porte dans le FBX = 531 mm
         const doorScaleX = doorWidth / 531;
         
@@ -1365,6 +1466,7 @@ function update3DScale() {
         }
 
         // 3. Instancier et positionner les séparations s'il y a des charnières dans le vide (hors sous-cuves)
+        const actualSeparationsX = [];
         if (baseSepModel) {
           for (let g = 0; g < numDoors - 1; g++) {
             const leftRotated = doorRotations[g];
@@ -1380,6 +1482,7 @@ function update3DScale() {
                 const sepClone = baseSepModel.clone();
                 sepClone.position.set(xGap, 0, 0);
                 supportPortesGroup.add(sepClone);
+                actualSeparationsX.push(xGap);
                 console.log(`🔨 Ajout séparation au jeu ${g} (X = ${xGap.toFixed(1)}mm)`);
               } else {
                 console.log(`⚠️ Séparation au jeu ${g} (X = ${xGap.toFixed(1)}mm) ignorée car située sous une cuve`);
@@ -1388,6 +1491,10 @@ function update3DScale() {
           }
         }
         
+        if (window.supportDoorsConfig) {
+          window.supportDoorsConfig.actualSeparationsX = actualSeparationsX;
+        }
+
         // Centrer le groupe par rapport à supportModel (X=0)
         supportPortesGroup.position.set(0, 0, 0);
         supportModel.add(supportPortesGroup);
@@ -1450,10 +1557,14 @@ function collectSupportMorphTargets(object) {
       supportBaseLocalX.set(child.uuid, child.position.x);
       
       let retraitMm = null;
-      for (const key of Object.keys(RETRAITS)) {
-        if (name.includes(key)) {
-          retraitMm = RETRAITS[key];
-          break;
+      if (name === 'th') {
+        retraitMm = 40;
+      } else {
+        for (const key of Object.keys(RETRAITS)) {
+          if (name.includes(key)) {
+            retraitMm = RETRAITS[key];
+            break;
+          }
         }
       }
       
@@ -1507,6 +1618,7 @@ function loadCuveModel(callback) {
     object.scale.set(1, 1, 1);
     object._loadedPath = cuvePath; // mémorise le chemin chargé
     baseCuveModel = object;
+    window._baseCuveModel = object;
     if (callback) callback();
   }, undefined, err => {
     console.warn(`Cuve FBX introuvable: ${cuvePath}`, err);
@@ -1532,6 +1644,14 @@ function loadSupportModel(callback) {
     supportRightBones = [];
     supportLeftBonesBasePos.clear();
     supportRightBonesBasePos.clear();
+    
+    // Nettoyer les équerres supplémentaires
+    if (window.extraBrackets) {
+      window.extraBrackets.forEach(b => { if (b && b.parent) b.parent.remove(b); });
+      window.extraBrackets = [];
+    }
+    window._srcConsoleG = null;
+    window._srcConsoleD = null;
     
     // Nettoyer les portes du support
     supportPortesGroup = null;
@@ -1565,8 +1685,15 @@ function loadSupportModel(callback) {
     current3DObject.remove(supportModel);
   }
   supportModel = null;
+  window._srcConsoleG = null;
+  window._srcConsoleD = null;
+  if (window.extraBrackets) {
+    window.extraBrackets.forEach(b => { if (b && b.parent) b.parent.remove(b); });
+    window.extraBrackets = [];
+  }
 
   fbxLoader.load(encodeURI(supportPath), object => {
+    const skinnedMeshesToReparent = [];
     object.traverse(child => {
       applyStandardMeshSettings(child);
       if (child.isMesh && child.material) {
@@ -1576,6 +1703,13 @@ function loadSupportModel(callback) {
           child.userData.originalMaterial = (child.material && typeof child.material.clone === 'function') ? child.material.clone() : child.material;
         }
       }
+      if (child.isSkinnedMesh && child.parent && child.parent.type === 'Bone') {
+        skinnedMeshesToReparent.push(child);
+      }
+    });
+
+    skinnedMeshesToReparent.forEach(sm => {
+      object.attach(sm);
     });
     object.scale.set(1, 1, 1);
     object._loadedPath = supportPath; // mémorise le chemin chargé
@@ -1709,6 +1843,7 @@ async function fetchCatalogue() {
       const utilisateurs = row.c[2] ? row.c[2].v : '1';
       const longueurLimitsRaw = row.c[3] ? String(row.c[3].v) : '';
       const cuveLength = row.c[4] && row.c[4].v ? parseFloat(row.c[4].v) : 390;
+      const cuveDepth = row.c[5] && row.c[5].v ? parseFloat(row.c[5].v) : 270;
       let minLength = 40;
       let maxLength = 160;
 
@@ -1729,6 +1864,7 @@ async function fetchCatalogue() {
         img: imgUrl,
         cuves: utilisateurs,
         cuveLength: cuveLength,
+        cuveDepth: cuveDepth,
         lengthLimits: {
           min: minLength,
           max: maxLength

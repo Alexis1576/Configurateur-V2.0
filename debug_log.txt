@@ -1,0 +1,4805 @@
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-249.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(249.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-257.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(257.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-259.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(259.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-254.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(254.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-249.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(249.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-242.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(242.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-241.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(241.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-237.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(237.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-229.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(229.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 850
+boneG: pos=(-850.0, -0.0, -0.0) | vis=true
+boneD: pos=(850.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-221.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(221.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-219.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(219.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-157.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(157.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 695
+boneG: pos=(-695.0, -0.0, -0.0) | vis=true
+boneD: pos=(695.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-162.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(162.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-175.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(175.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 725
+boneG: pos=(-725.0, -0.0, -0.0) | vis=true
+boneD: pos=(725.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-177.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(177.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-182.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(182.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-187.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(187.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-194.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(194.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-196.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(196.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-199.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(199.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 795
+boneG: pos=(-795.0, -0.0, -0.0) | vis=true
+boneD: pos=(795.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-202.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(202.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-207.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(207.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-211.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(211.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-216.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(216.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-219.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(219.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-224.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(224.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-227.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(227.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-234.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(234.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-242.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(242.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-257.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(257.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-267.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(267.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-274.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(274.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-282.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(282.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-287.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(287.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-292.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(292.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-279.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(279.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-267.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(267.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-262.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(262.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-249.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(249.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-237.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(237.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-224.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(224.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-216.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(216.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-204.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(204.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-194.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(194.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 745
+boneG: pos=(-745.0, -0.0, -0.0) | vis=true
+boneD: pos=(745.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-186.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(186.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-182.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(182.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-165.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(165.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-157.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(157.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(-62.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-157.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(157.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-342.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(342.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-337.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(337.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1175
+boneG: pos=(-1175.0, -0.0, -0.0) | vis=true
+boneD: pos=(1175.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-329.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(329.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-317.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(317.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-307.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(307.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-301.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(301.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-304.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(304.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-307.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(307.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-309.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(309.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-312.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(312.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-324.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(324.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-326.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(326.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-334.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(334.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-279.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(279.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-276.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(276.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-279.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(279.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-299.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(299.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-301.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(301.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-304.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(304.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-307.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(307.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-312.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(312.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-317.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(317.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-324.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(324.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-326.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(326.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-332.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(332.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-334.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(334.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-342.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(342.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(346.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1235
+boneG: pos=(-1235.0, -0.0, -0.0) | vis=true
+boneD: pos=(1235.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-349.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(349.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1240
+boneG: pos=(-1240.0, -0.0, -0.0) | vis=true
+boneD: pos=(1240.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-351.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(351.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-354.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(354.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1260
+boneG: pos=(-1260.0, -0.0, -0.0) | vis=true
+boneD: pos=(1260.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-357.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(357.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1275
+boneG: pos=(-1275.0, -0.0, -0.0) | vis=true
+boneD: pos=(1275.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-362.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(362.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-367.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(367.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1305
+boneG: pos=(-1305.0, -0.0, -0.0) | vis=true
+boneD: pos=(1305.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-372.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(372.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1330
+boneG: pos=(-1330.0, -0.0, -0.0) | vis=true
+boneD: pos=(1330.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-381.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(381.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-384.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(384.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1350
+boneG: pos=(-1350.0, -0.0, -0.0) | vis=true
+boneD: pos=(1350.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-387.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(387.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-389.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(389.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-392.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(392.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1375
+boneG: pos=(-1375.0, -0.0, -0.0) | vis=true
+boneD: pos=(1375.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-389.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(389.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1350
+boneG: pos=(-1350.0, -0.0, -0.0) | vis=true
+boneD: pos=(1350.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-387.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(387.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-384.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(384.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1315
+boneG: pos=(-1315.0, -0.0, -0.0) | vis=true
+boneD: pos=(1315.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-376.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(376.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1300
+boneG: pos=(-1300.0, -0.0, -0.0) | vis=true
+boneD: pos=(1300.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(371.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1280
+boneG: pos=(-1280.0, -0.0, -0.0) | vis=true
+boneD: pos=(1280.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-364.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(364.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-354.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(354.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1240
+boneG: pos=(-1240.0, -0.0, -0.0) | vis=true
+boneD: pos=(1240.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-351.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(351.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(346.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-334.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(334.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-324.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(324.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-317.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(317.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-309.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(309.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-307.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(307.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-301.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(301.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-279.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(279.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-276.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(276.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-274.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(274.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-259.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(259.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-254.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(254.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-249.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(249.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-241.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(241.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-234.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(234.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-229.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(229.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-227.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(227.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-219.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(219.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-216.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(216.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 825
+boneG: pos=(-825.0, -0.0, -0.0) | vis=true
+boneD: pos=(825.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-212.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(212.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-204.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(204.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-194.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(194.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-187.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(187.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-182.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(182.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 725
+boneG: pos=(-725.0, -0.0, -0.0) | vis=true
+boneD: pos=(725.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-177.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(177.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-170.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(170.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-165.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(165.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-157.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(157.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 695
+boneG: pos=(-695.0, -0.0, -0.0) | vis=true
+boneD: pos=(695.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-162.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(162.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-165.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(165.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-170.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(170.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-175.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(175.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 725
+boneG: pos=(-725.0, -0.0, -0.0) | vis=true
+boneD: pos=(725.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-177.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(177.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 745
+boneG: pos=(-745.0, -0.0, -0.0) | vis=true
+boneD: pos=(745.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-186.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(186.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-187.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(187.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-194.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(194.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-196.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(196.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-199.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(199.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 795
+boneG: pos=(-795.0, -0.0, -0.0) | vis=true
+boneD: pos=(795.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-202.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(202.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-194.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(194.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-187.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(187.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-170.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(170.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-157.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(157.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 695
+boneG: pos=(-695.0, -0.0, -0.0) | vis=true
+boneD: pos=(695.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-162.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(162.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-165.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(165.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-170.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(170.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-175.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(175.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 725
+boneG: pos=(-725.0, -0.0, -0.0) | vis=true
+boneD: pos=(725.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-177.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(177.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-182.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(182.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-187.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(187.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-191.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(191.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-196.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(196.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-199.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(199.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-207.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(207.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 825
+boneG: pos=(-825.0, -0.0, -0.0) | vis=true
+boneD: pos=(825.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-212.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(212.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 850
+boneG: pos=(-850.0, -0.0, -0.0) | vis=true
+boneD: pos=(850.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-221.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(221.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-224.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(224.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-227.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(227.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-229.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(229.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-234.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(234.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-241.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(241.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-242.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(242.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-257.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(257.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-259.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(259.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-262.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(262.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-271.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(271.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-274.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(274.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-282.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(282.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 2405
+boneG: pos=(-2405.0, -0.0, -0.0) | vis=true
+boneD: pos=(2405.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-739.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(739.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-224.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(224.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-241.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(241.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-259.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(259.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-262.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(262.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-267.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(267.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-279.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(279.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-282.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(282.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-284.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(284.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-301.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(301.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-304.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(304.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-317.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(317.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-326.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(326.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-337.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(337.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-342.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(342.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1235
+boneG: pos=(-1235.0, -0.0, -0.0) | vis=true
+boneD: pos=(1235.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-349.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(349.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1260
+boneG: pos=(-1260.0, -0.0, -0.0) | vis=true
+boneD: pos=(1260.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-357.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(357.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1280
+boneG: pos=(-1280.0, -0.0, -0.0) | vis=true
+boneD: pos=(1280.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-364.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(364.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-324.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(324.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-304.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(304.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-287.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(287.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-282.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(282.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-262.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(262.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-246.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(246.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-254.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(254.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-262.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(262.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-271.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(271.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-276.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(276.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-287.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(287.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-292.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(292.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-249.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(249.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-251.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(251.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-257.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(257.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-267.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(267.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-276.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(276.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-282.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(282.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-408.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(408.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-416.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(416.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1260
+boneG: pos=(-1260.0, -0.0, -0.0) | vis=true
+boneD: pos=(1260.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-420.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(420.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-430.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(430.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1305
+boneG: pos=(-1305.0, -0.0, -0.0) | vis=true
+boneD: pos=(1305.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-435.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(435.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1325
+boneG: pos=(-1325.0, -0.0, -0.0) | vis=true
+boneD: pos=(1325.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-441.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(441.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-451.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(451.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-455.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(455.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1330
+boneG: pos=(-1330.0, -0.0, -0.0) | vis=true
+boneD: pos=(1330.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-443.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(443.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-430.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(430.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1265
+boneG: pos=(-1265.0, -0.0, -0.0) | vis=true
+boneD: pos=(1265.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-421.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(421.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-408.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(408.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-405.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(405.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(355.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(350.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-345.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(345.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(325.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(320.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-270.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(270.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-253.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(253.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 750
+boneG: pos=(-750.0, -0.0, -0.0) | vis=true
+boneD: pos=(750.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-250.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(250.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 725
+boneG: pos=(-725.0, -0.0, -0.0) | vis=true
+boneD: pos=(725.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-240.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(240.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-220.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(220.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-227.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(227.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-237.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(237.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-253.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(253.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-258.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(258.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-261.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(261.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-270.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(270.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(278.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-295.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(295.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-303.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(303.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-366.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(366.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-386.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(386.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-405.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(405.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-408.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(408.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-416.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(416.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-273.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(273.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 825
+boneG: pos=(-825.0, -0.0, -0.0) | vis=true
+boneD: pos=(825.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-275.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(275.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(278.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 850
+boneG: pos=(-850.0, -0.0, -0.0) | vis=true
+boneD: pos=(850.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-283.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(283.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-290.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(290.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-303.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(303.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-305.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(305.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-313.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(313.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(325.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(333.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-361.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(361.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-363.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(363.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-361.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(361.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(350.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-338.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(338.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-328.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(328.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(320.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-308.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(308.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 850
+boneG: pos=(-850.0, -0.0, -0.0) | vis=true
+boneD: pos=(850.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-283.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(283.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(278.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 825
+boneG: pos=(-825.0, -0.0, -0.0) | vis=true
+boneD: pos=(825.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-275.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(275.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-273.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(273.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-261.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(261.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-258.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(258.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-261.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(261.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-266.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(266.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(278.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-281.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(281.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 850
+boneG: pos=(-850.0, -0.0, -0.0) | vis=true
+boneD: pos=(850.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-283.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(283.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1625
+boneG: pos=(-1625.0, -0.0, -0.0) | vis=true
+boneD: pos=(1625.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-541.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(541.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1565
+boneG: pos=(-1565.0, -0.0, -0.0) | vis=true
+boneD: pos=(1565.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-521.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(521.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1550
+boneG: pos=(-1550.0, -0.0, -0.0) | vis=true
+boneD: pos=(1550.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-516.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(516.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-510.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(510.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1525
+boneG: pos=(-1525.0, -0.0, -0.0) | vis=true
+boneD: pos=(1525.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-508.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(508.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1515
+boneG: pos=(-1515.0, -0.0, -0.0) | vis=true
+boneD: pos=(1515.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-505.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(505.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1480
+boneG: pos=(-1480.0, -0.0, -0.0) | vis=true
+boneD: pos=(1480.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-493.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(493.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1465
+boneG: pos=(-1465.0, -0.0, -0.0) | vis=true
+boneD: pos=(1465.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-488.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(488.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1455
+boneG: pos=(-1455.0, -0.0, -0.0) | vis=true
+boneD: pos=(1455.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-485.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(485.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1450
+boneG: pos=(-1450.0, -0.0, -0.0) | vis=true
+boneD: pos=(1450.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-483.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(483.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1440
+boneG: pos=(-1440.0, -0.0, -0.0) | vis=true
+boneD: pos=(1440.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-480.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(480.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1425
+boneG: pos=(-1425.0, -0.0, -0.0) | vis=true
+boneD: pos=(1425.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-475.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(475.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1400
+boneG: pos=(-1400.0, -0.0, -0.0) | vis=true
+boneD: pos=(1400.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-466.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(466.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1390
+boneG: pos=(-1390.0, -0.0, -0.0) | vis=true
+boneD: pos=(1390.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-463.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(463.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-455.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(455.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-451.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(451.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-446.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(446.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1330
+boneG: pos=(-1330.0, -0.0, -0.0) | vis=true
+boneD: pos=(1330.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-443.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(443.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1305
+boneG: pos=(-1305.0, -0.0, -0.0) | vis=true
+boneD: pos=(1305.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-435.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(435.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1300
+boneG: pos=(-1300.0, -0.0, -0.0) | vis=true
+boneD: pos=(1300.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-433.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(433.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1280
+boneG: pos=(-1280.0, -0.0, -0.0) | vis=true
+boneD: pos=(1280.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-426.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(426.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1260
+boneG: pos=(-1260.0, -0.0, -0.0) | vis=true
+boneD: pos=(1260.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-420.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(420.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-408.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(408.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-405.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(405.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1240
+boneG: pos=(-1240.0, -0.0, -0.0) | vis=true
+boneD: pos=(1240.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-413.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(413.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1300
+boneG: pos=(-1300.0, -0.0, -0.0) | vis=true
+boneD: pos=(1300.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-433.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(433.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-446.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(446.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1380
+boneG: pos=(-1380.0, -0.0, -0.0) | vis=true
+boneD: pos=(1380.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-460.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(460.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1405
+boneG: pos=(-1405.0, -0.0, -0.0) | vis=true
+boneD: pos=(1405.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-468.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(468.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-476.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(476.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1440
+boneG: pos=(-1440.0, -0.0, -0.0) | vis=true
+boneD: pos=(1440.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-480.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(480.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1450
+boneG: pos=(-1450.0, -0.0, -0.0) | vis=true
+boneD: pos=(1450.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-483.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(483.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1500
+boneG: pos=(-1500.0, -0.0, -0.0) | vis=true
+boneD: pos=(1500.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-500.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(500.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1540
+boneG: pos=(-1540.0, -0.0, -0.0) | vis=true
+boneD: pos=(1540.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-513.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(513.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1555
+boneG: pos=(-1555.0, -0.0, -0.0) | vis=true
+boneD: pos=(1555.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-518.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(518.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1565
+boneG: pos=(-1565.0, -0.0, -0.0) | vis=true
+boneD: pos=(1565.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-521.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(521.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1580
+boneG: pos=(-1580.0, -0.0, -0.0) | vis=true
+boneD: pos=(1580.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-526.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(526.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1600
+boneG: pos=(-1600.0, -0.0, -0.0) | vis=true
+boneD: pos=(1600.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-533.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(533.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1615
+boneG: pos=(-1615.0, -0.0, -0.0) | vis=true
+boneD: pos=(1615.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-538.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(538.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1640
+boneG: pos=(-1640.0, -0.0, -0.0) | vis=true
+boneD: pos=(1640.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-546.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(546.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1605
+boneG: pos=(-1605.0, -0.0, -0.0) | vis=true
+boneD: pos=(1605.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-535.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(535.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1600
+boneG: pos=(-1600.0, -0.0, -0.0) | vis=true
+boneD: pos=(1600.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-533.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(533.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1565
+boneG: pos=(-1565.0, -0.0, -0.0) | vis=true
+boneD: pos=(1565.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-521.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(521.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-510.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(510.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1475
+boneG: pos=(-1475.0, -0.0, -0.0) | vis=true
+boneD: pos=(1475.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-491.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(491.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1455
+boneG: pos=(-1455.0, -0.0, -0.0) | vis=true
+boneD: pos=(1455.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-485.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(485.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-476.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(476.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1425
+boneG: pos=(-1425.0, -0.0, -0.0) | vis=true
+boneD: pos=(1425.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-475.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(475.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1400
+boneG: pos=(-1400.0, -0.0, -0.0) | vis=true
+boneD: pos=(1400.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-466.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(466.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1390
+boneG: pos=(-1390.0, -0.0, -0.0) | vis=true
+boneD: pos=(1390.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-463.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(463.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-455.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(455.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-451.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(451.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1350
+boneG: pos=(-1350.0, -0.0, -0.0) | vis=true
+boneD: pos=(1350.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-450.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(450.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1325
+boneG: pos=(-1325.0, -0.0, -0.0) | vis=true
+boneD: pos=(1325.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-441.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(441.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1330
+boneG: pos=(-1330.0, -0.0, -0.0) | vis=true
+boneD: pos=(1330.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-443.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(443.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-446.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(446.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1350
+boneG: pos=(-1350.0, -0.0, -0.0) | vis=true
+boneD: pos=(1350.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-450.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(450.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-455.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(455.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1375
+boneG: pos=(-1375.0, -0.0, -0.0) | vis=true
+boneD: pos=(1375.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-458.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(458.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1380
+boneG: pos=(-1380.0, -0.0, -0.0) | vis=true
+boneD: pos=(1380.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-460.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(460.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-330.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(330.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(350.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(353.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-361.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(361.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-370.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(370.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(371.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-380.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(380.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(371.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-405.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(405.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1235
+boneG: pos=(-1235.0, -0.0, -0.0) | vis=true
+boneD: pos=(1235.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-411.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(411.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1240
+boneG: pos=(-1240.0, -0.0, -0.0) | vis=true
+boneD: pos=(1240.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-413.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(413.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-416.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(416.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1260
+boneG: pos=(-1260.0, -0.0, -0.0) | vis=true
+boneD: pos=(1260.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-420.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(420.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-416.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(416.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1240
+boneG: pos=(-1240.0, -0.0, -0.0) | vis=true
+boneD: pos=(1240.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-413.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(413.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1225
+boneG: pos=(-1225.0, -0.0, -0.0) | vis=true
+boneD: pos=(1225.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-408.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(408.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-386.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(386.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-370.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(370.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-363.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(363.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-358.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(358.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(355.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(350.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(346.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-336.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(336.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(333.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-305.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(305.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-290.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(290.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(278.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-273.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(273.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-270.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(270.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-256.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(256.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-253.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(253.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 745
+boneG: pos=(-745.0, -0.0, -0.0) | vis=true
+boneD: pos=(745.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-248.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(248.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-237.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(237.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-220.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(220.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-245.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(245.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-258.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(258.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-270.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(270.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-308.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(308.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(325.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-338.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(338.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(353.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-363.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(363.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-386.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(386.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(353.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(320.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-281.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(281.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-253.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(253.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-232.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(232.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 700
+boneG: pos=(-700.0, -0.0, -0.0) | vis=true
+boneD: pos=(700.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-227.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(227.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-220.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(220.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 735
+boneG: pos=(-735.0, -0.0, -0.0) | vis=true
+boneD: pos=(735.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-245.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(245.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 795
+boneG: pos=(-795.0, -0.0, -0.0) | vis=true
+boneD: pos=(795.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-265.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(265.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-281.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(281.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-313.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(313.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-330.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(330.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1250
+boneG: pos=(-1250.0, -0.0, -0.0) | vis=true
+boneD: pos=(1250.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-416.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(416.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1280
+boneG: pos=(-1280.0, -0.0, -0.0) | vis=true
+boneD: pos=(1280.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-426.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(426.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1300
+boneG: pos=(-1300.0, -0.0, -0.0) | vis=true
+boneD: pos=(1300.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-433.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(433.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1325
+boneG: pos=(-1325.0, -0.0, -0.0) | vis=true
+boneD: pos=(1325.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-441.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(441.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1330
+boneG: pos=(-1330.0, -0.0, -0.0) | vis=true
+boneD: pos=(1330.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-443.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(443.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-446.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(446.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1350
+boneG: pos=(-1350.0, -0.0, -0.0) | vis=true
+boneD: pos=(1350.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-450.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(450.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-455.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(455.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1375
+boneG: pos=(-1375.0, -0.0, -0.0) | vis=true
+boneD: pos=(1375.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-458.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(458.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1390
+boneG: pos=(-1390.0, -0.0, -0.0) | vis=true
+boneD: pos=(1390.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-463.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(463.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1405
+boneG: pos=(-1405.0, -0.0, -0.0) | vis=true
+boneD: pos=(1405.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-468.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(468.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-476.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(476.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1450
+boneG: pos=(-1450.0, -0.0, -0.0) | vis=true
+boneD: pos=(1450.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-483.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(483.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1515
+boneG: pos=(-1515.0, -0.0, -0.0) | vis=true
+boneD: pos=(1515.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-505.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(505.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-510.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(510.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1575
+boneG: pos=(-1575.0, -0.0, -0.0) | vis=true
+boneD: pos=(1575.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-525.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(525.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1580
+boneG: pos=(-1580.0, -0.0, -0.0) | vis=true
+boneD: pos=(1580.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-526.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(526.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1615
+boneG: pos=(-1615.0, -0.0, -0.0) | vis=true
+boneD: pos=(1615.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-538.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(538.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1630
+boneG: pos=(-1630.0, -0.0, -0.0) | vis=true
+boneD: pos=(1630.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-543.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(543.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1640
+boneG: pos=(-1640.0, -0.0, -0.0) | vis=true
+boneD: pos=(1640.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-546.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(546.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1650
+boneG: pos=(-1650.0, -0.0, -0.0) | vis=true
+boneD: pos=(1650.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-550.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(550.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1720
+boneG: pos=(-1720.0, -0.0, -0.0) | vis=true
+boneD: pos=(1720.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-573.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(573.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1740
+boneG: pos=(-1740.0, -0.0, -0.0) | vis=true
+boneD: pos=(1740.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-580.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(580.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1820
+boneG: pos=(-1820.0, -0.0, -0.0) | vis=true
+boneD: pos=(1820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-606.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(606.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1830
+boneG: pos=(-1830.0, -0.0, -0.0) | vis=true
+boneD: pos=(1830.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-610.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(610.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1845
+boneG: pos=(-1845.0, -0.0, -0.0) | vis=true
+boneD: pos=(1845.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-615.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(615.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1830
+boneG: pos=(-1830.0, -0.0, -0.0) | vis=true
+boneD: pos=(1830.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-610.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(610.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1770
+boneG: pos=(-1770.0, -0.0, -0.0) | vis=true
+boneD: pos=(1770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-590.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(590.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1705
+boneG: pos=(-1705.0, -0.0, -0.0) | vis=true
+boneD: pos=(1705.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-568.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(568.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1640
+boneG: pos=(-1640.0, -0.0, -0.0) | vis=true
+boneD: pos=(1640.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-546.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(546.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1590
+boneG: pos=(-1590.0, -0.0, -0.0) | vis=true
+boneD: pos=(1590.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-530.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(530.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1550
+boneG: pos=(-1550.0, -0.0, -0.0) | vis=true
+boneD: pos=(1550.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-516.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(516.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-510.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(510.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1500
+boneG: pos=(-1500.0, -0.0, -0.0) | vis=true
+boneD: pos=(1500.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-500.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(500.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1490
+boneG: pos=(-1490.0, -0.0, -0.0) | vis=true
+boneD: pos=(1490.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-496.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(496.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-476.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(476.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1340
+boneG: pos=(-1340.0, -0.0, -0.0) | vis=true
+boneD: pos=(1340.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-446.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(446.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1315
+boneG: pos=(-1315.0, -0.0, -0.0) | vis=true
+boneD: pos=(1315.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-438.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(438.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1305
+boneG: pos=(-1305.0, -0.0, -0.0) | vis=true
+boneD: pos=(1305.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-435.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(435.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-430.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(430.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-386.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(386.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-361.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(361.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(355.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(350.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(346.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 915
+boneG: pos=(-915.0, -0.0, -0.0) | vis=true
+boneD: pos=(915.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-305.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(305.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(291.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-313.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(313.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(325.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-330.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(330.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(333.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-336.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(336.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-338.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(338.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-338.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(338.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(333.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-330.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(330.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-328.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(328.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(325.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(321.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(320.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(316.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-313.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(313.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-311.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(311.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-308.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(308.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-303.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(303.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(300.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(296.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-220.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(220.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(346.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(346.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(341.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-345.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(345.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(350.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(355.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-361.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(361.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-358.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(358.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(355.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(353.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(346.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(341.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(333.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-325.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(325.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(321.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(320.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 950
+boneG: pos=(-950.0, -0.0, -0.0) | vis=true
+boneD: pos=(950.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-316.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(316.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 940
+boneG: pos=(-940.0, -0.0, -0.0) | vis=true
+boneD: pos=(940.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-313.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(313.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 925
+boneG: pos=(-925.0, -0.0, -0.0) | vis=true
+boneD: pos=(925.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-308.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(308.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-300.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(300.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-295.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(295.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-291.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(291.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 870
+boneG: pos=(-870.0, -0.0, -0.0) | vis=true
+boneD: pos=(870.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-290.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(290.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-286.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(286.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 835
+boneG: pos=(-835.0, -0.0, -0.0) | vis=true
+boneD: pos=(835.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-278.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(278.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-273.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(273.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 795
+boneG: pos=(-795.0, -0.0, -0.0) | vis=true
+boneD: pos=(795.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-265.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(265.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-258.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(258.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-256.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(256.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 760
+boneG: pos=(-760.0, -0.0, -0.0) | vis=true
+boneD: pos=(760.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-253.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(253.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 770
+boneG: pos=(-770.0, -0.0, -0.0) | vis=true
+boneD: pos=(770.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-256.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(256.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-261.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(261.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 795
+boneG: pos=(-795.0, -0.0, -0.0) | vis=true
+boneD: pos=(795.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-265.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(265.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-273.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(273.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 860
+boneG: pos=(-860.0, -0.0, -0.0) | vis=true
+boneD: pos=(860.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-286.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(286.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-296.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(296.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-311.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(311.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 960
+boneG: pos=(-960.0, -0.0, -0.0) | vis=true
+boneD: pos=(960.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-320.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(320.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-321.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(321.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-328.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(328.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(333.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(341.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(346.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1050
+boneG: pos=(-1050.0, -0.0, -0.0) | vis=true
+boneD: pos=(1050.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-350.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(350.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(353.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-358.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(358.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-363.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(363.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-366.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(366.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-370.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(370.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.5, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(371.5, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -0.0, -0.0) | vis=true
+extra[1] (D): pos=(375.0, -0.0, 0.0) | vis=true
+Brackets Debug:
+halfLength: 1065
+boneG: pos=(-1065.0, -0.0, -0.0) | vis=true
+boneD: pos=(1065.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-355.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(355.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-366.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(366.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1110
+boneG: pos=(-1110.0, -0.0, -0.0) | vis=true
+boneD: pos=(1110.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-370.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(370.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(371.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1125
+boneG: pos=(-1125.0, -0.0, -0.0) | vis=true
+boneD: pos=(1125.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-375.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(375.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-380.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(380.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1160
+boneG: pos=(-1160.0, -0.0, -0.0) | vis=true
+boneD: pos=(1160.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-386.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(386.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1175
+boneG: pos=(-1175.0, -0.0, -0.0) | vis=true
+boneD: pos=(1175.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-391.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(391.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1215
+boneG: pos=(-1215.0, -0.0, -0.0) | vis=true
+boneD: pos=(1215.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-405.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(405.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-403.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(403.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1200
+boneG: pos=(-1200.0, -0.0, -0.0) | vis=true
+boneD: pos=(1200.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-400.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(400.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-396.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(396.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-395.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(395.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-388.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(388.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1150
+boneG: pos=(-1150.0, -0.0, -0.0) | vis=true
+boneD: pos=(1150.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-383.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(383.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1140
+boneG: pos=(-1140.0, -0.0, -0.0) | vis=true
+boneD: pos=(1140.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-380.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(380.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-378.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(378.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1115
+boneG: pos=(-1115.0, -0.0, -0.0) | vis=true
+boneD: pos=(1115.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-371.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(371.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-366.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(366.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-363.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(363.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1060
+boneG: pos=(-1060.0, -0.0, -0.0) | vis=true
+boneD: pos=(1060.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-353.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(353.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1040
+boneG: pos=(-1040.0, -0.0, -0.0) | vis=true
+boneD: pos=(1040.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-346.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(346.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-345.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(345.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1015
+boneG: pos=(-1015.0, -0.0, -0.0) | vis=true
+boneD: pos=(1015.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-338.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(338.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-336.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(336.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-330.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(330.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-328.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(328.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-333.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(333.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-341.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(341.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1025
+boneG: pos=(-1025.0, -0.0, -0.0) | vis=true
+boneD: pos=(1025.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1010
+boneG: pos=(-1010.0, -0.0, -0.0) | vis=true
+boneD: pos=(1010.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 975
+boneG: pos=(-975.0, -0.0, -0.0) | vis=true
+boneD: pos=(975.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 955
+boneG: pos=(-955.0, -0.0, -0.0) | vis=true
+boneD: pos=(955.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 945
+boneG: pos=(-945.0, -0.0, -0.0) | vis=true
+boneD: pos=(945.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 930
+boneG: pos=(-930.0, -0.0, -0.0) | vis=true
+boneD: pos=(930.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 920
+boneG: pos=(-920.0, -0.0, -0.0) | vis=true
+boneD: pos=(920.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 890
+boneG: pos=(-890.0, -0.0, -0.0) | vis=true
+boneD: pos=(890.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 865
+boneG: pos=(-865.0, -0.0, -0.0) | vis=true
+boneD: pos=(865.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 830
+boneG: pos=(-830.0, -0.0, -0.0) | vis=true
+boneD: pos=(830.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 790
+boneG: pos=(-790.0, -0.0, -0.0) | vis=true
+boneD: pos=(790.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 765
+boneG: pos=(-765.0, -0.0, -0.0) | vis=true
+boneD: pos=(765.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 790
+boneG: pos=(-790.0, -0.0, -0.0) | vis=true
+boneD: pos=(790.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 820
+boneG: pos=(-820.0, -0.0, -0.0) | vis=true
+boneD: pos=(820.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 840
+boneG: pos=(-840.0, -0.0, -0.0) | vis=true
+boneD: pos=(840.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 855
+boneG: pos=(-855.0, -0.0, -0.0) | vis=true
+boneD: pos=(855.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 865
+boneG: pos=(-865.0, -0.0, -0.0) | vis=true
+boneD: pos=(865.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 900
+boneG: pos=(-900.0, -0.0, -0.0) | vis=true
+boneD: pos=(900.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 930
+boneG: pos=(-930.0, -0.0, -0.0) | vis=true
+boneD: pos=(930.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 945
+boneG: pos=(-945.0, -0.0, -0.0) | vis=true
+boneD: pos=(945.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 955
+boneG: pos=(-955.0, -0.0, -0.0) | vis=true
+boneD: pos=(955.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 990
+boneG: pos=(-990.0, -0.0, -0.0) | vis=true
+boneD: pos=(990.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1020
+boneG: pos=(-1020.0, -0.0, -0.0) | vis=true
+boneD: pos=(1020.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1030
+boneG: pos=(-1030.0, -0.0, -0.0) | vis=true
+boneD: pos=(1030.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1045
+boneG: pos=(-1045.0, -0.0, -0.0) | vis=true
+boneD: pos=(1045.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1055
+boneG: pos=(-1055.0, -0.0, -0.0) | vis=true
+boneD: pos=(1055.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1075
+boneG: pos=(-1075.0, -0.0, -0.0) | vis=true
+boneD: pos=(1075.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1090
+boneG: pos=(-1090.0, -0.0, -0.0) | vis=true
+boneD: pos=(1090.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1100
+boneG: pos=(-1100.0, -0.0, -0.0) | vis=true
+boneD: pos=(1100.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1130
+boneG: pos=(-1130.0, -0.0, -0.0) | vis=true
+boneD: pos=(1130.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1135
+boneG: pos=(-1135.0, -0.0, -0.0) | vis=true
+boneD: pos=(1135.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1145
+boneG: pos=(-1145.0, -0.0, -0.0) | vis=true
+boneD: pos=(1145.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1185
+boneG: pos=(-1185.0, -0.0, -0.0) | vis=true
+boneD: pos=(1185.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1210
+boneG: pos=(-1210.0, -0.0, -0.0) | vis=true
+boneD: pos=(1210.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1235
+boneG: pos=(-1235.0, -0.0, -0.0) | vis=true
+boneD: pos=(1235.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1245
+boneG: pos=(-1245.0, -0.0, -0.0) | vis=true
+boneD: pos=(1245.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1265
+boneG: pos=(-1265.0, -0.0, -0.0) | vis=true
+boneD: pos=(1265.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1275
+boneG: pos=(-1275.0, -0.0, -0.0) | vis=true
+boneD: pos=(1275.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1310
+boneG: pos=(-1310.0, -0.0, -0.0) | vis=true
+boneD: pos=(1310.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1335
+boneG: pos=(-1335.0, -0.0, -0.0) | vis=true
+boneD: pos=(1335.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1375
+boneG: pos=(-1375.0, -0.0, -0.0) | vis=true
+boneD: pos=(1375.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1390
+boneG: pos=(-1390.0, -0.0, -0.0) | vis=true
+boneD: pos=(1390.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1400
+boneG: pos=(-1400.0, -0.0, -0.0) | vis=true
+boneD: pos=(1400.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1410
+boneG: pos=(-1410.0, -0.0, -0.0) | vis=true
+boneD: pos=(1410.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1420
+boneG: pos=(-1420.0, -0.0, -0.0) | vis=true
+boneD: pos=(1420.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1435
+boneG: pos=(-1435.0, -0.0, -0.0) | vis=true
+boneD: pos=(1435.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1445
+boneG: pos=(-1445.0, -0.0, -0.0) | vis=true
+boneD: pos=(1445.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1455
+boneG: pos=(-1455.0, -0.0, -0.0) | vis=true
+boneD: pos=(1455.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1465
+boneG: pos=(-1465.0, -0.0, -0.0) | vis=true
+boneD: pos=(1465.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1475
+boneG: pos=(-1475.0, -0.0, -0.0) | vis=true
+boneD: pos=(1475.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1490
+boneG: pos=(-1490.0, -0.0, -0.0) | vis=true
+boneD: pos=(1490.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1500
+boneG: pos=(-1500.0, -0.0, -0.0) | vis=true
+boneD: pos=(1500.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1510
+boneG: pos=(-1510.0, -0.0, -0.0) | vis=true
+boneD: pos=(1510.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1500
+boneG: pos=(-1500.0, -0.0, -0.0) | vis=true
+boneD: pos=(1500.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1445
+boneG: pos=(-1445.0, -0.0, -0.0) | vis=true
+boneD: pos=(1445.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1410
+boneG: pos=(-1410.0, -0.0, -0.0) | vis=true
+boneD: pos=(1410.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1400
+boneG: pos=(-1400.0, -0.0, -0.0) | vis=true
+boneD: pos=(1400.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1385
+boneG: pos=(-1385.0, -0.0, -0.0) | vis=true
+boneD: pos=(1385.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1365
+boneG: pos=(-1365.0, -0.0, -0.0) | vis=true
+boneD: pos=(1365.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1355
+boneG: pos=(-1355.0, -0.0, -0.0) | vis=true
+boneD: pos=(1355.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1335
+boneG: pos=(-1335.0, -0.0, -0.0) | vis=true
+boneD: pos=(1335.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1320
+boneG: pos=(-1320.0, -0.0, -0.0) | vis=true
+boneD: pos=(1320.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1290
+boneG: pos=(-1290.0, -0.0, -0.0) | vis=true
+boneD: pos=(1290.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1275
+boneG: pos=(-1275.0, -0.0, -0.0) | vis=true
+boneD: pos=(1275.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1235
+boneG: pos=(-1235.0, -0.0, -0.0) | vis=true
+boneD: pos=(1235.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1220
+boneG: pos=(-1220.0, -0.0, -0.0) | vis=true
+boneD: pos=(1220.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1190
+boneG: pos=(-1190.0, -0.0, -0.0) | vis=true
+boneD: pos=(1190.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1175
+boneG: pos=(-1175.0, -0.0, -0.0) | vis=true
+boneD: pos=(1175.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1165
+boneG: pos=(-1165.0, -0.0, -0.0) | vis=true
+boneD: pos=(1165.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1145
+boneG: pos=(-1145.0, -0.0, -0.0) | vis=true
+boneD: pos=(1145.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1120
+boneG: pos=(-1120.0, -0.0, -0.0) | vis=true
+boneD: pos=(1120.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1085
+boneG: pos=(-1085.0, -0.0, -0.0) | vis=true
+boneD: pos=(1085.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1045
+boneG: pos=(-1045.0, -0.0, -0.0) | vis=true
+boneD: pos=(1045.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1035
+boneG: pos=(-1035.0, -0.0, -0.0) | vis=true
+boneD: pos=(1035.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1030
+boneG: pos=(-1030.0, -0.0, -0.0) | vis=true
+boneD: pos=(1030.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1000
+boneG: pos=(-1000.0, -0.0, -0.0) | vis=true
+boneD: pos=(1000.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 985
+boneG: pos=(-985.0, -0.0, -0.0) | vis=true
+boneD: pos=(985.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 965
+boneG: pos=(-965.0, -0.0, -0.0) | vis=true
+boneD: pos=(965.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 955
+boneG: pos=(-955.0, -0.0, -0.0) | vis=true
+boneD: pos=(955.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 935
+boneG: pos=(-935.0, -0.0, -0.0) | vis=true
+boneD: pos=(935.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 930
+boneG: pos=(-930.0, -0.0, -0.0) | vis=true
+boneD: pos=(930.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 910
+boneG: pos=(-910.0, -0.0, -0.0) | vis=true
+boneD: pos=(910.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 885
+boneG: pos=(-885.0, -0.0, -0.0) | vis=true
+boneD: pos=(885.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 875
+boneG: pos=(-875.0, -0.0, -0.0) | vis=true
+boneD: pos=(875.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 865
+boneG: pos=(-865.0, -0.0, -0.0) | vis=true
+boneD: pos=(865.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 845
+boneG: pos=(-845.0, -0.0, -0.0) | vis=true
+boneD: pos=(845.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 840
+boneG: pos=(-840.0, -0.0, -0.0) | vis=true
+boneD: pos=(840.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 810
+boneG: pos=(-810.0, -0.0, -0.0) | vis=true
+boneD: pos=(810.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 790
+boneG: pos=(-790.0, -0.0, -0.0) | vis=true
+boneD: pos=(790.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 755
+boneG: pos=(-755.0, -0.0, -0.0) | vis=true
+boneD: pos=(755.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 745
+boneG: pos=(-745.0, -0.0, -0.0) | vis=true
+boneD: pos=(745.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 720
+boneG: pos=(-720.0, -0.0, -0.0) | vis=true
+boneD: pos=(720.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 710
+boneG: pos=(-710.0, -0.0, -0.0) | vis=true
+boneD: pos=(710.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 690
+boneG: pos=(-690.0, -0.0, -0.0) | vis=true
+boneD: pos=(690.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 655
+boneG: pos=(-655.0, -0.0, -0.0) | vis=true
+boneD: pos=(655.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 645
+boneG: pos=(-645.0, -0.0, -0.0) | vis=true
+boneD: pos=(645.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 640
+boneG: pos=(-640.0, -0.0, -0.0) | vis=true
+boneD: pos=(640.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 630
+boneG: pos=(-630.0, -0.0, -0.0) | vis=true
+boneD: pos=(630.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 620
+boneG: pos=(-620.0, -0.0, -0.0) | vis=true
+boneD: pos=(620.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 610
+boneG: pos=(-610.0, -0.0, -0.0) | vis=true
+boneD: pos=(610.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 620
+boneG: pos=(-620.0, -0.0, -0.0) | vis=true
+boneD: pos=(620.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 630
+boneG: pos=(-630.0, -0.0, -0.0) | vis=true
+boneD: pos=(630.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 685
+boneG: pos=(-685.0, -0.0, -0.0) | vis=true
+boneD: pos=(685.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 730
+boneG: pos=(-730.0, -0.0, -0.0) | vis=true
+boneD: pos=(730.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 765
+boneG: pos=(-765.0, -0.0, -0.0) | vis=true
+boneD: pos=(765.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 775
+boneG: pos=(-775.0, -0.0, -0.0) | vis=true
+boneD: pos=(775.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 785
+boneG: pos=(-785.0, -0.0, -0.0) | vis=true
+boneD: pos=(785.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 800
+boneG: pos=(-800.0, -0.0, -0.0) | vis=true
+boneD: pos=(800.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 830
+boneG: pos=(-830.0, -0.0, -0.0) | vis=true
+boneD: pos=(830.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 855
+boneG: pos=(-855.0, -0.0, -0.0) | vis=true
+boneD: pos=(855.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 865
+boneG: pos=(-865.0, -0.0, -0.0) | vis=true
+boneD: pos=(865.0, -0.0, 0.0) | vis=true
+extra[0] (D): pos=(0.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1345
+boneG: pos=(-1345.0, -0.0, -0.0) | vis=true
+boneD: pos=(1345.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-672.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(673.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1345
+boneG: pos=(-1345.0, -0.0, -0.0) | vis=true
+boneD: pos=(1345.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-672.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(673.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1415
+boneG: pos=(-1415.0, -0.0, -0.0) | vis=true
+boneD: pos=(1415.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-707.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(709.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1430
+boneG: pos=(-1430.0, -0.0, -0.0) | vis=true
+boneD: pos=(1430.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-714.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(715.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1440
+boneG: pos=(-1440.0, -0.0, -0.0) | vis=true
+boneD: pos=(1440.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-720.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(720.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1455
+boneG: pos=(-1455.0, -0.0, -0.0) | vis=true
+boneD: pos=(1455.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-727.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(729.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1475
+boneG: pos=(-1475.0, -0.0, -0.0) | vis=true
+boneD: pos=(1475.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-737.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(739.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1485
+boneG: pos=(-1485.0, -0.0, -0.0) | vis=true
+boneD: pos=(1485.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-742.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(743.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1500
+boneG: pos=(-1500.0, -0.0, -0.0) | vis=true
+boneD: pos=(1500.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-750.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(750.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1515
+boneG: pos=(-1515.0, -0.0, -0.0) | vis=true
+boneD: pos=(1515.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-757.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(759.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-760.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(760.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-760.0, -49.0, 43.0) | vis=true
+extra[1] (D): pos=(0.0, -37.0, 43.0) | vis=true
+extra[2] (D): pos=(760.0, -37.0, 43.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-760.0, -420.0, 125.0) | vis=true
+extra[1] (D): pos=(0.0, -420.0, 125.0) | vis=true
+extra[2] (D): pos=(760.0, -420.0, 125.0) | vis=true
+Brackets Debug:
+halfLength: 1520
+boneG: pos=(-1520.0, -0.0, -0.0) | vis=true
+boneD: pos=(1520.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-760.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(760.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1565
+boneG: pos=(-1565.0, -0.0, -0.0) | vis=true
+boneD: pos=(1565.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-782.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(783.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1575
+boneG: pos=(-1575.0, -0.0, -0.0) | vis=true
+boneD: pos=(1575.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-787.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(789.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1580
+boneG: pos=(-1580.0, -0.0, -0.0) | vis=true
+boneD: pos=(1580.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-790.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(790.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1610
+boneG: pos=(-1610.0, -0.0, -0.0) | vis=true
+boneD: pos=(1610.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-804.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(805.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1625
+boneG: pos=(-1625.0, -0.0, -0.0) | vis=true
+boneD: pos=(1625.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-812.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(813.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1650
+boneG: pos=(-1650.0, -0.0, -0.0) | vis=true
+boneD: pos=(1650.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-824.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(825.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1655
+boneG: pos=(-1655.0, -0.0, -0.0) | vis=true
+boneD: pos=(1655.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-827.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(829.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1665
+boneG: pos=(-1665.0, -0.0, -0.0) | vis=true
+boneD: pos=(1665.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-832.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(833.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1655
+boneG: pos=(-1655.0, -0.0, -0.0) | vis=true
+boneD: pos=(1655.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-827.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(829.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1650
+boneG: pos=(-1650.0, -0.0, -0.0) | vis=true
+boneD: pos=(1650.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-824.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(825.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1625
+boneG: pos=(-1625.0, -0.0, -0.0) | vis=true
+boneD: pos=(1625.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-812.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(813.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1620
+boneG: pos=(-1620.0, -0.0, -0.0) | vis=true
+boneD: pos=(1620.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-810.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(810.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1610
+boneG: pos=(-1610.0, -0.0, -0.0) | vis=true
+boneD: pos=(1610.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-804.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(805.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1605
+boneG: pos=(-1605.0, -0.0, -0.0) | vis=true
+boneD: pos=(1605.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-802.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(803.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1595
+boneG: pos=(-1595.0, -0.0, -0.0) | vis=true
+boneD: pos=(1595.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-797.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(1.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(799.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1565
+boneG: pos=(-1565.0, -0.0, -0.0) | vis=true
+boneD: pos=(1565.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-782.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(783.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1560
+boneG: pos=(-1560.0, -0.0, -0.0) | vis=true
+boneD: pos=(1560.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-780.0, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.0, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(780.0, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1550
+boneG: pos=(-1550.0, -0.0, -0.0) | vis=true
+boneD: pos=(1550.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-774.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(775.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1545
+boneG: pos=(-1545.0, -0.0, -0.0) | vis=true
+boneD: pos=(1545.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-772.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(773.5, -12.0, 18.0) | vis=true
+Brackets Debug:
+halfLength: 1530
+boneG: pos=(-1530.0, -0.0, -0.0) | vis=true
+boneD: pos=(1530.0, -0.0, 0.0) | vis=true
+extra[0] (G): pos=(-764.5, -12.0, 18.0) | vis=true
+extra[1] (D): pos=(0.5, -12.0, 18.0) | vis=true
+extra[2] (D): pos=(765.5, -12.0, 18.0) | vis=true

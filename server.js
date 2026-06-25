@@ -35,6 +35,17 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === 'POST' && requestUrl === '/debug') {
+    let body = '';
+    req.on('data', chunk => { body += chunk.toString(); });
+    req.on('end', () => {
+      require('fs').writeFileSync('debug_log.txt', body, { flag: 'a' });
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end('OK');
+    });
+    return;
+  }
+
   if (requestUrl === '/') {
     requestUrl = '/index.html';
   }

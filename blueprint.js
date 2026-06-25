@@ -9,6 +9,9 @@ const Blueprint = {
   isOpen: false,
   scale: 25, // Default scale 1:25
   capturedImages: null, // Cache for 3D captures
+  manualDims: [], // Cotes manuelles persistantes
+  _annotMode: false, // Mode annotation actif
+  _annotPoint1: null, // Premier point cliqué (coords SVG)
   cartouche: {
     project: 'PlanVasques4300',
     client: '134173 - Eurexpo Hall 4.3 - Lyon (69)',
@@ -54,6 +57,8 @@ const Blueprint = {
     document.getElementById('btn-blueprint')?.addEventListener('click', () => this.open());
     document.getElementById('btn-bp-close')?.addEventListener('click', () => this.close());
     document.getElementById('btn-bp-print')?.addEventListener('click', () => this.print());
+    document.getElementById('btn-bp-add-dim')?.addEventListener('click', () => this.toggleAnnotMode());
+    document.getElementById('btn-bp-clear-dims')?.addEventListener('click', () => this.clearManualDims());
   },
 
   bindInput(id, key) {
@@ -116,6 +121,259 @@ const Blueprint = {
 
   print() {
     window.print();
+  },
+
+  // ────────────────────────────────────────
+  // SYSTÈME DE COTES MANUELLES
+  // ────────────────────────────────────────
+
+  toggleAnnotMode() {
+    this._annotMode = !this._annotMode;
+    this._annotPoint1 = null;
+    const btn = document.getElementById('btn-bp-add-dim');
+    const svg = document.querySelector('#blueprint-sheet svg');
+    if (this._annotMode) {
+      if (btn) { btn.textContent = '❌ Annuler la cote'; btn.style.background = '#ef4444'; }
+      if (svg) svg.style.cursor = 'crosshair';
+    } else {
+      if (btn) { btn.textContent = '📐 Ajouter une cote'; btn.style.background = ''; }
+      if (svg) svg.style.cursor = '';
+    }
+  },
+
+  // Convertit un événement clic en coordonnées SVG (en mm)
+  getSVGCoords(evt) {
+    const svg = document.querySelector('#blueprint-sheet svg');
+    if (!svg) return null;
+    const pt = svg.createSVGPoint();
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+    const svgP = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return { x: svgP.x, y: svgP.y };
+  },
+
+  handleSVGClick(evt) {
+    if (!this._annotMode) return;
+    const coords = this.getSVGCoords(evt);
+    if (!coords) return;
+
+    if (!this._annotPoint1) {
+      // Premier clic — mémoriser le point
+      this._annotPoint1 = coords;
+      // Feedback visuel : petit cercle temporaire
+      const svg = document.querySelector('#blueprint-sheet svg');
+      if (svg) {
+        const existing = svg.querySelector('#annot-temp-dot');
+        if (existing) existing.remove();
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('id', 'annot-temp-dot');
+        dot.setAttribute('cx', coords.x);
+        dot.setAttribute('cy', coords.y);
+        dot.setAttribute('r', '1.5');
+        dot.setAttribute('fill', '#ef4444');
+        dot.setAttribute('opacity', '0.8');
+        dot.setAttribute('pointer-events', 'none');
+        svg.appendChild(dot);
+      }
+    } else {
+      // Deuxième clic — créer la cote
+      const p1 = this._annotPoint1;
+      const p2 = coords;
+      this._annotPoint1 = null;
+
+      // Supprimer le cercle temporaire
+      const svg = document.querySelector('#blueprint-sheet svg');
+      const dot = svg?.querySelector('#annot-temp-dot');
+      if (dot) dot.remove();
+
+      // Déterminer l'axe dominant (H ou V)
+      const dx = Math.abs(p2.x - p1.x);
+      const dy = Math.abs(p2.y - p1.y);
+      const axis = dx >= dy ? 'H' : 'V';
+
+      // Calculer la valeur en mm selon l'axe et l'échelle courante
+      const scale = this.scale;
+      const autoValMm = axis === 'H'
+        ? Math.round(dx * scale)
+        : Math.round(dy * scale);
+
+      // Afficher le popup de saisie
+      this.showDimPopup(p1, p2, axis, autoValMm);
+    }
+  },
+
+  showDimPopup(p1, p2, axis, autoValMm) {
+    // Supprimer un ancien popup
+    const oldPopup = document.getElementById('dim-input-popup');
+    if (oldPopup) oldPopup.remove();
+
+    const popup = document.createElement('div');
+    popup.id = 'dim-input-popup';
+    popup.style.cssText = `
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e2232;
+      border: 1px solid #4f46e5;
+      border-radius: 12px;
+      padding: 24px;
+      z-index: 100000;
+      min-width: 320px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      font-family: 'Inter', sans-serif;
+      color: #e2e8f0;
+    `;
+
+    popup.innerHTML = `
+      <h4 style="margin:0 0 16px; font-size:15px; font-weight:600;">📐 Nouvelle cote manuelle</h4>
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; color:#94a3b8; display:block; margin-bottom:4px;">Valeur (mm)</label>
+        <input id="dim-val-input" type="number" value="${autoValMm}" min="0"
+          style="width:100%; background:#0f1117; border:1px solid #374151; color:#e2e8f0;
+                 padding:8px 12px; border-radius:8px; font-size:16px; font-weight:600; outline:none;"
+        />
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; color:#94a3b8; display:block; margin-bottom:6px;">Couleur</label>
+        <div style="display:flex; gap:8px;">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="dim-color" value="#ef4444" checked /> <span style="color:#ef4444;font-weight:600;">● Rouge (Pose)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="dim-color" value="#10b981" /> <span style="color:#10b981;font-weight:600;">● Vert</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="dim-color" value="#f59e0b" /> <span style="color:#f59e0b;font-weight:600;">● Orange</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="radio" name="dim-color" value="#0000ff" /> <span style="color:#60a5fa;font-weight:600;">● Bleu</span>
+          </label>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:16px;">
+        <button id="dim-confirm-btn" style="flex:1; background:#4f46e5; border:none; color:#fff; padding:10px;
+          border-radius:8px; cursor:pointer; font-weight:600; font-size:14px;">✓ Confirmer</button>
+        <button id="dim-cancel-btn" style="flex:0 0 auto; background:#374151; border:none; color:#fff; padding:10px 16px;
+          border-radius:8px; cursor:pointer;">✕</button>
+      </div>
+    `;
+
+    document.body.appendChild(popup);
+    document.getElementById('dim-val-input').select();
+
+    document.getElementById('dim-cancel-btn').addEventListener('click', () => popup.remove());
+    document.getElementById('dim-confirm-btn').addEventListener('click', () => {
+      const val = parseFloat(document.getElementById('dim-val-input').value);
+      const color = document.querySelector('input[name="dim-color"]:checked')?.value || '#ef4444';
+      if (!isNaN(val) && val > 0) {
+        this.manualDims.push({ p1, p2, axis, valMm: val, color });
+        this.draw();
+      }
+      popup.remove();
+      // Quitter le mode annotation après chaque cote
+      this._annotMode = false;
+      this._annotPoint1 = null;
+      const btn = document.getElementById('btn-bp-add-dim');
+      const svgEl = document.querySelector('#blueprint-sheet svg');
+      if (btn) { btn.textContent = '📐 Ajouter une cote'; btn.style.background = ''; }
+      if (svgEl) svgEl.style.cursor = '';
+    });
+
+    // Valider avec Entrée
+    document.getElementById('dim-val-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('dim-confirm-btn').click();
+      if (e.key === 'Escape') popup.remove();
+    });
+  },
+
+  clearManualDims() {
+    if (this.manualDims.length === 0) return;
+    if (confirm(`Supprimer les ${this.manualDims.length} cote(s) manuelle(s) ?`)) {
+      this.manualDims = [];
+      this.draw();
+    }
+  },
+
+  // Redessine toutes les cotes manuelles persistées
+  drawManualDims(svg) {
+    this.manualDims.forEach((dim, idx) => {
+      const { p1, p2, axis, valMm, color } = dim;
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'cote-dim cote-manuelle');
+      g.setAttribute('stroke', color);
+      g.setAttribute('stroke-width', '0.3');
+      g.setAttribute('fill', 'none');
+      g.style.cursor = 'pointer';
+
+      // Calcul des coords de la ligne de cote
+      let x1, x2, y1, y2, lx, ly;
+      const tickLen = 4;
+      if (axis === 'H') {
+        // Ligne horizontale — Y = moyenne des deux clics
+        const lineY = (p1.y + p2.y) / 2;
+        x1 = Math.min(p1.x, p2.x);
+        x2 = Math.max(p1.x, p2.x);
+        lx = (x1 + x2) / 2;
+        ly = lineY - 2;
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', x1); line.setAttribute('y1', lineY);
+        line.setAttribute('x2', x2); line.setAttribute('y2', lineY);
+        g.appendChild(line);
+
+        // Ticks
+        [[x1, lineY], [x2, lineY]].forEach(([tx, ty]) => {
+          const t = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          t.setAttribute('x1', tx - tickLen/2); t.setAttribute('y1', ty + tickLen/2);
+          t.setAttribute('x2', tx + tickLen/2); t.setAttribute('y2', ty - tickLen/2);
+          g.appendChild(t);
+        });
+      } else {
+        // Ligne verticale — X = moyenne des deux clics
+        const lineX = (p1.x + p2.x) / 2;
+        y1 = Math.min(p1.y, p2.y);
+        y2 = Math.max(p1.y, p2.y);
+        lx = lineX + 2;
+        ly = (y1 + y2) / 2 + 1.5;
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', lineX); line.setAttribute('y1', y1);
+        line.setAttribute('x2', lineX); line.setAttribute('y2', y2);
+        g.appendChild(line);
+
+        // Ticks
+        [[lineX, y1], [lineX, y2]].forEach(([tx, ty]) => {
+          const t = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          t.setAttribute('x1', tx - tickLen/2); t.setAttribute('y1', ty + tickLen/2);
+          t.setAttribute('x2', tx + tickLen/2); t.setAttribute('y2', ty - tickLen/2);
+          g.appendChild(t);
+        });
+      }
+
+      // Label valeur
+      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      txt.setAttribute('x', lx);
+      txt.setAttribute('y', ly);
+      txt.setAttribute('fill', color);
+      txt.setAttribute('stroke', 'none');
+      txt.setAttribute('font-size', '4.5');
+      txt.setAttribute('font-family', "'Outfit', sans-serif");
+      txt.setAttribute('font-weight', '600');
+      txt.setAttribute('text-anchor', 'middle');
+      txt.textContent = Math.round(valMm);
+      g.appendChild(txt);
+
+      // Bouton suppression (× en survol)
+      g.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (confirm(`Supprimer cette cote (${Math.round(valMm)} mm) ?`)) {
+          this.manualDims.splice(idx, 1);
+          this.draw();
+        }
+      });
+
+      svg.appendChild(g);
+    });
   },
 
   // Helper to draw a dimension line (cotes)
@@ -233,136 +491,24 @@ const Blueprint = {
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     svg.appendChild(defs);
 
-    // 1. Draw outer frame borders
-    const borderOuter = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    borderOuter.setAttribute('x', '0');
-    borderOuter.setAttribute('y', '0');
-    borderOuter.setAttribute('width', '420');
-    borderOuter.setAttribute('height', '297');
-    borderOuter.setAttribute('fill', 'none');
-    borderOuter.setAttribute('stroke', '#e2e8f0');
-    borderOuter.setAttribute('stroke-width', '1');
-    svg.appendChild(borderOuter);
+    // Simple frame border
+    const frameRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    frameRect.setAttribute('x', '2');
+    frameRect.setAttribute('y', '2');
+    frameRect.setAttribute('width', '416');
+    frameRect.setAttribute('height', '293');
+    frameRect.setAttribute('fill', 'none');
+    frameRect.setAttribute('stroke', '#080b12');
+    frameRect.setAttribute('stroke-width', '0.5');
+    svg.appendChild(frameRect);
 
-    const borderInner = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    borderInner.setAttribute('x', '10');
-    borderInner.setAttribute('y', '10');
-    borderInner.setAttribute('width', '400');
-    borderInner.setAttribute('height', '277');
-    borderInner.setAttribute('fill', 'none');
-    borderInner.setAttribute('stroke', '#080b12');
-    borderInner.setAttribute('stroke-width', '0.5');
-    svg.appendChild(borderInner);
+    // Titres de section supprimés à la demande de l'utilisateur
 
-    const gText = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    gText.setAttribute('font-size', '3.5');
-    gText.setAttribute('font-family', "'Outfit', sans-serif");
-    gText.setAttribute('text-anchor', 'middle');
-    gText.setAttribute('fill', '#080b12');
-
-    // Helper to draw lines
-    const addLine = (lx1, ly1, lx2, ly2, thickness = 0.5) => {
-      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      l.setAttribute('x1', lx1.toString());
-      l.setAttribute('y1', ly1.toString());
-      l.setAttribute('x2', lx2.toString());
-      l.setAttribute('y2', ly2.toString());
-      l.setAttribute('stroke', '#080b12');
-      l.setAttribute('stroke-width', thickness.toString());
-      svg.appendChild(l);
-    };
-
-    // Top and Bottom (A-H)
-    const letters = ['H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
-    for (let i = 0; i < 8; i++) {
-      const xLeft = 10 + i * 50;
-      const xCenter = xLeft + 25;
-      
-      if (i > 0) {
-        addLine(xLeft, 0, xLeft, 10, 0.25);
-        addLine(xLeft, 287, xLeft, 297, 0.25);
-      }
-      
-      const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      t1.setAttribute('x', xCenter.toString());
-      t1.setAttribute('y', '6.5');
-      t1.textContent = letters[i];
-      gText.appendChild(t1);
-
-      const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      t2.setAttribute('x', xCenter.toString());
-      t2.setAttribute('y', '293.5');
-      t2.textContent = letters[i];
-      gText.appendChild(t2);
-    }
-
-    // Left and Right (1-4)
-    const nums = ['4', '3', '2', '1'];
-    const yStep = 277 / 4;
-    for (let i = 0; i < 4; i++) {
-      const yTop = 10 + i * yStep;
-      const yCenter = yTop + yStep / 2;
-      
-      if (i > 0) {
-        addLine(0, yTop, 10, yTop, 0.25);
-        addLine(410, yTop, 420, yTop, 0.25);
-      }
-      
-      const n1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      n1.setAttribute('x', '5');
-      n1.setAttribute('y', (yCenter + 1.2).toString());
-      n1.textContent = nums[i];
-      gText.appendChild(n1);
-
-      const n2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      n2.setAttribute('x', '415');
-      n2.setAttribute('y', (yCenter + 1.2).toString());
-      n2.textContent = nums[i];
-      gText.appendChild(n2);
-    }
+    // We will do dynamic scale computation AFTER checking captures, 
+    // because we need this.dims for accurate auto-layout.
     
-    const addTriangle = (x1, y1, x2, y2, x3, y3) => {
-      const p = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-      p.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
-      p.setAttribute('fill', '#080b12');
-      svg.appendChild(p);
-    };
-    addTriangle(205, 0, 215, 0, 210, 10);
-    addTriangle(205, 297, 215, 297, 210, 287);
-    addTriangle(0, 143.5, 0, 153.5, 10, 148.5);
-    addTriangle(420, 143.5, 420, 153.5, 410, 148.5);
-
-    svg.appendChild(gText);
-
-    // Title sections
-    const addSectionTitle = (textVal, tx, ty) => {
-      const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      txt.setAttribute('x', tx.toString());
-      txt.setAttribute('y', ty.toString());
-      txt.setAttribute('font-size', '6');
-      txt.setAttribute('font-family', "'Outfit', sans-serif");
-      txt.setAttribute('font-weight', '700');
-      txt.setAttribute('fill', '#080b12');
-      txt.setAttribute('text-decoration', 'underline');
-      txt.textContent = textVal;
-      svg.appendChild(txt);
-    };
-
-    addSectionTitle('PLAN TECHNIQUE', 20, 22);
-    addSectionTitle('VUE 3D', 260, 22);
-
-    // Dynamic scale computation
-    const lengthMm = state.length * 10;
-    if (lengthMm <= 1200) this.scale = 12; // Much larger
-    else if (lengthMm <= 2000) this.scale = 18;
-    else if (lengthMm <= 2800) this.scale = 22;
-    else this.scale = 26;
-
-    this.cartouche.scale = `1:${this.scale}`;
-    const scale = this.scale;
-
     // Check if 3D captures are ready
-    if (!this.capturedImages) {
+    if (!this.capturedImages || !this.dims) {
       const loadingTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       loadingTxt.setAttribute('x', '210');
       loadingTxt.setAttribute('y', '150');
@@ -378,31 +524,136 @@ const Blueprint = {
       return;
     }
 
+    const dims = this.dims;
+
+    // === OPTIMAL SCALE FINDER ===
+    // SVG viewBox = 420×297 (A3). Left column: cx=110, so usable x: ~10..205 = 195 wide.
+    // The Cartouche is on the RIGHT side (X > 215). So the left column can go all the way down!
+    // Usable height: 7 to 292 = 285 total.
+    const MARGIN_TOP_PAGE = 7;        // top border
+    const MARGIN_FACE_TOP   = 11;     // space for "Vue de face" title
+    const MARGIN_FACE_BOT   = 18;     // dim below face
+    const MARGIN_DESSUS_TOP = 18;     // gap + "Vue de dessus" title + top cote row
+    const MARGIN_DESSUS_BOT = 16;     // dim below dessus
+    const MARGIN_DESSOUS_TOP = 18;    // gap + "Vue de dessous" title + drain cotes
+    const MARGIN_DESSOUS_BOT = 8;
+
+    const totalFixedV = MARGIN_TOP_PAGE + MARGIN_FACE_TOP + MARGIN_FACE_BOT
+                      + MARGIN_DESSUS_TOP + MARGIN_DESSUS_BOT
+                      + MARGIN_DESSOUS_TOP + MARGIN_DESSOUS_BOT;
+
+    // Available vertical space in the left column
+    const maxH = 285;
+    const availableForViews = maxH - totalFixedV; // ≈ 188 units for 3 stacked drawings
+
+    // Available horizontal space in the left column
+    const maxW = 195;
+
+    // --- Constraint 1: height ---
+    const minScaleForHeight = (dims.y + 2 * dims.z) / Math.max(1, availableForViews);
+
+    // --- Constraint 2: width ---
+    const fillRatio = 0.9 + 0.1 * Math.min(1, Math.max(0, (dims.x - 1200) / 1200));
+    const targetW = maxW * fillRatio;
+    const minScaleForWidth = dims.x / targetW;
+
+    // Best scale = largest of the two minimums
+    let scale = Math.max(minScaleForHeight, minScaleForWidth);
+    // Round to 1 decimal place to use space optimally (e.g., 12.2 instead of jumping to 13)
+    scale = Math.ceil(scale * 10) / 10;
+    scale = Math.max(scale, 2); // floor at 1:2
+
+    // Compute view heights at chosen scale
+    const hFace   = dims.y / scale;
+    const hDessus = dims.z / scale;
+    const hDessous = dims.z / scale;
+
+    const totalUsed = totalFixedV + hFace + hDessus + hDessous;
+
+    // Spread any leftover vertical space evenly between the 3 inter-view gaps
+    const extraSpace = Math.max(0, maxH - totalUsed);
+    const extraPerGap = extraSpace / 3;
+
+    let currentY = MARGIN_TOP_PAGE;
+
+    currentY += MARGIN_FACE_TOP + extraPerGap;
+    const cyFace = currentY + hFace / 2;
+    currentY += hFace + MARGIN_FACE_BOT;
+
+    currentY += MARGIN_DESSUS_TOP + extraPerGap;
+    const cyDessus = currentY + hDessus / 2;
+    currentY += hDessus + MARGIN_DESSUS_BOT;
+
+    currentY += MARGIN_DESSOUS_TOP + extraPerGap;
+    const cyDessous = currentY + hDessous / 2;
+    currentY += hDessous + MARGIN_DESSOUS_BOT;
+
+    this.scale = scale;
+    this.cartouche.scale = `1:${scale}`;
+
     // Draw all views using captured images and overlay vector cotes
     // Vue de Face on top
-    this.drawVueFace(svg, 110, 70, scale);
+    this.drawVueFace(svg, 110, cyFace, scale);
     
-    // Vue de Côté next to Vue de Face
-    this.drawVueCote(svg, 225, 70, scale);
+    // Calculate safe X position for Vue de Côté to perfectly center it
+    const rightFace = 110 + (dims.x / scale) / 2 + 25; // 25 padding for right-side dimensions
+    let leftCoupe = 400; // Default right edge of usable space
+    if (this.capturedImages.cote_zoom) {
+      const zoomScale = Math.max(6, scale - 2);
+      const wCoupe = (dims.boxZ + 20) / zoomScale;
+      leftCoupe = 345 - wCoupe / 2 - 15; // 15 padding for left-side dimensions
+    }
+    const cxCote = rightFace + (leftCoupe - rightFace) / 2;
+
+    // Vue de Côté next to Vue de Face (align with face)
+    this.drawVueCote(svg, cxCote, cyFace, scale);
 
     // Vue de Dessus below Vue de Face
-    this.drawVueDessus(svg, 110, 160, scale);
+    this.drawVueDessus(svg, 110, cyDessus, scale);
     
     // Vue de Dessous below Vue de Dessus
-    this.drawVueDessous(svg, 110, 240, scale);
+    this.drawVueDessous(svg, 110, cyDessous, scale);
 
     // Iso (Larger and positioned safely)
-    this.drawVue3DIso(svg, 305, 185, scale);
+    // Placed in the remaining space between the views and the right edge
+    let cy3D = cyDessus + (cyDessous - cyDessus) / 2;
+    // Ensure it doesn't hit Cartouche (Y=248)
+    if (cy3D > 195) cy3D = 195; 
+    
+    // Center it between the right edge of the main views and the right edge of the page (X=410)
+    // We limit cx3D to avoid pushing it too far right if the vanity is small
+    const cx3D = Math.max(305, rightFace + (410 - rightFace) / 2);
+    
+    this.drawVue3DIso(svg, cx3D, cy3D, scale);
 
     // Zoomed Side View
     if (this.capturedImages.cote_zoom) {
-      this.drawVueCoteZoom(svg, 345, 65, scale);
+      this.drawVueCoteZoom(svg, 345, cyFace + 5, scale);
     }
 
     // Draw cartouche exactly like the CAD drawing
     this.drawCartouche(svg);
 
+    // Dessiner les cotes manuelles persistées (au-dessus de tout)
+    this.drawManualDims(svg);
+
+    // Attacher le handler de clic pour le mode annotation
+    svg.addEventListener('click', (e) => this.handleSVGClick(e));
+
     container.appendChild(svg);
+  },
+
+  drawText(svg, x, y, textVal, size=3.5, anchor='middle', color='#000') {
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', x.toString());
+    t.setAttribute('y', y.toString());
+    t.setAttribute('font-size', size.toString());
+    t.setAttribute('font-family', "'Outfit', sans-serif");
+    t.setAttribute('font-weight', '500');
+    t.setAttribute('text-anchor', anchor);
+    t.setAttribute('fill', color);
+    t.textContent = textVal;
+    svg.appendChild(t);
   },
 
   drawLabel(svg, cx, y, textVal) {
@@ -440,29 +691,27 @@ const Blueprint = {
     const actualLength = window.state.length * 10;
     this.drawDimensionH(svg, cx - actualLength/scale/2, cx + actualLength/scale/2, y + h - padS + 8, actualLength);
     
-    // Total height cote on the right
-    this.drawDimensionV(svg, x + w + 4, y + h - padS, y + padS, dims.boxY, 3);
-
-    // Detailed height cotes on the left
-    const yg = y + h - padS; // Ground level
-    const plintheS = 100 / scale;
-    const vasqueS = 100 / scale;
+    // Retombée cote on the right (au lieu de la hauteur totale)
+    const retombeeMm = Math.round(window.state.height * 10);
+    const retombeeSvg = retombeeMm / scale;
+    this.drawDimensionV(svg, x + w + 4, y + padS + retombeeSvg, y + padS, retombeeMm, 3);
     
-    if (dims.boxY > 900) { // Has credence
-      const cabS = 640 / scale;
-      const credS = (dims.boxY - 840) / scale;
-      this.drawDimensionV(svg, x - 4, yg - plintheS, yg, 100, -3); // Plinthe
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS, yg - plintheS, 640, -3); // Cabinet
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS - vasqueS, yg - plintheS - cabS, 100, -3); // Vasque
-      this.drawDimensionV(svg, x - 4, y + padS, yg - plintheS - cabS - vasqueS, dims.boxY - 840, -3); // Credence
-    } else { // No credence
-      const cabS = (dims.boxY - 200) / scale;
-      this.drawDimensionV(svg, x - 4, yg - plintheS, yg, 100, -3); // Plinthe
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS, yg - plintheS, dims.boxY - 200, -3); // Cabinet
-      this.drawDimensionV(svg, x - 4, y + padS, yg - plintheS - cabS, 100, -3); // Vasque
+    // Cotes des largeurs de portes
+    if (state.support === 'THALLISOL' && window.supportDoorsConfig && window.supportDoorsConfig.numDoors > 0) {
+      const { numDoors, doorWidth } = window.supportDoorsConfig;
+      const groupWidth = numDoors * doorWidth + 3 * (numDoors - 1);
+      const startX = cx - (groupWidth / scale) / 2;
+      
+      const dimY = y + padS + retombeeSvg + ((h - padS - retombeeSvg) / 2); // Milieu du meuble
+      
+      for (let i = 0; i < numDoors; i++) {
+        const dX = startX + (i * (doorWidth + 3)) / scale;
+        const dW = doorWidth / scale;
+        this.drawDimensionH(svg, dX, dX + dW, dimY, Math.round(doorWidth), -3);
+      }
     }
 
-    this.drawLabel(svg, cx, y - 4, "Vue de face");
+    this.drawLabel(svg, cx, y - 10, "Vue de face");
   },
 
   drawVueDessus(svg, cx, cy, scale) {
@@ -484,10 +733,14 @@ const Blueprint = {
 
     // Total length placed at the BOTTOM
     const actualLength = window.state.length * 10;
-    this.drawDimensionH(svg, cx - actualLength/scale/2, cx + actualLength/scale/2, y + h - padS + 8, actualLength);
+    const xr = cx + actualLength/scale/2;
+    const xl = cx - actualLength/scale/2;
+
+    this.drawDimensionH(svg, xl, xr, y + h - padS + 8, actualLength);
     
-    // Total depth on the right
-    this.drawDimensionV(svg, x + w + 4, y + padS, y + h - padS, dims.boxZ, 3);
+    // Total depth on the right (décalée plus à droite pour ne pas chevaucher)
+    // Anchored to xr (actual right edge of the object) instead of the padded image edge
+    this.drawDimensionV(svg, xr + 18, y + padS, y + h - padS, dims.boxZ, 3);
 
     // Detailed horizontal cotes (basins) at the TOP
     const state = window.state;
@@ -498,8 +751,6 @@ const Blueprint = {
     }
     const gapMm = state.plageEntreCuves * 10 || 0;
     const plageGaucheMm = state.position * 10 || 0;
-    const xl = cx - actualLength/scale/2;
-    const xr = cx + actualLength/scale/2;
 
     const basinDims = [];
     for (let k = 0; k < nb; k++) {
@@ -509,7 +760,7 @@ const Blueprint = {
     }
 
     if (basinDims.length > 0) {
-      const topDimY = y + padS - 4; // Dimension line y
+      const topDimY = y - 8; // Remonter les cotes
       // Left plage
       if (plageGaucheMm > 0) {
         this.drawDimensionH(svg, xl, basinDims[0].left, topDimY, plageGaucheMm);
@@ -527,7 +778,46 @@ const Blueprint = {
       }
     }
 
-    this.drawLabel(svg, cx, y - 14, "Vue de dessus");
+    this.drawLabel(svg, cx, y - 22, "Vue de dessus");
+
+    // Axe cuve (par rapport à l'avant du plan vasque)
+    this.drawDimensionV(svg, x - 10, y + h/2, y + h, dims.boxZ / 2, -3);
+
+    // Cotes verticales sur la cuve la plus à droite (profondeur)
+    if (basinDims.length > 0) {
+      let cDepthMm = 270; // Valeur par défaut
+      if (window.cuvesData && state.model && window.cuvesData[state.model] && window.cuvesData[state.model].cuveDepth) {
+        cDepthMm = window.cuvesData[state.model].cuveDepth;
+      } else if (window._baseCuveModel && window.THREE) {
+        try {
+          const box = new window.THREE.Box3().setFromObject(window._baseCuveModel);
+          const size = new window.THREE.Vector3();
+          box.getSize(size);
+          // Si le modèle 3D est tourné, la profondeur est sur l'axe X ou Z. 
+          // L'utilisateur indique que la valeur Z actuelle correspondait à la largeur. On utilise donc X.
+          let depth = size.x;
+          // Sécurité : la profondeur d'une cuve est généralement entre 200 et 450.
+          if (depth > 100 && depth < 600) {
+            cDepthMm = Math.round(depth);
+          }
+        } catch(e) {}
+      }
+
+      const backToBasinMm = Math.round(dims.boxZ / 2 - cDepthMm / 2);
+      const basinDepthMm = cDepthMm;
+      const basinToFrontMm = Math.round(dims.boxZ / 2 - cDepthMm / 2);
+
+      const y0 = y;
+      const y1 = y + backToBasinMm / scale;
+      const y2 = y1 + basinDepthMm / scale;
+      const y3 = y + h;
+
+      const dimX = xr + 4; // Anchored closer to the actual right edge of the vanity
+
+      this.drawDimensionV(svg, dimX, y0, y1, backToBasinMm, 3);
+      this.drawDimensionV(svg, dimX, y1, y2, basinDepthMm, 3);
+      this.drawDimensionV(svg, dimX, y2, y3, basinToFrontMm, 3);
+    }
   },
 
   drawVueDessous(svg, cx, cy, scale) {
@@ -546,10 +836,100 @@ const Blueprint = {
     svg.appendChild(img);
 
     const padS = 10 / scale;
-    const actualLength = window.state.length * 10;
-    this.drawDimensionH(svg, cx - actualLength/scale/2, cx + actualLength/scale/2, y + h - padS + 4, actualLength);
+    const state = window.state;
+    const actualLength = state.length * 10;
+    const xl = cx - actualLength/scale/2;
+    const xr = cx + actualLength/scale/2;
 
-    this.drawLabel(svg, cx, y - 4, "Vue de dessous");
+    this.drawLabel(svg, cx, y - 24, "Vue de dessous");
+
+    // Position évacuations (au-dessus)
+    const nb = parseInt(state.nbCuves) || 1;
+    let cLengthMm = 390;
+    if (window.cuvesData && state.model && window.cuvesData[state.model]) {
+      cLengthMm = window.cuvesData[state.model].cuveLength || 390;
+    }
+    const gapMm = state.plageEntreCuves * 10 || 0;
+    const plageGaucheMm = state.position * 10 || 0;
+
+    const drainDimY = y - 10;
+    
+    let currentX = xl;
+    let accumulatedMm = 0;
+    for (let k = 0; k < nb; k++) {
+      const sinkLeftMm = plageGaucheMm + k * (cLengthMm + gapMm);
+      const sinkCenterMm = sinkLeftMm + cLengthMm / 2;
+      const sinkCenterSvg = xl + sinkCenterMm / scale;
+      
+      this.drawDimensionH(svg, currentX, sinkCenterSvg, drainDimY, sinkCenterMm - accumulatedMm);
+      currentX = sinkCenterSvg;
+      accumulatedMm = sinkCenterMm;
+    }
+    this.drawDimensionH(svg, currentX, xr, drainDimY, actualLength - accumulatedMm);
+
+    // Position console (en-dessous)
+    if (state.support !== 'SANS') {
+        const consoleDimY = y + h + 14;
+        
+        let totalRetrait = 14; // par défaut (équivalent à 7mm de chaque côté)
+        if (state.support === 'TH') {
+            totalRetrait = 40; // Le support TH fait 40mm de moins que le plan (20mm de chaque côté)
+        } else if (state.support === 'THALLISOL') {
+            totalRetrait = 28; // Le support THALLISOL fait 28mm de moins que le plan
+        }
+        
+        const supportRetrait = totalRetrait / 2; 
+        const supportLengthMm = actualLength - totalRetrait;
+        const supportLeftSvg = xl + supportRetrait / scale;
+        const supportRightSvg = xr - supportRetrait / scale;
+        
+        const bracketCentersMm = []; // Distances relatives au bord gauche du support
+        
+        if (state.support === 'THALLISOL' && window.supportDoorsConfig && window.supportDoorsConfig.numDoors > 1) {
+            // THALLISOL: Pointer sur les séparations réellement placées entre les portes
+            const { actualSeparationsX } = window.supportDoorsConfig;
+            if (actualSeparationsX) {
+                for (const xGap of actualSeparationsX) {
+                    const distFromSupportLeft = xGap - (-supportLengthMm / 2);
+                    bracketCentersMm.push(distFromSupportLeft);
+                }
+            }
+        } else {
+            // Autres supports: Pointer sur les consoles
+            const nbGaps = nb - 1;
+            const halfLength = actualLength / 2;
+            for (let i = 0; i < nbGaps; i++) {
+                const isLeft = i < (nbGaps / 2);
+                const cuve1X = -halfLength + plageGaucheMm + i * (cLengthMm + gapMm) + cLengthMm / 2;
+                const cuve2X = cuve1X + cLengthMm + gapMm;
+                const centerGapX = (cuve1X + cuve2X) / 2; 
+                const decalage = isLeft ? 35 : -35;
+                const bracketX = centerGapX + decalage; 
+                
+                // Calculer la position par rapport au bord gauche du support
+                const distFromSupportLeft = bracketX - (-halfLength + supportRetrait);
+                bracketCentersMm.push(distFromSupportLeft);
+            }
+        }
+        
+        if (bracketCentersMm.length > 0) {
+            let cX = supportLeftSvg;
+            let cMm = 0;
+            for (const distMm of bracketCentersMm) {
+                const distSvg = supportLeftSvg + distMm / scale;
+                this.drawDimensionH(svg, cX, distSvg, consoleDimY, distMm - cMm);
+                cX = distSvg;
+                cMm = distMm;
+            }
+            this.drawDimensionH(svg, cX, supportRightSvg, consoleDimY, supportLengthMm - cMm);
+        }
+
+        // Longueur support
+        this.drawDimensionH(svg, supportLeftSvg, supportRightSvg, consoleDimY + (bracketCentersMm.length > 0 ? 12 : 0), supportLengthMm);
+    } else {
+        // Juste la longueur totale si pas de support
+        this.drawDimensionH(svg, xl, xr, y + h + 10, actualLength);
+    }
   },
 
   drawVueCote(svg, cx, cy, scale) {
@@ -569,34 +949,80 @@ const Blueprint = {
 
     const padS = 10 / scale;
 
-    // Detailed height on the left
-    const yg = y + h - padS; // Ground level
-    const plintheS = 100 / scale;
-    const vasqueS = 100 / scale;
-    
-    if (dims.boxY > 900) { // Has credence
-      const cabS = 640 / scale;
-      this.drawDimensionV(svg, x - 4, yg - plintheS, yg, 100, -3); // Plinthe
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS, yg - plintheS, 640, -3); // Cabinet
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS - vasqueS, yg - plintheS - cabS, 100, -3); // Vasque
-      this.drawDimensionV(svg, x - 4, y + padS, yg - plintheS - cabS - vasqueS, dims.boxY - 840, -3); // Credence
-    } else { // No credence
-      const cabS = (dims.boxY - 200) / scale;
-      this.drawDimensionV(svg, x - 4, yg - plintheS, yg, 100, -3); // Plinthe
-      this.drawDimensionV(svg, x - 4, yg - plintheS - cabS, yg - plintheS, dims.boxY - 200, -3); // Cabinet
-      this.drawDimensionV(svg, x - 4, y + padS, yg - plintheS - cabS, 100, -3); // Vasque
+    // Depth on the top
+    this.drawDimensionH(svg, x + padS, x + w - padS, y - 3, dims.boxZ);
+
+    // Zone PMR
+    if (this.cartouche.pmr) {
+      if (!svg.querySelector('#pmr-pattern')) {
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+        pattern.setAttribute('id', 'pmr-pattern');
+        pattern.setAttribute('width', '8');
+        pattern.setAttribute('height', '8');
+        pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+        pattern.setAttribute('patternTransform', 'rotate(45)');
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '0');
+        line.setAttribute('y1', '0');
+        line.setAttribute('x2', '0');
+        line.setAttribute('y2', '8');
+        line.setAttribute('stroke', '#009900');
+        line.setAttribute('stroke-width', '1');
+        
+        pattern.appendChild(line);
+        defs.appendChild(pattern);
+        svg.appendChild(defs);
+      }
+
+      const pmrW = 300 / scale;
+      const pmrH = 700 / scale;
+      
+      // La vue de côté étant inversée, l'avant du plan vasque est maintenant à DROITE de l'image.
+      const pmrX = (x + w - padS) - pmrW;
+      const pmrY = (y + padS + 850 / scale) - pmrH;
+
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', pmrX.toString());
+      rect.setAttribute('y', pmrY.toString());
+      rect.setAttribute('width', pmrW.toString());
+      rect.setAttribute('height', pmrH.toString());
+      rect.setAttribute('fill', 'url(#pmr-pattern)');
+      rect.setAttribute('stroke', '#009900');
+      rect.setAttribute('stroke-width', '1.5');
+      svg.appendChild(rect);
+
+      const t300 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t300.setAttribute('x', (pmrX + pmrW/2).toString());
+      t300.setAttribute('y', (pmrY + 10).toString());
+      t300.setAttribute('font-family', 'sans-serif');
+      t300.setAttribute('font-size', '8');
+      t300.setAttribute('fill', '#003300');
+      t300.setAttribute('text-anchor', 'middle');
+      t300.textContent = '300';
+      svg.appendChild(t300);
+
+      const t700 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      // Placer le texte "700" à gauche de la zone PMR pour qu'il soit dans le meuble
+      t700.setAttribute('x', (pmrX - 6).toString());
+      t700.setAttribute('y', (pmrY + pmrH/2).toString());
+      t700.setAttribute('font-family', 'sans-serif');
+      t700.setAttribute('font-size', '8');
+      t700.setAttribute('fill', '#003300');
+      t700.setAttribute('transform', `rotate(-90 ${pmrX - 6} ${pmrY + pmrH/2})`);
+      t700.setAttribute('text-anchor', 'middle');
+      t700.textContent = '700';
+      svg.appendChild(t700);
     }
 
-    // Depth on the bottom
-    this.drawDimensionH(svg, x + padS, x + w - padS, y + h - padS + 8, dims.boxZ);
-
-    this.drawLabel(svg, cx, y - 4, "Vue de côté");
+    this.drawLabel(svg, cx, y - 20, "Vue de côté");
   },
 
   drawVue3DIso(svg, cx, cy, scale) {
-    // Enlarged 3D View
-    const w = 200;
-    const h = 128;
+    // Enlarged 3D View (but slightly smaller to avoid overlaps)
+    const w = 140;
+    const h = 90;
     const x = cx - w/2;
     const y = cy - h/2;
 
@@ -608,13 +1034,14 @@ const Blueprint = {
     img.setAttribute('height', h.toString());
     svg.appendChild(img);
 
-    this.drawLabel(svg, cx, y - 2, "Vue 3D");
+    // Title "Vue 3D" removed as requested
   },
 
   drawVueCoteZoom(svg, cx, cy, scale) {
     const dims = this.dims;
-    // Fixed zoom scale 1:10 for Coupe A-A to keep it consistently large
-    const zoomScale = 10;
+    // Zoom scale for Coupe A-A should be proportional to the main scale
+    // We make it slightly larger (scale - 2) but never smaller than 1:6
+    const zoomScale = Math.max(6, scale - 2);
     
     // We captured full height and depth
     const trueW = dims.boxZ + 20; // total depth + 2*10mm padding
@@ -632,20 +1059,57 @@ const Blueprint = {
     img.setAttribute('y', y.toString());
     img.setAttribute('width', w.toString());
     img.setAttribute('height', h.toString());
+    // Miroir horizontal (symétrie)
+    img.setAttribute('transform', `translate(${cx}, ${cy}) scale(-1, 1) translate(${-cx}, ${-cy})`);
     svg.appendChild(img);
 
     // Zoom circle indicator on original cote? We could add a circle to drawVueCote
     // For now, just title
     this.drawLabel(svg, cx, y - 4, "Coupe A-A");
+
+    // Cote de la plinthe (Support TH / THALLISOL)
+    if (window.state.support === 'THALLISOL' || window.state.support === 'TH') {
+      const padS = 10 / zoomScale;
+      // Le pied dépasse en bas, on remonte pour aligner la cote sur la plinthe grise
+      const piedOffsetMm = 15; 
+      const plintheBottomY = y + h - padS - (piedOffsetMm / zoomScale);
+      const plintheTopY = plintheBottomY - (100 / zoomScale);
+      // On la place sur la gauche de la vue de coupe (à l'arrière du meuble)
+      const dimX = x - 10; 
+      this.drawDimensionV(svg, dimX, plintheTopY, plintheBottomY, 100, -3);
+
+      if (window.state.support === 'THALLISOL') {
+        // Hauteur de la porte / Face_EOS (THALLISOL)
+        // Le vide (Face EOS) fait 100mm, et la porte fait 537mm
+        const topBlockMm = window.state.height * 10;
+        const faceEosTopY = y + padS + (topBlockMm / zoomScale);
+        
+        const faceEosMm = 100;
+        const porteMm = 537;
+        
+        const faceEosBottomY = faceEosTopY + (faceEosMm / zoomScale);
+        const porteBottomY = faceEosBottomY + (porteMm / zoomScale);
+        
+        // Sur la droite de la vue (côté avant)
+        // Cote de la Face EOS
+        this.drawDimensionV(svg, x + w + 8, faceEosTopY, faceEosBottomY, faceEosMm, 3);
+        // Cote de la porte
+        this.drawDimensionV(svg, x + w + 8, faceEosBottomY, porteBottomY, porteMm, 3);
+      }
+    }
   },
 
   drawCartouche(svg) {
     const state = window.state;
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('transform', 'scale(1.35)');
 
-    // Cartouche positioned exactly at bottom right of the inner border
-    const cx = 260;
-    const cy = 252;
+    // Le cartouche est agrandi de 35% (scale 1.35).
+    // Pour être calé en bas à droite du cadre (qui finit à X=418, Y=295) :
+    // cx = (418 - 150*1.35) / 1.35 = 215.5 / 1.35 = 159.63
+    // cy = (295 - 35*1.35) / 1.35 = 247.75 / 1.35 = 183.52
+    const cx = 159.63;
+    const cy = 183.52;
     const cw = 150;
     const ch = 35;
 
@@ -709,8 +1173,14 @@ const Blueprint = {
     addLine(cx + 60, cy + 4, cx + 60, midY); // After logo
     addLine(cx + 105, cy + 4, cx + 105, midY); // Before dates
 
-    // Logo "iStone."
-    addText("iStone.", cx + 30, cy + 18, 12, '800', 'middle');
+    // Logo "iStone." (remplacé par l'image)
+    const logoImg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+    logoImg.setAttribute('href', 'logo_istone.png');
+    logoImg.setAttribute('x', (cx + 5).toString());
+    logoImg.setAttribute('y', (cy + 8).toString());
+    logoImg.setAttribute('width', '50');
+    logoImg.setAttribute('height', '16');
+    g.appendChild(logoImg);
 
     // Address
     addText("-Lieu dit vaujalat-", cx + 102, cy + 10, 2.5, '500', 'end');
