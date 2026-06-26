@@ -10,8 +10,11 @@ const Blueprint = {
   scale: 25, // Default scale 1:25
   capturedImages: null, // Cache for 3D captures
   manualDims: [], // Cotes manuelles persistantes
-  _annotMode: false, // Mode annotation actif
+  _annotMode: false, // Mode annotation (cotes) actif
   _annotPoint1: null, // Premier point cliqué (coords SVG)
+  _calloutMode: false, // Mode annotation texte actif
+  _calloutPoint1: null, // Pointe de la flèche
+  annotations: [], // Annotations persistantes { arrowPt, boxPt, text, lines[] }
   cartouche: {
     project: 'PlanVasques4300',
     client: '134173 - Eurexpo Hall 4.3 - Lyon (69)',
@@ -59,6 +62,8 @@ const Blueprint = {
     document.getElementById('btn-bp-print')?.addEventListener('click', () => this.print());
     document.getElementById('btn-bp-add-dim')?.addEventListener('click', () => this.toggleAnnotMode());
     document.getElementById('btn-bp-clear-dims')?.addEventListener('click', () => this.clearManualDims());
+    document.getElementById('btn-bp-add-annot')?.addEventListener('click', () => this.toggleCalloutMode());
+    document.getElementById('btn-bp-clear-annots')?.addEventListener('click', () => this.clearAnnotations());
   },
 
   bindInput(id, key) {
@@ -128,6 +133,8 @@ const Blueprint = {
   // ────────────────────────────────────────
 
   toggleAnnotMode() {
+    // Cancel callout mode if active
+    if (this._calloutMode) this.toggleCalloutMode();
     this._annotMode = !this._annotMode;
     this._annotPoint1 = null;
     const btn = document.getElementById('btn-bp-add-dim');
@@ -137,6 +144,27 @@ const Blueprint = {
       if (svg) svg.style.cursor = 'crosshair';
     } else {
       if (btn) { btn.textContent = '📐 Ajouter une cote'; btn.style.background = ''; }
+      if (svg) svg.style.cursor = '';
+    }
+  },
+
+  toggleCalloutMode() {
+    // Cancel dimension mode if active
+    if (this._annotMode) {
+      this._annotMode = false;
+      this._annotPoint1 = null;
+      const dimBtn = document.getElementById('btn-bp-add-dim');
+      if (dimBtn) { dimBtn.textContent = '📐 Ajouter une cote'; dimBtn.style.background = ''; }
+    }
+    this._calloutMode = !this._calloutMode;
+    this._calloutPoint1 = null;
+    const btn = document.getElementById('btn-bp-add-annot');
+    const svg = document.querySelector('#blueprint-sheet svg');
+    if (this._calloutMode) {
+      if (btn) { btn.textContent = '❌ Annuler'; btn.style.background = '#f59e0b'; btn.style.color = '#000'; }
+      if (svg) svg.style.cursor = 'crosshair';
+    } else {
+      if (btn) { btn.textContent = '💬 Ajouter une annotation'; btn.style.background = ''; btn.style.color = ''; }
       if (svg) svg.style.cursor = '';
     }
   },
@@ -156,6 +184,41 @@ const Blueprint = {
     // If we just finished dragging, prevent click
     if (this._wasDragging) {
       this._wasDragging = false;
+      return;
+    }
+
+    // ── Mode annotation texte (callout) ──
+    if (this._calloutMode) {
+      const coords = this.getSVGCoords(evt);
+      if (!coords) return;
+
+      if (!this._calloutPoint1) {
+        // 1er clic : pointe de la flèche
+        this._calloutPoint1 = coords;
+        // Feedback visuel
+        const svg = document.querySelector('#blueprint-sheet svg');
+        if (svg) {
+          const existing = svg.querySelector('#callout-temp-dot');
+          if (existing) existing.remove();
+          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          dot.setAttribute('id', 'callout-temp-dot');
+          dot.setAttribute('cx', coords.x);
+          dot.setAttribute('cy', coords.y);
+          dot.setAttribute('r', '1.5');
+          dot.setAttribute('fill', '#f59e0b');
+          dot.setAttribute('opacity', '0.9');
+          dot.setAttribute('pointer-events', 'none');
+          svg.appendChild(dot);
+        }
+      } else {
+        // 2e clic : position du cadre
+        const arrowPt = this._calloutPoint1;
+        const boxPt = coords;
+        this._calloutPoint1 = null;
+        const svg = document.querySelector('#blueprint-sheet svg');
+        svg?.querySelector('#callout-temp-dot')?.remove();
+        this.showCalloutPopup(arrowPt, boxPt);
+      }
       return;
     }
     
@@ -362,6 +425,217 @@ const Blueprint = {
       this.draw();
     }
   },
+
+  // ──────────────────────────────────────────
+  //  CALLOUT ANNOTATIONS
+  // ──────────────────────────────────────────
+  showCalloutPopup(arrowPt, boxPt) {
+    const old = document.getElementById('callout-input-popup');
+    if (old) old.remove();
+
+    const popup = document.createElement('div');
+    popup.id = 'callout-input-popup';
+    popup.style.cssText = `
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e2232;
+      border: 1px solid #f59e0b;
+      border-radius: 12px;
+      padding: 24px;
+      z-index: 100000;
+      min-width: 340px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      font-family: 'Inter', sans-serif;
+    `;
+    popup.innerHTML = `
+      <h3 style="margin:0 0 14px; color:#fcd34d; font-size:15px; font-weight:700;">💬 Texte d'annotation</h3>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:12px; color:#94a3b8; display:block; margin-bottom:6px;">Texte (Entrée = nouvelle ligne)</label>
+        <textarea id="callout-text-input" rows="4"
+          style="width:100%; background:#0f1117; border:1px solid #374151; color:#e2e8f0;
+                 padding:8px 12px; border-radius:8px; font-size:13px; outline:none;
+                 resize:vertical; font-family:'Inter',sans-serif; box-sizing:border-box;"
+          placeholder="Ex : Pour une installation sur une cloison placo, l'installation d'un renfort est fortement recommandée"></textarea>
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="font-size:12px; color:#94a3b8; display:block; margin-bottom:6px;">Largeur max du cadre (mm)</label>
+        <input id="callout-width-input" type="number" value="500" min="100" max="1500"
+          style="width:100%; background:#0f1117; border:1px solid #374151; color:#e2e8f0;
+                 padding:8px 12px; border-radius:8px; font-size:13px; outline:none;" />
+      </div>
+      <div style="display:flex; gap:8px; margin-top:16px;">
+        <button id="callout-confirm-btn" style="flex:1; background:#f59e0b; border:none; color:#000; padding:10px;
+          border-radius:8px; cursor:pointer; font-weight:700; font-size:14px;">✓ Placer</button>
+        <button id="callout-cancel-btn" style="flex:0 0 auto; background:#374151; border:none; color:#fff; padding:10px 16px;
+          border-radius:8px; cursor:pointer;">✕</button>
+      </div>
+    `;
+
+    document.body.appendChild(popup);
+    document.getElementById('callout-text-input').focus();
+
+    document.getElementById('callout-cancel-btn').addEventListener('click', () => {
+      popup.remove();
+    });
+
+    document.getElementById('callout-confirm-btn').addEventListener('click', () => {
+      const rawText = document.getElementById('callout-text-input').value.trim();
+      const maxWMm = parseFloat(document.getElementById('callout-width-input').value) || 500;
+      if (!rawText) { popup.remove(); return; }
+
+      // Wrap text into lines of ~maxWMm / (charWidthMm) chars
+      const fontSize = 3.5; // SVG units (mm)
+      const charWidthMm = fontSize * 0.55;
+      const maxCharsPerLine = Math.max(10, Math.floor(maxWMm / this.scale / charWidthMm));
+      const lines = this._wrapText(rawText, maxCharsPerLine);
+
+      this.annotations.push({ arrowPt, boxPt, lines, maxWMm });
+      this.draw();
+      popup.remove();
+
+      // Exit callout mode
+      this._calloutMode = false;
+      this._calloutPoint1 = null;
+      const btn = document.getElementById('btn-bp-add-annot');
+      const svgEl = document.querySelector('#blueprint-sheet svg');
+      if (btn) { btn.textContent = '💬 Ajouter une annotation'; btn.style.background = ''; btn.style.color = ''; }
+      if (svgEl) svgEl.style.cursor = '';
+    });
+  },
+
+  // Simple word-wrap helper
+  _wrapText(text, maxChars) {
+    const paragraphs = text.split('\n');
+    const result = [];
+    paragraphs.forEach(para => {
+      if (para.length <= maxChars) { result.push(para); return; }
+      const words = para.split(' ');
+      let line = '';
+      words.forEach(word => {
+        if ((line + (line ? ' ' : '') + word).length <= maxChars) {
+          line += (line ? ' ' : '') + word;
+        } else {
+          if (line) result.push(line);
+          line = word;
+        }
+      });
+      if (line) result.push(line);
+    });
+    return result.length ? result : [''];
+  },
+
+  clearAnnotations() {
+    if (this.annotations.length === 0) return;
+    if (confirm(`Supprimer les ${this.annotations.length} annotation(s) ?`)) {
+      this.annotations = [];
+      this.draw();
+    }
+  },
+
+  // Dessine toutes les annotations (callouts)
+  drawAnnotations(svg) {
+    if (!this.annotations || this.annotations.length === 0) return;
+
+    this.annotations.forEach((annot, idx) => {
+      const { arrowPt, boxPt, lines } = annot;
+
+      // Measure the box dimensions
+      const fontSize = 3.5;
+      const lineHeight = 5.2;
+      const padX = 3.5;
+      const padY = 2.5;
+      const charWidthApprox = fontSize * 0.55;
+      const maxLineLen = Math.max(...lines.map(l => l.length));
+      const boxW = maxLineLen * charWidthApprox + padX * 2;
+      const boxH = lines.length * lineHeight + padY * 2;
+
+      // Box anchor point (top-left)
+      // We center the box on boxPt
+      const bx = boxPt.x - boxW / 2;
+      const by = boxPt.y - boxH / 2;
+
+      // Arrow connects arrowPt → nearest point on box border
+      // Compute nearest point on rectangle edge from arrowPt
+      const clampX = Math.max(bx, Math.min(bx + boxW, arrowPt.x));
+      const clampY = Math.max(by, Math.min(by + boxH, arrowPt.y));
+      const nearX = clampX;
+      const nearY = clampY;
+
+      // Compute arrowhead
+      const angle = Math.atan2(nearY - arrowPt.y, nearX - arrowPt.x);
+      const arrowLen = 3.5;
+      const arrowWing = 1.2;
+      const ax1 = arrowPt.x + arrowLen * Math.cos(angle + Math.PI * 0.85);
+      const ay1 = arrowPt.y + arrowLen * Math.sin(angle + Math.PI * 0.85);
+      const ax2 = arrowPt.x + arrowLen * Math.cos(angle - Math.PI * 0.85);
+      const ay2 = arrowPt.y + arrowLen * Math.sin(angle - Math.PI * 0.85);
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'bp-annotation');
+      g.setAttribute('data-annot-idx', idx);
+      g.style.cursor = 'pointer';
+      g.title = 'Cliquez pour supprimer';
+
+      // Arrow line
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', arrowPt.x);
+      line.setAttribute('y1', arrowPt.y);
+      line.setAttribute('x2', nearX);
+      line.setAttribute('y2', nearY);
+      line.setAttribute('stroke', '#0000cc');
+      line.setAttribute('stroke-width', '0.4');
+      line.setAttribute('fill', 'none');
+      g.appendChild(line);
+
+      // Arrowhead
+      const head = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      head.setAttribute('points', `${arrowPt.x},${arrowPt.y} ${ax1},${ay1} ${ax2},${ay2}`);
+      head.setAttribute('fill', '#0000cc');
+      head.setAttribute('stroke', 'none');
+      g.appendChild(head);
+
+      // Box rectangle
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', bx);
+      rect.setAttribute('y', by);
+      rect.setAttribute('width', boxW);
+      rect.setAttribute('height', boxH);
+      rect.setAttribute('fill', '#ffffff');
+      rect.setAttribute('stroke', '#0000cc');
+      rect.setAttribute('stroke-width', '0.4');
+      rect.setAttribute('rx', '0.5');
+      g.appendChild(rect);
+
+      // Text lines
+      lines.forEach((line2, li) => {
+        const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('x', bx + padX);
+        t.setAttribute('y', by + padY + fontSize + li * lineHeight);
+        t.setAttribute('font-size', fontSize);
+        t.setAttribute('font-family', "'Outfit', sans-serif");
+        t.setAttribute('font-weight', '400');
+        t.setAttribute('fill', '#000000');
+        t.setAttribute('text-anchor', 'start');
+        t.textContent = line2;
+        g.appendChild(t);
+      });
+
+      // Click to delete
+      g.addEventListener('click', (e) => {
+        if (this._calloutMode || this._annotMode) return;
+        e.stopPropagation();
+        if (confirm('Supprimer cette annotation ?')) {
+          this.annotations.splice(idx, 1);
+          this.draw();
+        }
+      });
+
+      svg.appendChild(g);
+    });
+  },
+
+
 
   // Redessine toutes les cotes manuelles persistées
   drawManualDims(svg) {
@@ -755,6 +1029,9 @@ const Blueprint = {
 
     // Dessiner les cotes manuelles persistées (au-dessus de tout)
     this.drawManualDims(svg);
+
+    // Dessiner les annotations callout (au-dessus des cotes)
+    this.drawAnnotations(svg);
 
     // Attacher le handler de clic pour le mode annotation
     svg.addEventListener('click', (e) => this.handleSVGClick(e));
