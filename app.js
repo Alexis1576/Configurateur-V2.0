@@ -129,6 +129,7 @@ const threeCanvas     = $('three-canvas');
 const viewerCanvas    = $('viewer-canvas');
 let scene, camera, renderer, controls, fbxLoader, current3DObject = null;
 let loadedModelCount = null;
+let current3DLoadToken = 0;
 let baseCuveModel = null;
 let cuveInstances = [];
 let supportModel = null;  // Variable pour stocker le modèle de support
@@ -461,50 +462,13 @@ window.captureMiseEnPlanViews = function(callback) {
   scene.traverse(child => {
     if (child.isMesh && !child.userData.isEdgeHelper && !child.name.includes("ClippingPlane") && !child.name.includes("StencilCap")) {
       
+      // Les SkinnedMesh ont leur géométrie en espace FBX (centimètres).
+      // Le baking CPU produirait des arêtes 100x trop grandes car la matrixWorld
+      // du SkinnedMesh contient déjà le facteur 0.01. On les ignore pour le plan.
+      if (child.isSkinnedMesh) return;
+
       let geomToEdge = child.geometry;
       let clonedGeom = null;
-
-      // GPU bone deformations (SkinnedMesh) must be calculated on the CPU for EdgesGeometry
-      if (child.isSkinnedMesh && child.skeleton) {
-        clonedGeom = child.geometry.clone();
-        child.skeleton.update();
-        const posAttr = clonedGeom.attributes.position;
-        const skinIndexAttr = clonedGeom.attributes.skinIndex;
-        const skinWeightAttr = clonedGeom.attributes.skinWeight;
-
-        if (skinIndexAttr && skinWeightAttr) {
-          const bindMatrix = child.bindMatrix;
-          const bindMatrixInverse = child.bindMatrixInverse;
-          const boneMatrices = child.skeleton.boneMatrices;
-
-          const vertex = new THREE.Vector3();
-          const skinMatrix = new THREE.Matrix4();
-          const boneMatrix = new THREE.Matrix4();
-
-          for (let i = 0; i < posAttr.count; i++) {
-            vertex.fromBufferAttribute(posAttr, i);
-            vertex.applyMatrix4(bindMatrix);
-
-            skinMatrix.elements.fill(0);
-
-            for (let j = 0; j < 4; j++) {
-              const weight = skinWeightAttr.getComponent(i, j);
-              if (weight > 0) {
-                const boneIndex = skinIndexAttr.getComponent(i, j);
-                boneMatrix.fromArray(boneMatrices, boneIndex * 16);
-                for (let k = 0; k < 16; k++) {
-                  skinMatrix.elements[k] += boneMatrix.elements[k] * weight;
-                }
-              }
-            }
-
-            vertex.applyMatrix4(skinMatrix);
-            vertex.applyMatrix4(bindMatrixInverse);
-            posAttr.setXYZ(i, vertex.x, vertex.y, vertex.z);
-          }
-        }
-        geomToEdge = clonedGeom;
-      }
 
       // Handle morph targets for the plan vasque so edges match the stretched geometry
       if (child.morphTargetInfluences && child.morphTargetInfluences.length > 0) {
@@ -549,7 +513,29 @@ window.captureMiseEnPlanViews = function(callback) {
   // Calculate true bounding box to guarantee perfect framing
   const box = new THREE.Box3();
   if (current3DObject) {
-    box.setFromObject(current3DObject);
+    current3DObject.updateMatrixWorld(true);
+    let hasVisibleMesh = false;
+    current3DObject.traverse(child => {
+      if (child.isMesh && child.visible && !child.userData.isEdgeHelper) {
+        hasVisibleMesh = true;
+        // Exclure les SkinnedMesh : leur géométrie (bind pose) est en espace FBX (100x trop grande).
+        // On se fie uniquement aux meshes normaux, qui sont correctement dimensionnés.
+        if (child.isSkinnedMesh) return;
+
+        let geomToMeasure = child.geometry;
+        if (!geomToMeasure.boundingBox) geomToMeasure.computeBoundingBox();
+        if (geomToMeasure.boundingBox && !geomToMeasure.boundingBox.isEmpty()) {
+            const meshBox = new THREE.Box3().copy(geomToMeasure.boundingBox);
+            meshBox.applyMatrix4(child.matrixWorld);
+            box.union(meshBox);
+        }
+      }
+    });
+    
+    // Fallback if no valid visible meshes found
+    if (!hasVisibleMesh || box.isEmpty()) {
+      box.set(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 1, 1));
+    }
   } else {
     box.set(new THREE.Vector3(-1, 0, -1), new THREE.Vector3(1, 1, 1));
   }
@@ -1207,6 +1193,18 @@ function update3DScale() {
           const srcLocalScale = new THREE.Vector3();
           srcLocalMatrix.decompose(srcLocalPos, srcLocalQuat, srcLocalScale);
           
+          if (srcMesh.isSkinnedMesh && srcMesh.skeleton && srcMesh.skeleton.bones.length > 0) {
+            // Extraire l'échelle locale de l'os par rapport au mesh pour compenser l'échelle de l'FBX (souvent x100)
+            const mainBone = srcMesh.skeleton.bones[0];
+            const invSrcMatrix = new THREE.Matrix4().copy(srcWorldMatrix).invert();
+            const boneLocalMatrix = invSrcMatrix.multiply(mainBone.matrixWorld);
+            const bPos = new THREE.Vector3();
+            const bQuat = new THREE.Quaternion();
+            const boneLocalScale = new THREE.Vector3();
+            boneLocalMatrix.decompose(bPos, bQuat, boneLocalScale);
+            srcLocalScale.multiply(boneLocalScale);
+          }
+          
           // Appliquer rotation et scale
           // On décale l'équerre gauche de +35mm (vers la droite) et l'équerre droite de -35mm (vers la gauche)
           const decalage = isLeft ? 35 : -35;
@@ -1611,7 +1609,18 @@ function loadCuveModel(callback) {
   // Réinitialise pour forcer le rechargement lors d'un changement de modèle
   baseCuveModel = null;
 
+  const expectedToken = current3DLoadToken;
   fbxLoader.load(encodeURI(cuvePath), object => {
+    if (current3DLoadToken !== expectedToken) {
+      object.traverse(child => {
+        if (child.isMesh) {
+          child.geometry.dispose();
+          if (child.material?.dispose) child.material.dispose();
+        }
+      });
+      return;
+    }
+
     object.traverse(child => {
       applyStandardMeshSettings(child);
     });
@@ -1692,7 +1701,18 @@ function loadSupportModel(callback) {
     window.extraBrackets = [];
   }
 
+  const expectedToken = current3DLoadToken;
   fbxLoader.load(encodeURI(supportPath), object => {
+    if (current3DLoadToken !== expectedToken) {
+      object.traverse(child => {
+        if (child.isMesh) {
+          child.geometry.dispose();
+          if (child.material?.dispose) child.material.dispose();
+        }
+      });
+      return;
+    }
+
     const skinnedMeshesToReparent = [];
     object.traverse(child => {
       applyStandardMeshSettings(child);
@@ -1712,14 +1732,17 @@ function loadSupportModel(callback) {
       object.attach(sm);
     });
     object.scale.set(1, 1, 1);
+    object.name = 'SUPPORT_MODEL_INSTANCE';
     object._loadedPath = supportPath; // mémorise le chemin chargé
     supportModel = object;
     window.supportModel = object;
     collectSupportMorphTargets(object);
     window.supportScaleMeshes = supportScaleMeshes;
     
-    // Ajouter le support à la scène 3D
+    // Ajouter le support à la scène 3D (nettoyer d'abord tout ancien support orphelin issu d'un chargement concurrent)
     if (current3DObject) {
+      const oldSupport = current3DObject.getObjectByName('SUPPORT_MODEL_INSTANCE');
+      if (oldSupport) current3DObject.remove(oldSupport);
       current3DObject.add(supportModel);
     }
     
@@ -1727,6 +1750,16 @@ function loadSupportModel(callback) {
       const portePath = `3D - Morth Targets/${base}/PorteThalliSol.fbx`;
       const sepPath = `3D - Morth Targets/${base}/ThalliSol_Sep_EOS.fbx`;
       fbxLoader.load(encodeURI(portePath), porteObject => {
+        if (current3DLoadToken !== expectedToken) {
+          porteObject.traverse(child => {
+            if (child.isMesh) {
+              child.geometry.dispose();
+              if (child.material?.dispose) child.material.dispose();
+            }
+          });
+          return;
+        }
+
         porteObject.traverse(child => {
           applyStandardMeshSettings(child);
         });
@@ -1735,6 +1768,16 @@ function loadSupportModel(callback) {
         
         // Charger la séparation
         fbxLoader.load(encodeURI(sepPath), sepObject => {
+          if (current3DLoadToken !== expectedToken) {
+            sepObject.traverse(child => {
+              if (child.isMesh) {
+                child.geometry.dispose();
+                if (child.material?.dispose) child.material.dispose();
+              }
+            });
+            return;
+          }
+
           sepObject.traverse(child => {
             applyStandardMeshSettings(child);
           });
@@ -1798,7 +1841,21 @@ function load3DModelForSelection() {
   }
 
   loadedModelCount = `${getBaseModelName()}_${targetCount}`;
+  current3DLoadToken++;
+  const expectedToken = current3DLoadToken;
+  
   fbxLoader.load(encodeURI(modelPath), object => {
+    if (current3DLoadToken !== expectedToken) {
+      // Ignorer ce chargement car une autre requête a été lancée entre temps
+      object.traverse(child => {
+        if (child.isMesh) {
+          child.geometry.dispose();
+          if (child.material?.dispose) child.material.dispose();
+        }
+      });
+      return;
+    }
+
     object.traverse(child => {
       applyStandardMeshSettings(child);
     });
@@ -1817,6 +1874,7 @@ function load3DModelForSelection() {
       });
     });
   }, undefined, err => {
+    if (current3DLoadToken !== expectedToken) return;
     console.error('Erreur de chargement 3D:', err);
     if (viewerLoading) viewerLoading.classList.remove('show');
   });
@@ -2339,6 +2397,12 @@ function init() {
   
   if (window.Blueprint) {
     window.Blueprint.init();
+  }
+  if (window.Cart) {
+    window.Cart.init();
+  }
+  if (window.History) {
+    window.History.init();
   }
 }
 

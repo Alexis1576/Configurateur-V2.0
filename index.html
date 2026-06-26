@@ -511,10 +511,11 @@
     <!-- Tab: Panier -->
     <div class="cart-tab-content" data-tab="cart" style="display:flex; flex-direction:column; flex:1; overflow:hidden;">
       <div id="cart-items-list" class="cart-items-list"></div>
-      <div class="cart-panel-footer">
+      <div class="cart-panel-footer" style="display:flex; flex-direction:column; gap:12px;">
+        <input id="cart-project-ref" type="text" placeholder="🏷️ Nom du projet / Référence" style="width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:#e2e8f0; padding:10px 12px; border-radius:8px; font-size:13px; font-family:'Inter',sans-serif; outline:none; box-sizing:border-box;">
         <button id="btn-cart-print-all" class="btn-primary" style="width:100%; justify-content:center; gap:8px;">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-          Imprimer tout le panier
+          Terminer et imprimer le panier
         </button>
       </div>
     </div>

@@ -105,17 +105,36 @@ const Cart = {
       return;
     }
 
-    const confirmPrint = confirm(`Imprimer ${this.items.length} plan(s) successivement ?`);
-    if (!confirmPrint) return;
+    const projectRefInput = document.getElementById('cart-project-ref');
+    const projectRef = projectRefInput ? projectRefInput.value.trim() : '';
+    
+    if (!projectRef) {
+      const confirmPrint = confirm(`Vous n'avez pas entré de nom de projet/référence.\nVoulez-vous imprimer et terminer ce panier avec les références générées automatiquement ?`);
+      if (!confirmPrint) return;
+    } else {
+      const confirmPrint = confirm(`Imprimer et terminer ce panier sous la référence "${projectRef}" ?`);
+      if (!confirmPrint) return;
+    }
 
     this.closePanel();
 
+    // Créer un conteneur d'impression global pour imprimer toutes les pages d'un coup
+    const printContainer = document.createElement('div');
+    printContainer.id = 'print-all-container';
+    document.body.appendChild(printContainer);
+
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      this.showToast(`📄 Plan ${i + 1}/${this.items.length} : ${item.ref}`);
+      const finalRef = projectRef ? `${projectRef} - ${item.ref}` : item.ref;
+      
+      this.showToast(`📄 Préparation du plan ${i + 1}/${this.items.length}...`);
 
       // Load config
       this.applyState(item.state);
+
+      // Assigner la référence au champ du cartouche avant d'ouvrir le plan
+      const bpProjectInput = document.getElementById('bp-project');
+      if (bpProjectInput) bpProjectInput.value = finalRef;
 
       // Wait for 3D to update
       await new Promise(r => setTimeout(r, 800));
@@ -127,12 +146,19 @@ const Cart = {
         // Wait for rendering
         await new Promise(r => setTimeout(r, 2500));
 
-        // Save to history then print
+        // Save to history
         if (window.History) {
-          await window.History.save(item.state, item.ref);
+          await window.History.save(item.state, finalRef);
         }
 
-        window.print();
+        // Récupérer le SVG généré et le cloner dans la file d'impression
+        const svgElement = document.querySelector('#blueprint-sheet svg');
+        if (svgElement) {
+          const pageDiv = document.createElement('div');
+          pageDiv.className = 'print-page';
+          pageDiv.appendChild(svgElement.cloneNode(true));
+          printContainer.appendChild(pageDiv);
+        }
 
         // Close blueprint
         await new Promise(r => setTimeout(r, 500));
@@ -143,7 +169,26 @@ const Cart = {
       }
     }
 
-    this.showToast(`✅ Impression de ${this.items.length} plan(s) terminée`);
+    // Activer le mode impression multi-pages
+    document.body.classList.add('print-multi-mode');
+    
+    // Lancer la boîte de dialogue d'impression une seule fois pour tout le panier
+    window.print();
+    
+    // Nettoyer après l'impression
+    document.body.classList.remove('print-multi-mode');
+    if (printContainer.parentNode) {
+      printContainer.parentNode.removeChild(printContainer);
+    }
+
+    // Vider le panier
+    this.items = [];
+    this.save();
+    this.renderCartItems();
+    this.updateBadge();
+    if (projectRefInput) projectRefInput.value = '';
+
+    this.showToast(`✅ Panier terminé avec succès !`);
   },
 
   // ──────────────────────────────────────────
